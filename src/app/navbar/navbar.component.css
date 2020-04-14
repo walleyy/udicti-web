@@ -1,0 +1,43 @@
+.app-header{justify-content:space-between;position:fixed;top:0;left:0;right:0;z-index:2;box-shadow:0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);}
+
+@media only screen and (min-width: 600px){
+  nav {
+    height: 75px!important;
+  }
+}
+@media only screen and (max-width: 600px){
+  .body {
+    padding-top: 10%!important;
+  }
+}
+/*
+
+
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+
+::ng-deep .view-mat-tooltip{
+  background: #498CDC;
+  font-weight: bold;
+}
+::ng-deep .delete-mat-tooltip{
+  background: #F71F37;
+  font-weight: bold;
+}
+::ng-deep .addResults-mat-tooltip{
+  background: #00c851;
+  font-weight: bold;
+}
+*/

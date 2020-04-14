@@ -1,0 +1,98 @@
+
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top main-bgcolor shadow" id="mainNav">
+    <div class="container" >
+      <a class="navbar-brand" routerLink = "" (click)="scroll('page-top')">
+        <img src="../../assets/img/udsm_logo.png" width="15%">UDICTI</a>
+      <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
+              aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul *ngIf="fullNav" class="nav navbar-nav ml-auto text-uppercase">
+          <li class="nav-item" role="presentation"><a class="nav-link " routerLink="aboutUs">About</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" (click)="scroll('portfolio')"  href="#portfolio">Projects</a></li>
+<!--
+          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" (click)="scroll('services')"  href="#about">Services</a></li>
+-->
+          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" (click)="scroll('team')"  href="#team">Team</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" (click)="scroll('contact')"  href="#contact">Contact</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger"  routerLink="../login" routerLinkActive="active">Log In</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger"  routerLink="../register" routerLinkActive="active">Register </a></li>
+        </ul>
+        <ul *ngIf="!fullNav" class="nav navbar-nav ml-auto text-uppercase">
+          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger"  routerLink="../login" routerLinkActive="active">Log In</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger"  routerLink="../register" routerLinkActive="active">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<!--
+
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top main-bgcolor" id="mainNav">
+  <div class="container"><a class="navbar-brand" href="#page-top">UDICTI</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
+                                                                                    aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="nav navbar-nav ml-auto text-uppercase">
+        <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+-->
+
+<!--
+
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+  &lt;!&ndash; Navbar brand &ndash;&gt;
+  <a class="navbar-brand" href="#">Navbar</a>
+
+  &lt;!&ndash; Collapse button &ndash;&gt;
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  &lt;!&ndash; Collapsible content &ndash;&gt;
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    &lt;!&ndash; Links &ndash;&gt;
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+
+      &lt;!&ndash; Dropdown &ndash;&gt;
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+
+    </ul>
+    &lt;!&ndash; Links &ndash;&gt;
+
+    <form class="form-inline">
+      <div class="md-form my-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      </div>
+    </form>
+  </div>
+  &lt;!&ndash; Collapsible content &ndash;&gt;
+
+</nav>
+-->

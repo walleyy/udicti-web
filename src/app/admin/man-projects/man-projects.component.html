@@ -1,0 +1,101 @@
+<div class="udicti_container">
+
+  <div id="addedit" class="udicti-form">
+    <label class="text-white" style="background-color: #33366C; padding: 20px; margin: 0 0 5px 0;">
+      <span *ngIf="!editClicked" class="row" style="padding: 0 40px 0 40px;">
+        <h5 style="flex: 1 1 auto;">Add New  </h5>
+        <mat-icon>add</mat-icon>
+      </span>
+      <span *ngIf="editClicked" class="row" style="padding: 0 40px 0 40px;">
+           <h5 style="flex: 1 1 auto;">  Edit / Update </h5>
+          <mat-icon>edit</mat-icon>
+      </span>
+    </label>
+    <mat-card style="background-color: rgba(124, 153, 251,0.3);">
+      <form [formGroup]="projectFormGroup" (ngSubmit)="addProjects()">
+        <div class="row">
+          <div class="col-md-4 align-self-center" style="width: 100%; height: 100%">
+            <div class="row justify-content-center">
+              <img class="rounded-circle img-fluid"
+                   style="opacity: 0.5;border-style: solid; padding: 1%;"
+                   src="../../../assets/img/add_a_photo.png">
+            </div>
+            <div class="row justify-content-center" style="margin-top: 10px">
+              <button mat-stroked-button
+                      style="padding: 10px; color: #33366C; background-color: #fcdb00; font-size: 18px">Select Image
+                <mat-icon>add_a_photo</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <label class="row">
+              <input placeholder="Name" type="text" class="row udicti-input" formControlName="name"
+                     [(ngModel)]="editData.name">
+            </label>
+            <label class="row">
+              <textarea placeholder="Details" type="text" class="udicti-input" formControlName="details"
+                        [(ngModel)]="editData.details"></textarea>
+            </label>
+          </div>
+        </div>
+        <div *ngIf="!editClicked" class="row flex justify-content-center ">
+          <button mat-raised-button class="col-md-2 main-bgcolor text-white">Add
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <div *ngIf="editClicked" class="row flex justify-content-center">
+          <button mat-raised-button class="col-md-2 main-bgcolor text-white " style=" margin: 5px"
+                  (click)="update()">Save
+            <mat-icon>save</mat-icon>
+          </button>
+          <button mat-raised-button class="col-md-2 main-bgcolor text-white" style="margin: 5px"
+                  (click)="cancel()">Cancel
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+
+  <div class="udicti-form">
+    <label class="text-white" style="background-color: #33366C; padding: 20px; margin: 0 0 5px 0;">
+      <span class="row" style="padding: 0 40px 0 40px;">
+      <h5 style="flex: 1 1 auto;">Projects List</h5>
+      <mat-icon>view_list</mat-icon>
+      </span>
+    </label>
+    <mat-card style="background-color: rgba(124, 153, 251,0.3);">
+      <ul>
+        <li *ngFor="let project of projects" style="list-style: none; padding: 2% 0 2% 0">
+          <div class="row" style="margin-bottom: 2% ">
+            <div class="col-md-3 align-self-center" style="width: 100%; height: 100%">
+              <div class="row justify-content-center">
+                <img class="rounded-circle img-fluid"
+                     style="opacity: 0.5;border-style: solid; padding: 1%;"
+                     src="../../../assets/img/add_a_photo.png">
+              </div>
+            </div>
+            <div class="col-md-7">
+              <h5>{{project.name}}</h5>
+              <p>{{project.details}}</p>
+            </div>
+            <div class="col-md-2 align-self-center">
+              <div class="custom-control-inline">
+                <button mat-icon-button style="color: #33366C" matTooltip="Edit"
+                        matTooltipClass="edit-mat-tooltip"
+                        matTooltipPosition="above" (click)="edit('addedit', project._links.self.href)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" matTooltip="Delete" matTooltipClass="delete-mat-tooltip"
+                        matTooltipPosition="above" (click)="delete(project._links.self.href)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <mat-divider style="background-color: rgba(55,60,66,1); width: 90%; margin-left: 5%;"></mat-divider>
+        </li>
+      </ul>
+    </mat-card>
+  </div>
+</div>

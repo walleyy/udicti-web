@@ -1,0 +1,37 @@
+<!--step 4-->
+
+<!--
+
+
+<div class="udicti_container">
+
+<div class="udicti-form">
+  <form [formGroup]="apiFormGroup" (ngSubmit)="addProject()" style="width: 100%">
+    <label>
+      <input placeholder="Name" type="text" class="udicti-input" formControlName="name">
+    </label>
+    <label>
+      <textarea placeholder="description" type="text" class="udicti-input" formControlName="description"></textarea>
+    </label>
+    <label>
+      <input placeholder="Cost" type="number" formControlName="cost" class="udicti-input">
+    </label>
+
+    <button  style="border-radius: 50px">Save</button>
+  </form>
+</div>
+
+
+<div class="udciti-list">
+  <ul>
+    <li *ngFor="let project of projects">
+      <h5>{{project.name}}</h5>
+      <p>{{project.description}}</p>
+      <h1>{{project.cost}}</h1>
+    </li>
+  </ul>
+</div>
+
+</div>
+-->
+<router-outlet></router-outlet>

@@ -1,0 +1,51 @@
+<section class="row" >
+ <div class="col-1">
+   <h3 ><em>COMMING EVENTS</em></h3>
+ </div>
+  <div id="events" class="col-8" >
+    <div class="cardcss" *ngFor="let eventno of events">
+      <mat-card style=" flex-direction: row;
+  padding: 5px 5px;
+  margin: 15px;
+  border-spacing: 10px;
+  mso-border-shadow: yes;
+  background-color: rgba(255, 212, 105, 0.38);
+  width: 250px;
+  height: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;"  >
+        <p >
+       <em>{{  CurrentDate | date:"EEEE  " +
+       "LLL  dd"}}</em>
+        </p>
+        <div style="display: inline-flex;flex-direction: column;height: fit-content;width: 50%;float: right">
+        <span style="padding: 5px 10px">{{eventno.head}}</span>
+<!--          <span>{{eventno.spann}}</span>-->
+        </div>
+      </mat-card>
+
+    </div>
+  </div>
+  <div id="poster" class="col-3" >
+    <div style="
+    display: flex;
+    justify-content: left;
+    align-content: center;
+    align-self: flex-start;
+" *ngFor="let poster of posts">
+      <a style="
+    height: fit-content;
+    width: auto;
+    display: flow;
+    color: #007bff;
+    position: center;
+    ;
+    flex-wrap: wrap;"  [href]="" >
+      <mat-icon>new_releases</mat-icon>{{poster.header}}
+      </a>
+    </div>
+  </div>
+</section>

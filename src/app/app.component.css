@@ -1,0 +1,32 @@
+.udicti_container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.udicti-form{
+    display: flex;
+    align-self: center;
+    /* width: 300px; */
+    flex-direction: column;
+    justify-content: center;
+}
+
+.udicti-input{
+    width: 100%;
+    padding: 16px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+
+
+.udciti-list{
+    align-self: center;
+    margin: 8px;
+    width: 400px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(black, black, black, 0.25);
+}
