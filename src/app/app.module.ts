@@ -43,6 +43,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { CoachComponent } from './coach/coach.component';
 import { PendingComponent } from './incubatee/pending/pending.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { ResourcesComponent } from './resources/resources.component';
     NotfoundComponent,
     CoachComponent,
     PendingComponent,
-    ResourcesComponent
+    ResourcesComponent,
+    DialogBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -103,6 +106,9 @@ import { ResourcesComponent } from './resources/resources.component';
     FlexLayoutModule,
     MatProgressSpinnerModule,
     MatProgressBarModule
+  ],
+  entryComponents: [
+    DialogBoxComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

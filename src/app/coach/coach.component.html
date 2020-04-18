@@ -64,8 +64,8 @@
                 <form [formGroup]="sessionForm" (ngSubmit)="getSession()" fxLayout="column" fxLayoutAlign="center center">
                   <mat-form-field appearance="outline" style="width: 95%; margin-top: 20px;">
                     <mat-label>Session Title</mat-label>
-                    <input matInput type="text" formControlName="session_title">
-                    <mat-error *ngIf="hasError('session_title', 'required')">session title is required</mat-error>
+                    <input matInput type="text" formControlName="name">
+                    <mat-error *ngIf="hasError('name', 'required')">session title is required</mat-error>
                   </mat-form-field>
                 </form>
 
@@ -88,15 +88,47 @@
                   </mat-card-actions>
                 </mat-card>
                 <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="application/pdf/*" style="display:none;" />
-
-
+                <button style="float: right; background-color: rgba(0,123,255,0.51);border-style: none" mat-button type="submit">Add</button>
+<!--                <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button>-->
               </div>
             </mat-expansion-panel>
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 Modify uploaded session
               </mat-expansion-panel-header>
-              shdjshjdshjs
+              <div class="container text-center">
+
+                <table mat-table [dataSource]="dataSource" #mytable class="my-table mat-elevation-z8">
+
+                  <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+                  <!-- Id Column -->
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> ID. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                  </ng-container>
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+
+                  <!-- Action Column -->
+                  <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let element" class="action-link">
+                      <a (click)="openDialog('Update',element)">Edit</a> |
+                      <a (click)="openDialog('Delete',element)">Delete</a>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+              </div>
             </mat-expansion-panel>
           </mat-accordion>
         </mat-tab>
@@ -105,6 +137,7 @@
           <ng-template mat-tab-label>
             <img src="../../../assets/img/incubatee/addActivity.png" width="25%" style="margin-right: 10px"> Student Activity
           </ng-template>
+
           view activities
         </mat-tab>
 

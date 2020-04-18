@@ -3,6 +3,21 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
 }
 
+@media screen and (max-width: 600px){
+  .slick-slide{
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-self: center;
+    justify-items: center;
+    width: fit-content;
+ }
+  .slides{
+    border-spacing: 10vw;
+  }
+
+}
 .text-shadow {
   text-shadow: 1px 3px 3px #000000;
 }

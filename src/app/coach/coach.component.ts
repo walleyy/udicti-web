@@ -1,12 +1,23 @@
 import { Component, OnInit,  ViewChild, ElementRef} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar, MatDialog, MatTable} from '@angular/material';
 import { HttpEventType, HttpErrorResponse} from '@angular/common/http';
 import {of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import {CoachUploadService } from '../service/coach-upload.service';
+import {DialogBoxComponent} from '../dialog-box/dialog-box.component';
 
+export interface UsersData {
+  name: string;
+  id: number;
+}
+const ELEMENT_DATA: UsersData[] = [
+  {id: 1560608769632, name: 'Artificial Intelligence'},
+  {id: 1560608796014, name: 'Machine Learning'},
+  {id: 1560608787815, name: 'Robotic Process Automation'},
+  {id: 1560608805101, name: 'Blockchain'}
+];
 @Component({
   selector: 'app-coach',
   templateUrl: './coach.component.html',
@@ -14,17 +25,23 @@ import {CoachUploadService } from '../service/coach-upload.service';
 })
 export class CoachComponent implements OnInit {
   @ViewChild('fileUpload', {static: false}) fileUpload: ElementRef; files  = [];
+  displayedColumns: string[] = ['id', 'name', 'action'];
+  dataSource = ELEMENT_DATA;
+
+  @ViewChild(MatTable, {static: true}) table: MatTable<any>;
+
   private sessionForm: FormGroup;
   profileTab: number;
   constructor(private route: Router,
               private snackBar: MatSnackBar,
-              private uploadService: CoachUploadService) {
+              private uploadService: CoachUploadService,
+              public dialog: MatDialog) {
     this.initiateForm();
   }
 
   private initiateForm() {
     this.sessionForm = new FormGroup({
-      session_title: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
     });
   }
   public hasError = (controlName: string, errorName: string) => {
@@ -76,9 +93,56 @@ export class CoachComponent implements OnInit {
     };
     fileUpload.click();
   }
+
   getSession() {
+  }
+
+  openDialog(action, obj) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: '250px',
+      data: obj
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event === 'Add') {
+        this.addRowData(result.data);
+      } else if (result.event === 'Update') {
+        this.updateRowData(result.data);
+      } else if (result.event === 'Delete') {
+        this.deleteRowData(result.data);
+      }
+    });
+  }
+
+  // tslint:disable-next-line:variable-name
+  addRowData(row_obj) {
+    const d = new Date();
+    this.dataSource.push({
+      id: d.getTime(),
+      name: row_obj.name
+    });
+    this.table.renderRows();
 
   }
+  // tslint:disable-next-line:variable-name
+  updateRowData(row_obj) {
+    this.dataSource = this.dataSource.filter((value, key) => {
+      if (value.id === row_obj.id) {
+        value.name = row_obj.name;
+      }
+      return true;
+    });
+  }
+  // tslint:disable-next-line:variable-name
+  deleteRowData(row_obj) {
+    this.dataSource = this.dataSource.filter((value, key) => {
+      return value.id !== row_obj.id;
+    });
+  }
+
+
+
   ngOnInit() {
   }
 }

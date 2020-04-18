@@ -109,3 +109,6 @@ p{
   border-radius: 20px;
   width: 30%;
 }
+.mat-table{
+  width: fit-content;
+}

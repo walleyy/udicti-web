@@ -1,6 +1,10 @@
 a:hover {
   cursor: pointer;
 }
+#mainNav{
+  height: fit-content;
+  min-height: 75px;
+}
 .timeline-container {
   position: relative;
   padding-top: 4px;

@@ -1,15 +1,15 @@
-<section class="row" >
- <div class="col-1">
+<section  >
+  <div class="row">
+ <div id="head" class="col-md-1" style="width: fit-content;height: fit-content;margin: 0" >
    <h3 ><em>COMMING EVENTS</em></h3>
  </div>
-  <div id="events" class="col-8" >
-    <div class="cardcss" *ngFor="let eventno of events">
+  <div class="col-md-8" id="events"  >
+    <div class="card-css" *ngFor="let eventNo of events">
       <mat-card style=" flex-direction: row;
   padding: 5px 5px;
   margin: 15px;
   border-spacing: 10px;
   mso-border-shadow: yes;
-  background-color: rgba(255, 212, 105, 0.38);
   width: 250px;
   height: 50px;
   display: flex;
@@ -18,34 +18,34 @@
   align-items: center;
   flex: 1 1 auto;"  >
         <p >
-       <em>{{  CurrentDate | date:"EEEE  " +
-       "LLL  dd"}}</em>
+       <em>{{  CurrentDate | date:"EEEE LLL"}}<br>
+       {{CurrentDate| date: "dd"}}</em>
         </p>
-        <div style="display: inline-flex;flex-direction: column;height: fit-content;width: 50%;float: right">
-        <span style="padding: 5px 10px">{{eventno.head}}</span>
-<!--          <span>{{eventno.spann}}</span>-->
+        <div style="display: inline-flex;;height: fit-content;width: 50%;float: right">
+        <span style="padding: 5px 10px">{{eventNo.head}}</span>
         </div>
       </mat-card>
 
     </div>
   </div>
-  <div id="poster" class="col-3" >
+  <div class="col-md-3" id="poster"  >
     <div style="
-    display: flex;
-    justify-content: left;
-    align-content: center;
-    align-self: flex-start;
+    display: flow;
 " *ngFor="let poster of posts">
       <a style="
     height: fit-content;
     width: auto;
-    display: flow;
+    align-self: center;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    margin: 15px 0;
     color: #007bff;
-    position: center;
-    ;
-    flex-wrap: wrap;"  [href]="" >
-      <mat-icon>new_releases</mat-icon>{{poster.header}}
+    flex-wrap: wrap;
+"  [href]="" >
+        <mat-icon>new_releases</mat-icon><span style="float: right;">{{poster.header}}</span>
       </a>
     </div>
+  </div>
   </div>
 </section>
