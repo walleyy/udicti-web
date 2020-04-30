@@ -7,6 +7,7 @@ import {of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import {CoachUploadService } from '../service/coach-upload.service';
 import {DialogBoxComponent} from '../dialog-box/dialog-box.component';
+import {Pipe} from '@angular/core';
 
 export interface UsersData {
   name: string;
