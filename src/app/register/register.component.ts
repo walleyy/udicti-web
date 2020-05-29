@@ -30,7 +30,8 @@ export class RegisterComponent {
       phone_no: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       college: new FormControl('', [Validators.required]),
-      program: new FormControl('', [Validators.required])
+      program: new FormControl('', [Validators.required]),
+      stage: new FormControl('', [Validators.required])
     });
   }
 

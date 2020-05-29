@@ -81,7 +81,7 @@
             <div   class="row">
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>E-mail</mat-label>
-              <input matInput type="number" formControlName="email" >
+              <input matInput type="email" formControlName="email" >
               <mat-error *ngIf="hasError('email', 'required')">E-mail is required</mat-error>
             </mat-form-field>
 
@@ -94,7 +94,7 @@
 
           </mat-expansion-panel>
           <mat-expansion-panel (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
+                               (closed)="panelOpenState = false" style="margin-bottom: 20px">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <span class="cool-link">
@@ -165,9 +165,30 @@
               <input matInput type="number" formControlName="phone_no" >
               <mat-error *ngIf="hasError('phone_no', 'required')">Phone No is required</mat-error>
             </mat-form-field>
+
             </div>
 
           </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false" >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span class="cool-link">
+                  <i class="fa fa-briefcase" style="margin-right: 5px"></i> Project stage status</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div style="display: flex;flex-direction:column; align-content: center;justify-content: center;align-items: center;border-spacing: 2vh;margin: 3vh" >
+
+              <mat-radio-group class="col-md-4"  formControlName="stage">
+                <mat-radio-button value="ideation" > Ideation </mat-radio-button><br>
+                <mat-radio-button value="startup"> Incubation </mat-radio-button>
+                <mat-radio-button value="acceleration"> Acceleration </mat-radio-button>
+                                <mat-error *ngIf="hasError('stage', 'required')">Field is required</mat-error>
+
+              </mat-radio-group>
+            </div>
+          </mat-expansion-panel>
+
         </mat-accordion>
 
       </mat-card-content>
