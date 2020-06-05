@@ -12,6 +12,7 @@ import {AboutComponent} from './home/about/about.component';
 import {NotfoundComponent} from './notfound/notfound.component';
 import {PendingComponent} from './incubatee/pending/pending.component';
 import {CoachComponent} from './coach/coach.component';
+import {DashboardComponent} from './admin/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'pending', component: PendingComponent},
   {path: 'coach', component: CoachComponent},
+  {path: 'dashboard', component: DashboardComponent},
   {path: '**', component: NotfoundComponent }
 ];
 

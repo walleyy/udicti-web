@@ -10,14 +10,6 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  images = [
-    '../../assets/img/team/1.jpg',
-    '../../assets/img/team/2.jpg',
-    '../../assets/img/team/3.jpg',
-    '../../assets/img/team/1.jpg',
-    '../../assets/img/team/2.jpg',
-    '../../assets/img/team/3.jpg',
-  ];
   public registrationForm: FormGroup;
   profileTab: number;
 

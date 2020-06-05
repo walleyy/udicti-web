@@ -25,6 +25,7 @@ const ELEMENT_DATA: UsersData[] = [
   styleUrls: ['./coach.component.css']
 })
 export class CoachComponent implements OnInit {
+  boolean = true;
   @ViewChild('fileUpload', {static: false}) fileUpload: ElementRef; files  = [];
   displayedColumns: string[] = ['id', 'name', 'action'];
   dataSource = ELEMENT_DATA;
@@ -142,8 +143,9 @@ export class CoachComponent implements OnInit {
     });
   }
 
-
-
+inc() {
+this.boolean = false;
+}
   ngOnInit() {
   }
 }

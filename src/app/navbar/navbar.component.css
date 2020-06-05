@@ -2,44 +2,16 @@
 
 @media only screen and (min-width: 600px){
   nav {
-    height: fit-content;
+    height: 4%;
     min-height: 75px;
-
+  }
+  .body{
+    margin: 2vw;
   }
 }
 @media only screen and (max-width: 600px){
   .body {
     padding-top: 10%!important;
+
   }
 }
-/*
-
-
-
-table {
-  width: 100%;
-}
-
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
-}
-
-td, th {
-  width: 25%;
-}
-
-
-::ng-deep .view-mat-tooltip{
-  background: #498CDC;
-  font-weight: bold;
-}
-::ng-deep .delete-mat-tooltip{
-  background: #F71F37;
-  font-weight: bold;
-}
-::ng-deep .addResults-mat-tooltip{
-  background: #00c851;
-  font-weight: bold;
-}
-*/

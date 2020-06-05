@@ -9,6 +9,7 @@
     padding: 0;
     margin-top: 5px;
     margin-bottom: 10px;
+
   }
   #poster {
     display: flex;
@@ -34,14 +35,15 @@ section{
     justify-content: center;
     padding: 25px 0;
     flex: auto;
-    margin-top: 2vh;
+    /*margin-top: 2vh;*/
+  background-image: linear-gradient(grey,whitesmoke);
     /*border-radius: 5px;*/
    }
 
 #events{
 
-    border-left: 10px solid #FCDB00;
-    border-right: 10px solid #FCDB00;
+    /*border-left: 10px solid #FCDB00;*/
+    /*border-right: 10px solid #FCDB00;*/
     border-top: none;
     padding: 15px;
     color: black;
@@ -68,7 +70,7 @@ section{
 
 h3 {
   font-size: 1rem;
-  color: black;
+  color: #FCDB00;
   letter-spacing: 3px;
   /*transform: rotate(270deg);*/
   /*transform-origin: right;*/
@@ -109,5 +111,6 @@ mat-icon{
 a:hover {
   cursor: pointer;
 }
-a:before{color: #007bff}
-a:after{color: #17a2b8}
+a::before{color: #007bff}
+a::after{color: #17a2b8}
+

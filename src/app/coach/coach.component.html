@@ -1,20 +1,5 @@
-<div style="margin-top: 7%;margin-bottom: 3%">
-  <nav class="navbar navbar-dark navbar-expand-lg fixed-top main-bgcolor shadow" id="mainNav">
-    <div class="container" >
-      <a class="navbar-brand" routerLink="">
-        <img src="../../assets/img/udsm_logo.png" width="15%" alt="logo-udsm">UDICTI</a>
-      <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
-              aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="nav navbar-nav ml-auto h5">
-          <li class="nav-item" role="presentation">
-            <a class="nav-link js-scroll-trigger"  routerLink="" >
-              <i class="fa fa-sign-out"></i> Logout
-            </a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<div style="margin-top: 8%;margin-bottom: 3%">
+  <app-login-nav></app-login-nav>
   <div class="row">
     <mat-card class="col-md-2 shadow" style="color: darkgrey; height: fit-content;margin:0 3%">
       <div>
@@ -138,7 +123,16 @@
             <img src="../../../assets/img/incubatee/addActivity.png" width="25%" style="margin-right: 10px"> Student Activity
           </ng-template>
           <div class="container-fluid">
-            content
+            <span style="margin: 2vh;display: flex;align-self: center;justify-content: center;font-family: 'Roboto', sans-serif">Managed Students</span>
+            <ul class="list-group"style="display: flex;flex-direction: row">
+              <li class="list-group-item"><a (click)="inc()">adam</a></li>
+              <li class="list-group-item"><a (click)="inc()">anet</a> </li>
+              <li class="list-group-item"><a (click)="inc()">angel</a> </li>
+            </ul>
+            <ng-template  [ngIf]="boolean==false">
+              <app-activities></app-activities>
+            </ng-template>
+
           </div>
         </mat-tab>
 
@@ -146,13 +140,13 @@
           <ng-template mat-tab-label>
             <img src="../../../assets/img/incubatee/userSetting.png" width="20%" style="margin-right: 3px">Resources
           </ng-template>
-          Content 3
+          <app-resource></app-resource>
         </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon style="margin-right: 5px">trending_up</mat-icon>Status report
           </ng-template>
-          Content 4
+          content
         </mat-tab>
       </mat-tab-group>
     </mat-card>

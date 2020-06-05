@@ -1,0 +1,56 @@
+
+
+  <div style="margin-top: 10px;">
+    <div>
+      <div class="timeline-container"  *ngFor="let about of images; index as i" >
+        <div  class="timeline-item clearfix">
+          <label class="timeline-label shadow">
+            <b>Jan. 2017</b>
+          </label>
+        </div>
+
+        <div class="timeline-items">
+
+          <div class="timeline-item clearfix">
+            <div class="row">
+              <div class="timeline-info col-1 shift">
+                <!--
+                                      <i class="timeline-indicator ace-icon btn "style="background-color: #3F33CD"></i>
+                -->
+                <i *ngIf="i%2==0" class="timeline-indicator ace-icon fa fa-feed text-white btn "style="background-color: #FFD100"></i>
+                <i *ngIf="i%2!=0" class="timeline-indicator ace-icon fa fa-feed text-white btn bg-dark"></i>
+              </div>
+
+              <div class="col-9" style="background-color: #ffffff; color: darkgrey">
+                <div class="">
+                  <h6 >Activity Title</h6>
+                  <mat-divider></mat-divider>
+                  <label >
+                    Going to cafe for lunch  Going to cafe for lunchGoing to cafe for lunchGoing to cafe for lunch
+                    Going to cafe for lunchGoing to cafe for lunchGoing to cafe for lunch Going to cafe for lunch
+                    Going to cafe for lunch Going to cafe for lunchGoing to cafe for lunch
+                  </label>
+                </div>
+                <mat-divider></mat-divider>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin: -10px 0 0 1px">
+        <div  class="timeline-item clearfix">
+        </div>
+
+        <div class="timeline-items">
+
+          <div class="timeline-item clearfix">
+            <div class="row">
+              <div class="timeline-info col-1 shift">
+                <mat-icon class="timeline-indicator shadow" style="color: #3F33CD; font-size: 30px;">access_time</mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

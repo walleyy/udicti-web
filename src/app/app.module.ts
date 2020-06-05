@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -43,8 +41,11 @@ import { AboutComponent } from './home/about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { CoachComponent } from './coach/coach.component';
 import { PendingComponent } from './incubatee/pending/pending.component';
-import { ResourcesComponent } from './resources/resources.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { ActivitiesComponent } from './incubatee/profile/activities/activities.component';
+import { ResourceComponent } from './coach/resource/resource.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { LoginNavComponent } from './login/login-nav/login-nav.component';
 
 
 
@@ -66,8 +67,11 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
     NotfoundComponent,
     CoachComponent,
     PendingComponent,
-    ResourcesComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    ActivitiesComponent,
+    ResourceComponent,
+    DashboardComponent,
+    LoginNavComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@
     </nav>
   </div>
   <div  >
-    
+
     <div class="row" style="margin: 0 1px;align-content: center;display: flex;align-self: center;flex: auto">
 
       <mat-card class="col-md-3 shadow" style="color: darkgrey; height: fit-content; ">
@@ -42,69 +42,16 @@
           </div>
         </div>
       </mat-card>
-      <!--  <div style="width: 20px; height: 30px"></div>-->
+
       <mat-card id="editProfile" class="col-md-6 shadow" style="height: fit-content">
         <mat-tab-group [(selectedIndex)]="profileTab">
-          <mat-tab>
-            <ng-template mat-tab-label style="width: 50%">
-              <mat-icon style="margin-right: 5px">timeline</mat-icon>Timeline
-            </ng-template>
-            <div style="margin-top: 10px;">
-              <div>
-                <div class="timeline-container"  *ngFor="let about of images; index as i" >
-                  <div  class="timeline-item clearfix">
-                    <label class="timeline-label shadow">
-                      <b>Jan. 2017</b>
-                    </label>
-                  </div>
 
-                  <div class="timeline-items">
-
-                    <div class="timeline-item clearfix">
-                      <div class="row">
-                        <div class="timeline-info col-1 shift">
-                          <!--
-                                                <i class="timeline-indicator ace-icon btn "style="background-color: #3F33CD"></i>
-                          -->
-                          <i *ngIf="i%2==0" class="timeline-indicator ace-icon fa fa-feed text-white btn "style="background-color: #FFD100"></i>
-                          <i *ngIf="i%2!=0" class="timeline-indicator ace-icon fa fa-feed text-white btn bg-dark"></i>
-                        </div>
-
-                        <div class="col-9" style="background-color: #ffffff; color: darkgrey">
-                          <div class="">
-                            <h6 >Activity Title</h6>
-                            <mat-divider></mat-divider>
-                            <label >
-                              Going to cafe for lunch  Going to cafe for lunchGoing to cafe for lunchGoing to cafe for lunch
-                              Going to cafe for lunchGoing to cafe for lunchGoing to cafe for lunch Going to cafe for lunch
-                              Going to cafe for lunch Going to cafe for lunchGoing to cafe for lunch
-                            </label>
-                          </div>
-                          <mat-divider></mat-divider>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div style="margin: -10px 0 0 1px">
-                  <div  class="timeline-item clearfix">
-                  </div>
-
-                  <div class="timeline-items">
-
-                    <div class="timeline-item clearfix">
-                      <div class="row">
-                        <div class="timeline-info col-1 shift">
-                          <mat-icon class="timeline-indicator shadow" style="color: #3F33CD; font-size: 30px;">access_time</mat-icon>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </mat-tab>
+         <mat-tab>
+           <ng-template mat-tab-label style="width: 50%">
+             <mat-icon style="margin-right: 5px">timeline</mat-icon>Timeline
+           </ng-template>
+           <app-activities></app-activities>
+         </mat-tab>
 
           <mat-tab>
             <ng-template mat-tab-label>
@@ -126,7 +73,6 @@
               <button mat-button class="btn-block h5 shadow" style="background-color: #3F33CD; color: #ffffff; width: 70%;padding: 2px">Add Activity</button>
 
             </form>
-
           </mat-tab>
 
           <mat-tab>
@@ -137,7 +83,7 @@
           </mat-tab>
         </mat-tab-group>
       </mat-card>
-      <!--  <div style="width: 20px; height: 30px"></div>-->
+
       <mat-card id="private-notification" class="col-md-3" style=" height: fit-content;height: fit-content">
         <h5 style="color: #c69500" >Notifications</h5>
         <h6 style="font-family: 'Roboto Thin'"><em>This week</em></h6>
