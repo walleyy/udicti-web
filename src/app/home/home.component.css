@@ -50,3 +50,32 @@
   content: '✓';
   padding-right: 5px;
 }
+#join{
+   position: relative;
+   animation-name: a-join;
+   animation-duration: 4s;
+   animation-delay: 2ms;
+ }
+@keyframes a-join {
+  0%   {background-color: yellow;}
+  25%  {background-color: yellowgreen;}
+  50%  {background-color: lightseagreen;}
+  100% {background-color: lightblue;}
+}
+
+.intro-lead-in{
+  position: relative;
+  animation-name: welcome;
+  animation-duration: 4s;
+  animation-delay: 1ms;
+}
+@keyframes welcome {
+  from {top: 0;}
+  to {top: 20vh;}
+}
+.intro-heading{
+  position: relative;
+  animation-name: welcome;
+  animation-duration: 3s;
+  animation-delay: 1s;
+}

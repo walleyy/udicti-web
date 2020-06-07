@@ -35,7 +35,8 @@ export class HomeComponent implements OnInit {
   phonePattern = '[0-9]{0-10}';
   slideConfig = {
     slidesToShow: 4, slidesToScroll: 1, autoplay: true,
-    autoplaySpeed: 1000, arrows: true
+    autoplaySpeed: 1000,
+    arrows: true
   };
   manualProjects = [{
     name: 'AgroLenz',
