@@ -28,12 +28,11 @@ import {
 import { ManServicesComponent } from './admin/man-services/man-services.component';
 import { ManProjectsComponent } from './admin/man-projects/man-projects.component';
 import {SlickCarouselModule} from 'ngx-slick-carousel';
-import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {CommonModule} from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './navigation/navbar.component';
 import { IncubateeComponent } from './incubatee/incubatee.component';
 import { ProfileComponent } from './incubatee/profile/profile.component';
 import { NotificationComponent } from './home/notification/notification.component';
@@ -56,7 +55,6 @@ import { LoginNavComponent } from './login/login-nav/login-nav.component';
     ManAboutComponent,
     ManServicesComponent,
     ManProjectsComponent,
-    ProjectDetailsComponent,
     RegisterComponent,
     LoginComponent,
     NavbarComponent,

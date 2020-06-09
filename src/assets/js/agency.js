@@ -17,17 +17,17 @@
 
   // Closes responsive menu when a scroll trigger link is clicked
   $('.js-scroll-trigger').click(function() {
-    $('.navbar-collapse').collapse('hide');
+    $('.navigation-collapse').collapse('hide');
   });
 
-  // Activate scrollspy to add active class to navbar items on scroll
+  // Activate scrollspy to add active class to navigation items on scroll
   $('body').scrollspy({
     target: '#mainNav',
     offset: 56
   });
 
   // Collapse Navbar
-  var navbarCollapse = function() {
+  const navbarCollapse = function () {
     if ($("#mainNav").offset().top > 100) {
       $("#mainNav").addClass("navbar-shrink");
     } else {
@@ -36,15 +36,15 @@
   };
   // Collapse now if page is not at top
   navbarCollapse();
-  // Collapse the navbar when page is scrolled
+  // Collapse the navigation when page is scrolled
   $(window).scroll(navbarCollapse);
 
-  // Hide navbar when modals trigger
+  // Hide navigation when modals trigger
   $('.portfolio-modal').on('show.bs.modal', function(e) {
-    $(".navbar").addClass("d-none");
+    $(".navigation").addClass("d-none");
   })
   $('.portfolio-modal').on('hidden.bs.modal', function(e) {
-    $(".navbar").removeClass("d-none");
+    $(".navigation").removeClass("d-none");
   })
 
 })(jQuery); // End of use strict

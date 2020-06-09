@@ -1,3 +1,8 @@
+@media (min-width: 768px){
+  section {
+    padding: 0!important;
+  }
+}
 @media only screen and (max-width: 600px){
   section{
     display: flex;
@@ -11,6 +16,7 @@
     margin-bottom: 10px;
 
   }
+
   #poster {
     display: flex;
     /*left: 30vw*/
@@ -18,7 +24,7 @@
   }
   #head{
     display: flex;
-    left: 30vw;
+    left: 20vw;
   }
   #events{
     max-height: 300px;
@@ -27,13 +33,12 @@
 
 section{
     width: auto;
-    height: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-    padding: 25px 0;
+  padding: 0!important;
     flex: auto;
     /*margin-top: 2vh;*/
   background-image: linear-gradient(grey,whitesmoke);
@@ -81,7 +86,7 @@ h3 {
   display: flex;
   align-self: flex-start;
   justify-content: flex-start;
-  padding: 15px;
+  padding: 5px;
 
 }
 

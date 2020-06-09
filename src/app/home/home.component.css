@@ -1,22 +1,11 @@
+@media only screen and (max-width: 600px){
+  #cover{
+    width: fit-content;
+  }
+}
 .a:hover {
   background-color: #7C99FB;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-}
-
-@media screen and (max-width: 600px){
-  .slick-slide{
-    display: flex;
-    flex: auto;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-self: center;
-    justify-items: center;
-    width: fit-content;
- }
-  .slides{
-    border-spacing: 10vw;
-  }
-
 }
 .text-shadow {
   text-shadow: 1px 3px 3px #000000;
@@ -53,7 +42,7 @@
 #join{
    position: relative;
    animation-name: a-join;
-   animation-duration: 4s;
+   animation-duration: 7s;
    animation-delay: 2ms;
  }
 @keyframes a-join {
@@ -66,16 +55,22 @@
 .intro-lead-in{
   position: relative;
   animation-name: welcome;
-  animation-duration: 4s;
+  animation-duration: 2.65s;
   animation-delay: 1ms;
 }
 @keyframes welcome {
-  from {top: 0;}
-  to {top: 20vh;}
+  from {top: 40vh;}
+  to {top: 0;}
 }
 .intro-heading{
   position: relative;
   animation-name: welcome;
-  animation-duration: 3s;
-  animation-delay: 1s;
+  animation-duration: 2s;
+  animation-delay: 1ms;
+}
+section {
+  background: whitesmoke!important;
+}
+footer{
+  background-color: whitesmoke;
 }

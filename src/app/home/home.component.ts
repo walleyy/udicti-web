@@ -4,7 +4,7 @@ import {ServicesService} from '../service/services.service';
 import {ProjectService} from '../service/project.service';
 import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
-import {ProjectDetailsComponent} from '../project-details/project-details.component';
+
 import {MatSnackBar} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -34,9 +34,11 @@ export class HomeComponent implements OnInit {
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
   phonePattern = '[0-9]{0-10}';
   slideConfig = {
-    slidesToShow: 4, slidesToScroll: 1, autoplay: true,
+    slidesToShow: 3, slidesToScroll: 1, autoplay: true,
     autoplaySpeed: 1000,
-    arrows: true
+    arrows: true,
+    variableWidth: true,
+    dots: true
   };
   manualProjects = [{
     name: 'AgroLenz',

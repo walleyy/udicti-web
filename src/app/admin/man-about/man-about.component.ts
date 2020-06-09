@@ -13,6 +13,8 @@ export class ManAboutComponent {
   apiFormGroup: FormGroup;
   editClicked = false;
   newLink: string;
+  Details = String;
+  time = [];
 
   constructor(private formBuilder: FormBuilder,
               private aboutService: AboutService) {

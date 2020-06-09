@@ -32,7 +32,7 @@ export class CoachComponent implements OnInit {
 
   @ViewChild(MatTable, {static: true}) table: MatTable<any>;
 
-  private sessionForm: FormGroup;
+  public sessionForm: FormGroup;
   profileTab: number;
   constructor(private route: Router,
               private snackBar: MatSnackBar,
