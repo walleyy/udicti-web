@@ -27,7 +27,7 @@ import {
 } from '@angular/material';
 import { ManServicesComponent } from './admin/man-services/man-services.component';
 import { ManProjectsComponent } from './admin/man-projects/man-projects.component';
-import {SlickCarouselModule} from 'ngx-slick-carousel';
+// import {SlickCarouselModule} from 'ngx-slick-carousel';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {CommonModule} from '@angular/common';
@@ -45,7 +45,7 @@ import { ActivitiesComponent } from './incubatee/profile/activities/activities.c
 import { ResourceComponent } from './coach/resource/resource.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginNavComponent } from './login/login-nav/login-nav.component';
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 
 @NgModule({
