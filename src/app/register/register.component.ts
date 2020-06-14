@@ -1,8 +1,10 @@
+import { IncubateeDetails } from './../modal/incubateeData.modal';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {StudentService} from '../service/student.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
+import { AngularFireDatabase} from '@angular/fire/database';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +20,8 @@ export class RegisterComponent {
 
   constructor(private studentService: StudentService,
               private route: Router,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private db:AngularFireDatabase) {
     this.initiateForm();
   }
 
@@ -45,8 +48,19 @@ export class RegisterComponent {
   regStudent() {
     const incubateeData = this.registrationForm.value;
     console.log(incubateeData);
+
+    var detailsToUpload= new IncubateeDetails({
+      firstname:this.registrationForm.firstname,
+       lastname:this.registrationForm.lastname,
+       degreeProgram:this.registrationForm.program,
+      email:this.registrationForm.email,
+    phone:this.registrationForm.phoneNumber},
+    business:this.registrationForm.)
     this.studentService.signUp(incubateeData.email, incubateeData.password)
-    .then(res=>console.log(res))
+    .then(authState=>{
+      authState.user.
+
+    })
     .catch(error=>console.log(error));
  
     /*  this.snackBar.open('Welcome to Udicti, Thanks for registering', 'Ok', {duration: 3000});

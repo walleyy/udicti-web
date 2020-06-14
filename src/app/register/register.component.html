@@ -87,7 +87,7 @@
 
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>Phone No</mat-label>
-              <input matInput type="number" formControlName="phone_no" >
+              <input matInput type="number" formControlName="phoneNumber" >
               <mat-error *ngIf="hasError('phone_no', 'required')">Phone No is required</mat-error>
             </mat-form-field>
             </div>
@@ -119,39 +119,39 @@
             <div   class="row" style="margin-top: 10px;">
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>What is your Business Idea?</mat-label>
-              <input matInput type="text" formControlName="fname">
+              <input matInput type="text" formControlName="businessName">
               <mat-error *ngIf="hasError('fname', 'required')">Firstname is required</mat-error>
 
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>What problem is your idea trying to solve?</mat-label>
-              <input matInput type="text" formControlName="lname" >
+              <input matInput type="text" formControlName="businessDescription" >
               <mat-error *ngIf="hasError('lname', 'required')">Surname is required</mat-error>
             </mat-form-field>
             </div>
             <div   class="row">
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>What value does it bring?</mat-label>
-              <input matInput type="text" formControlName="gender" >
+              <input matInput type="text" formControlName="busineessValue" >
               <mat-error *ngIf="hasError('gender', 'required')">Gender is required</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>To whom?</mat-label>
-              <input matInput type="text" formControlName="college" >
+              <input matInput type="text" formControlName="businessMarket" >
               <mat-error *ngIf="hasError('college', 'required')">College/School/Institute is required</mat-error>
             </mat-form-field>
             </div>
             <div   class="row">
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>Is the idea pure business or social?</mat-label>
-              <input matInput type="text" formControlName="program" >
+              <input matInput type="text" formControlName="businessCategory" >
               <mat-error *ngIf="hasError('program', 'required')">Degree Program is required</mat-error>
             </mat-form-field>
               <div   class="col-md-6">
             <mat-label >Are you in a group?</mat-label>
-              <mat-radio-group class="col-md-6" formControlName="year">
+              <mat-radio-group class="col-md-6" formControlName="groupStructure">
                 <mat-radio-button value="Yes" style="padding-right: 10px"> Yes </mat-radio-button>
                 <mat-radio-button value="No"> No </mat-radio-button>
 <!--
