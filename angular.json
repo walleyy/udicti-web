@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ExampleApi": {
+    "udicti-web": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ExampleApi",
+            "outputPath": "dist/udicti-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,24 +24,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css",
-              "src/assets/bootstrap/css/bootstrap.min.css",
-              "src/assets/fonts/font-awesome.min.css",
-              "node_modules/owl.carousel/dist/assets/owl.carousel.css",
-              "node_modules/owl.carousel/dist/assets/owl.theme.default.css",
-              "node_modules/slick-carousel/slick/slick.scss",
-              "node_modules/slick-carousel/slick/slick-theme.scss"
+              "src/styles.css"
             ],
-            "scripts": [
-              "src/assets/bootstrap/js/bootstrap.min.js",
-              "src/assets/js/agency.js",
-              "src/assets/js/jquery.min.js",
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/owl.carousel/dist/owl.carousel.js",
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/slick-carousel/slick/slick.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -53,13 +38,13 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": true,
+              "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": false,
+              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -78,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ExampleApi:build"
+            "browserTarget": "udicti-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ExampleApi:build:production"
+              "browserTarget": "udicti-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ExampleApi:build"
+            "browserTarget": "udicti-web:build"
           }
         },
         "test": {
@@ -104,16 +89,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css",
-              "src/assets/bootstrap/css/bootstrap.min.css",
-              "src/assets/fonts/font-awesome.min.css"
+              "src/styles.css"
             ],
-            "scripts": [
-              "src/assets/bootstrap/js/bootstrap.min.js",
-              "src/assets/js/agency.js",
-              "src/assets/js/jquery.min.js"
-            ]
+            "scripts": []
           }
         },
         "lint": {
@@ -133,16 +111,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ExampleApi:serve"
+            "devServerTarget": "udicti-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ExampleApi:serve:production"
+              "devServerTarget": "udicti-web:serve:production"
             }
           }
         }
       }
-    }
-  },
-  "defaultProject": "ExampleApi"
+    }},
+  "defaultProject": "udicti-web"
 }

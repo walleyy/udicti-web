@@ -15,6 +15,7 @@ export class RegisterComponent {
   Roles: any = ['Admin', 'Author', 'Reader'];
   panelOpenState = true;
 
+
   constructor(private studentService: StudentService,
               private route: Router,
               private snackBar: MatSnackBar) {
@@ -29,6 +30,8 @@ export class RegisterComponent {
       year: new FormControl('', [Validators.required]),
       phone_no: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
+      password: new FormControl('',[Validators.required]),
+      confirmPassword: new FormControl('',[Validators.required]),
       college: new FormControl('', [Validators.required]),
       program: new FormControl('', [Validators.required]),
       stage: new FormControl('', [Validators.required])
@@ -40,13 +43,16 @@ export class RegisterComponent {
   }
 
   regStudent() {
-    const data = this.registrationForm.value;
-    console.log(data);
-    this.studentService.addStudent(data).then(value => {
-      this.snackBar.open('Welcome to Udicti, Thanks for registering', 'Ok', {duration: 3000});
+    const incubateeData = this.registrationForm.value;
+    console.log(incubateeData);
+    this.studentService.signUp(incubateeData.email, incubateeData.password)
+    .then(res=>console.log(res))
+    .catch(error=>console.log(error));
+ 
+    /*  this.snackBar.open('Welcome to Udicti, Thanks for registering', 'Ok', {duration: 3000});
       this.route.navigate(['../login']);
     }).catch(error => {
       this.snackBar.open('Failed to add data', 'Ok', {duration: 2000});
-    });
+    });*/
   }
 }
