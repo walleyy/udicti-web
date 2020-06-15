@@ -1,3 +1,4 @@
+  
 <div class="body-reg">
   <div class="body " fxLayout="row" fxLayoutAlign="center center">
     <app-navbar></app-navbar>
@@ -38,15 +39,15 @@
             <div   class="row" style="margin-top: 10px;">
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>Firstname</mat-label>
-              <input matInput type="text" formControlName="fname">
-              <mat-error *ngIf="hasError('fname', 'required')">Firstname is required</mat-error>
+              <input matInput type="text" formControlName="firstname">
+              <mat-error *ngIf="hasError('firstname', 'required')">Firstname is required</mat-error>
 
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>Surname</mat-label>
-              <input matInput type="text" formControlName="lname" >
-              <mat-error *ngIf="hasError('lname', 'required')">Surname is required</mat-error>
+              <input matInput type="text" formControlName="lastname" >
+              <mat-error *ngIf="hasError('lastname', 'required')">Surname is required</mat-error>
             </mat-form-field>
             </div>
           <div   class="row">
@@ -88,7 +89,7 @@
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>Phone No</mat-label>
               <input matInput type="number" formControlName="phoneNumber" >
-              <mat-error *ngIf="hasError('phone_no', 'required')">Phone No is required</mat-error>
+              <mat-error *ngIf="hasError('phoneNumber', 'required')">Phone No is required</mat-error>
             </mat-form-field>
             </div>
 
@@ -100,7 +101,7 @@
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="col-md-6">
-                <mat-label>confirm Password</mat-label>
+                <mat-label>Confirm Password</mat-label>
                 <input matInput type="password" formControlName="confirmPassword" >
                 <mat-error *ngIf="hasError('confirmPassword', 'required')">Confirm Password is required</mat-error>
               </mat-form-field>
@@ -119,39 +120,39 @@
             <div   class="row" style="margin-top: 10px;">
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>What is your Business Idea?</mat-label>
-              <input matInput type="text" formControlName="businessName">
-              <mat-error *ngIf="hasError('fname', 'required')">Firstname is required</mat-error>
+              <input matInput type="text" formControlName="businessIdea">
+              <mat-error *ngIf="hasError('businessIdea', 'required')">Business Idea</mat-error>
 
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>What problem is your idea trying to solve?</mat-label>
-              <input matInput type="text" formControlName="businessDescription" >
-              <mat-error *ngIf="hasError('lname', 'required')">Surname is required</mat-error>
+              <input matInput type="text" formControlName="businessProblem" >
+              <mat-error *ngIf="hasError('businessProblem', 'required')">Surname is required</mat-error>
             </mat-form-field>
             </div>
             <div   class="row">
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>What value does it bring?</mat-label>
-              <input matInput type="text" formControlName="busineessValue" >
-              <mat-error *ngIf="hasError('gender', 'required')">Gender is required</mat-error>
+              <input matInput type="text" formControlName="businessValue" >
+              <mat-error *ngIf="hasError('businessValue', 'required')">Gender is required</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>To whom?</mat-label>
               <input matInput type="text" formControlName="businessMarket" >
-              <mat-error *ngIf="hasError('college', 'required')">College/School/Institute is required</mat-error>
+              <mat-error *ngIf="hasError('businessMarket', 'required')">College/School/Institute is required</mat-error>
             </mat-form-field>
             </div>
             <div   class="row">
-            <mat-form-field appearance="outline" class="col-md-6">
+           <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>Is the idea pure business or social?</mat-label>
-              <input matInput type="text" formControlName="businessCategory" >
-              <mat-error *ngIf="hasError('program', 'required')">Degree Program is required</mat-error>
-            </mat-form-field>
+              <input matInput type="text" formControlName="ideaCategory" >
+              <mat-error *ngIf="hasError('ideaCategory', 'required')">Degree Program is required</mat-error>
+            </mat-form-field> 
               <div   class="col-md-6">
             <mat-label >Are you in a group?</mat-label>
-              <mat-radio-group class="col-md-6" formControlName="groupStructure">
+              <mat-radio-group class="col-md-6" formControlName="year">
                 <mat-radio-button value="Yes" style="padding-right: 10px"> Yes </mat-radio-button>
                 <mat-radio-button value="No"> No </mat-radio-button>
 <!--
@@ -163,8 +164,8 @@
             <div   class="row">
             <mat-form-field appearance="outline" class="col-md-6">
               <mat-label>If not in group would like to form a group?</mat-label>
-              <input matInput type="text" formControlName="email" >
-              <mat-error *ngIf="hasError('email', 'required')">E-mail is required</mat-error>
+              <input matInput type="text" formControlName="group" >
+              <mat-error *ngIf="hasError('group', 'required')">E-mail is required</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="col-md-6">
@@ -208,3 +209,9 @@
       </mat-card-content>
 
       <button mat-stroked-button class="btn-block h5 shadow" style="color: #302A99;">Register</button>
+
+    </form>
+  </mat-card>
+</div>
+  </div>
+</div>

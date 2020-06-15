@@ -12,6 +12,7 @@ import { AngularFireDatabase} from '@angular/fire/database';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  private basePath='/applicant'
   public registrationForm: FormGroup;
   accept = false;
   Roles: any = ['Admin', 'Author', 'Reader'];
@@ -27,16 +28,23 @@ export class RegisterComponent {
 
   private initiateForm() {
     this.registrationForm = new FormGroup({
-      fname: new FormControl('', [Validators.required]),
-      lname: new FormControl('', [Validators.required]),
+      firstname: new FormControl('', [Validators.required]),
+      lastname: new FormControl('', [Validators.required]),
       gender: new FormControl('', [Validators.required]),
       year: new FormControl('', [Validators.required]),
+      phoneNumber: new FormControl('', [Validators.required]),
       phone_no: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       password: new FormControl('',[Validators.required]),
       confirmPassword: new FormControl('',[Validators.required]),
       college: new FormControl('', [Validators.required]),
       program: new FormControl('', [Validators.required]),
+      businessIdea: new FormControl('', [Validators.required]),
+      businessProblem: new FormControl('',[Validators.required]),
+      businessValue: new FormControl('',[Validators.required]),
+      businessMarket: new FormControl('',[Validators.required]),
+      ideaCategory: new FormControl('',[Validators.required]),
+      group: new FormControl('', [Validators.required]),
       stage: new FormControl('', [Validators.required])
     });
   }
@@ -49,24 +57,45 @@ export class RegisterComponent {
     const incubateeData = this.registrationForm.value;
     console.log(incubateeData);
 
-    var detailsToUpload= new IncubateeDetails({
-      firstname:this.registrationForm.firstname,
-       lastname:this.registrationForm.lastname,
-       degreeProgram:this.registrationForm.program,
-      email:this.registrationForm.email,
-    phone:this.registrationForm.phoneNumber},
-    business:this.registrationForm.)
+   var detailsToUpload= new IncubateeDetails(
+     {
+      firstname:incubateeData.firstname,
+       lastname: incubateeData.lastname,
+       degreeProgram:incubateeData.program,
+      email:incubateeData.email,
+      phone:incubateeData.phoneNumber },
+
+     { business:incubateeData.businessIdea,
+      shortDescription: incubateeData.businessProblem,
+      group:incubateeData.group},
+      {projectStage:incubateeData.stage},
+      )
+
     this.studentService.signUp(incubateeData.email, incubateeData.password)
     .then(authState=>{
-      authState.user.
-
+      this.snackBar.open('Welcome to Udicti, Thanks for registering', 'Ok', {duration: 3000})
+      detailsToUpload.userId= authState.user.uid;
+      this.saveData(detailsToUpload);
+      
+      //navigate to login page
+      this.route.navigate(['/login']);
     })
-    .catch(error=>console.log(error));
+    .catch(error=>{
+      console.log(error.message);
+      
+      this.snackBar.open('Failed try again' + error.message, 'Ok', {duration: 2000})
+    }
+      );
  
     /*  this.snackBar.open('Welcome to Udicti, Thanks for registering', 'Ok', {duration: 3000});
       this.route.navigate(['../login']);
     }).catch(error => {
       this.snackBar.open('Failed to add data', 'Ok', {duration: 2000});
     });*/
+  }
+
+
+  private saveData(dataTosave:any){
+    this.db.list(`${this.basePath}/`).push(dataTosave);
   }
 }
