@@ -1,22 +1,31 @@
 import { IncubateeDetails } from './../modal/incubateeData.modal';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators, AbstractControl, ValidationErrors} from '@angular/forms';
 import {StudentService} from '../service/student.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import { AngularFireDatabase} from '@angular/fire/database';
+import { distinctUntilChanged, combineLatest } from 'rxjs/operators';
+import { merge} from 'rxjs';
+
+
+
+
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   private basePath='/applicant'
   public registrationForm: FormGroup;
   accept = false;
   Roles: any = ['Admin', 'Author', 'Reader'];
   panelOpenState = true;
+  passwordsMisMatch:boolean= false;
+
+
 
 
   constructor(private studentService: StudentService,
@@ -24,6 +33,11 @@ export class RegisterComponent {
               private snackBar: MatSnackBar,
               private db:AngularFireDatabase) {
     this.initiateForm();
+  }
+
+
+  public ngOnInit(){
+ 
   }
 
   private initiateForm() {
@@ -36,7 +50,7 @@ export class RegisterComponent {
       phone_no: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       password: new FormControl('',[Validators.required]),
-      confirmPassword: new FormControl('',[Validators.required]),
+      confirmPassword: new FormControl('',[Validators.required, this.passWordValidator.bind(this)]),
       college: new FormControl('', [Validators.required]),
       program: new FormControl('', [Validators.required]),
       businessIdea: new FormControl('', [Validators.required]),
@@ -53,8 +67,16 @@ export class RegisterComponent {
     return this.registrationForm.controls[controlName].hasError(errorName);
   }
 
-  regStudent() {
+  passWordValidator(group:FormGroup){
+    let pass= group.value.password;
+    let confirm= group.value.confirmPassword;
+      return pass=== confirm ? null : { notSame: true} 
+  }
+
+
+ regStudent() {
     const incubateeData = this.registrationForm.value;
+    console.log(this.registrationForm)
     console.log(incubateeData);
 
    var detailsToUpload= new IncubateeDetails(
@@ -71,27 +93,26 @@ export class RegisterComponent {
       {projectStage:incubateeData.stage},
       )
 
+      if(incubateeData.password !==incubateeData.confirmPassword){
+        this.snackBar.open('Password Mismatch', 'Ok', {duration: 2000})
+        return; 
+      }
+
     this.studentService.signUp(incubateeData.email, incubateeData.password)
     .then(authState=>{
       this.snackBar.open('Welcome to Udicti, Thanks for registering', 'Ok', {duration: 3000})
       detailsToUpload.userId= authState.user.uid;
       this.saveData(detailsToUpload);
-      
+
       //navigate to login page
       this.route.navigate(['/login']);
     })
     .catch(error=>{
       console.log(error.message);
       
-      this.snackBar.open('Failed try again' + error.message, 'Ok', {duration: 2000})
+      this.snackBar.open('Failed try again ' + error.message, 'Ok', {duration: 2000})
     }
       );
- 
-    /*  this.snackBar.open('Welcome to Udicti, Thanks for registering', 'Ok', {duration: 3000});
-      this.route.navigate(['../login']);
-    }).catch(error => {
-      this.snackBar.open('Failed to add data', 'Ok', {duration: 2000});
-    });*/
   }
 
 
