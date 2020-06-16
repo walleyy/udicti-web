@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {StudentService} from '../../service/student.service';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 
 @Component({
@@ -9,14 +9,19 @@ import {MatSnackBar} from '@angular/material';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent  implements OnInit {
   public registrationForm: FormGroup;
   profileTab: number;
 
   constructor(private studentService: StudentService,
-              private route: Router,
-              private snackBar: MatSnackBar) {
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private route : ActivatedRoute) {
     this.initiateForm();
+  }
+
+  ngOnInit(){
+    console.log('userID',this.route.snapshot.paramMap.get('userId'));
   }
 
   private initiateForm() {
@@ -35,7 +40,7 @@ export class ProfileComponent {
     console.log(data);
     this.studentService.addStudent(data).then(value => {
       this.snackBar.open('Welcome to Udicti, Thanks for registering', 'Ok', {duration: 3000});
-      this.route.navigate(['../login']);
+      this.router.navigate(['../login']);
       console.log(value);
     }).catch(error => {
       this.snackBar.open('Failed to add data', 'Ok', {duration: 2000});

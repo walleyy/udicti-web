@@ -1,3 +1,8 @@
+/**This service handles incubatees authorization and verification
+ * 
+ */
+
+
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';

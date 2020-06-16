@@ -102,7 +102,7 @@ export class RegisterComponent implements OnInit {
     .then(authState=>{
       this.snackBar.open('Welcome to Udicti, Thanks for registering', 'Ok', {duration: 3000})
       detailsToUpload.userId= authState.user.uid;
-      this.saveData(detailsToUpload);
+      this.saveData(detailsToUpload,authState.user.uid);
 
       //navigate to login page
       this.route.navigate(['/login']);
@@ -115,8 +115,7 @@ export class RegisterComponent implements OnInit {
       );
   }
 
-
-  private saveData(dataTosave:any){
-    this.db.list(`${this.basePath}/`).push(dataTosave);
-  }
+    private saveData(dataTosave:any, key:string){
+      this.db.list(`${this.basePath}/`+key).push(dataTosave);
+    }
 }

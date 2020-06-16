@@ -31,6 +31,7 @@
 
 <mat-card class="loginCard">
   <mat-card-title>Login</mat-card-title>
+  <mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
    <img mat-card-image>     <!--There needs some login Icon ---> 
   <div class="example-container">
       <mat-form-field>
@@ -42,8 +43,10 @@
           <mat-label>Password</mat-label>
           <input matInput type="password"  [(ngModel)]="password">
         </mat-form-field>
-        <br><br>
-      <button mat-raised-button color="primary" (click)="login()">Submit</button>
+        <br>
+      <button  mat-button type="button" class="btn btn-link btn-block" (click)="toggle()">{{ linkText }}</button>
+      <button mat-raised-button color="primary" (click)="login()" class="btn-block">Submit</button>
+    
     </div>
     
 
