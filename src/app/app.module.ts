@@ -47,6 +47,15 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginNavComponent } from './login/login-nav/login-nav.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 
+// firebase modules
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule }  from '@angular/fire/auth';
+import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database'
+import { environment } from 'src/environments/environment';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -109,7 +118,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     MatTabsModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   entryComponents: [
     DialogBoxComponent

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase } from '@angular/fire/database'
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +9,9 @@ import {HttpClient} from '@angular/common/http';
 export class StudentService {
 
 
-  constructor(private httpClient: HttpClient /* step 2 we create Student,  step 3 */) {
+  constructor(private httpClient: HttpClient, /* step 2 we create Student,  step 3 */
+    private af:AngularFireAuth,
+    ) {
   }
 
   addStudent(data: any) {
@@ -19,6 +23,15 @@ export class StudentService {
       });
     });
   }
+
+  //sign-in to firebases
+  signUp(email:string, password:string){
+   return this.af.auth.createUserWithEmailAndPassword(email,password);
+  }
+  
+  
+
+
 
   listStudents(): Promise<any> {
     return new Promise((resolve, reject) => {
