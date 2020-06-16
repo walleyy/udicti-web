@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
     return this.registrationForm.controls[controlName].hasError(errorName);
   }
 
-  passWordValidator(group:FormGroup){
+  passWordValidator(group:FormGroup): ValidationErrors | null {
     let pass= group.value.password;
     let confirm= group.value.confirmPassword;
       return pass=== confirm ? null : { notSame: true} 
