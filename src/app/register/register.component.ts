@@ -18,7 +18,8 @@ import { merge} from 'rxjs';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  private basePath='/applicant'
+  private basePath='/applicant';
+  private userUrl= "/users-role";
   public registrationForm: FormGroup;
   accept = false;
   Roles: any = ['Admin', 'Author', 'Reader'];
@@ -114,8 +115,10 @@ export class RegisterComponent implements OnInit {
     }
       );
   }
-
+     //This  method save to data to the database
     private saveData(dataTosave:any, key:string){
-      this.db.list(`${this.basePath}/`+key).push(dataTosave);
+      this.db.list(`${this.basePath}/`).push(dataTosave).then(data=>{
+        this.db.list(`${this.userUrl}/` +key).push({role:"applicant", id:data.key})
+      })
     }
 }

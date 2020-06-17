@@ -1,6 +1,8 @@
+import { AngularFireDatabase } from '@angular/fire/database';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -14,8 +16,11 @@ export class LoginComponent implements OnInit {
   student:Boolean=true;
   subtitle="Incubatee"
   linkText="Or, coach"
+  private userUrl= "/users-role"
 
-  constructor(private route: Router, private af:AngularFireAuth) {
+  constructor(private route: Router, 
+            private af:AngularFireAuth,
+            private db:AngularFireDatabase) {
   }
 
   ngOnInit() {
@@ -28,8 +33,20 @@ export class LoginComponent implements OnInit {
 
       if(this.student){
         // navigate to incubatee page
-        this.route.navigate(['/incubatee', authState.user.uid]);
-        return
+      this.db.list(`${this.userUrl}/` + authState.user.uid)
+      .snapshotChanges()
+      .pipe(map((arr)=>{
+          return arr.map((res)=>Object.assign(res.payload.val(),{$key:res.key}))
+      })).subscribe(snap=>{
+                console.log(snap[0]['role']);
+                if(snap[0]['role']=='applicant'){
+                  this.route.navigate(['/pending', snap[0]['id']]);
+                }
+                else if(snap[0]['role']=='incubatee'){
+                  this.route.navigate(['/incubatee', snap[0]['id']])
+                }
+              });  
+              return;
       }
       //navigate to coachs page
       this.route.navigate(['/coach', authState.user.uid]);
@@ -62,5 +79,6 @@ export class LoginComponent implements OnInit {
   coachLogin() {
     this.route.navigate(['coach']);
   }
+
 
 }

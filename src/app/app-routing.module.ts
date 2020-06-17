@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'incubatee/:userId', component: IncubateeComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'pending', component: PendingComponent},
+  {path: 'pending/:applicantId', component: PendingComponent},
   {path: 'coach', component: CoachComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: '**', component: NotfoundComponent }

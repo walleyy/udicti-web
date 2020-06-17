@@ -5,6 +5,7 @@ export class IncubateeDetails{
         private businessIdea:{business:string; shortDescription:string, group:boolean},
         private project:{projectStage:boolean},
         public userId?:string,
+
    ){}
 
 
