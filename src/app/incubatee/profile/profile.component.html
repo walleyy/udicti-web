@@ -57,7 +57,7 @@
             <ng-template mat-tab-label>
               <img src="../../../assets/img/incubatee/addActivity.png" width="25%" style="margin-right: 10px">Activity
             </ng-template>
-            <form [formGroup]="registrationForm" (ngSubmit)="regStudent()" class="container" fxLayout="column" fxLayoutAlign="center center">
+            <form [formGroup]="registrationForm" (ngSubmit)="onActivityAdd()" class="container" fxLayout="column" fxLayoutAlign="center center">
 
               <mat-form-field appearance="outline" style="width: 95%; margin-top: 20px;">
                 <mat-label>Activity Title</mat-label>
@@ -70,8 +70,23 @@
                 <textarea matInput type="text" formControlName="act_details" ></textarea>
                 <mat-error *ngIf="hasError('act_details', 'required')">Activity details is required</mat-error>
               </mat-form-field>
-              <button mat-button class="btn-block h5 shadow" style="background-color: #3F33CD; color: #ffffff; width: 70%;padding: 2px">Add Activity</button>
 
+              <div class="raised-box">
+                <div class="row">
+                  <div class="col-md-3">
+                    <button  type="button" mat-raised-button (click)="fileInput.click()">
+                      <mat-icon>file_upload</mat-icon>Choose File</button>
+                  </div>
+                  <div class="col-md-9">
+                    <mat-chip class="chips"> {{ filename}} </mat-chip>
+                  </div>
+                </div>
+                <input  style="display: none" type="file" name="fileInput"  #fileInput (change)="handleFiles($event)">
+              </div><br>
+ 
+            <mat-progress-bar *ngIf="barActive" mode="determinate" [value]="percentage"></mat-progress-bar><br>
+            <button mat-button class="btn-block h5 shadow" style="background-color: #3F33CD; color: #ffffff; width: 70%;padding: 2px">>Add Activity</button>
+ 
             </form>
           </mat-tab>
 

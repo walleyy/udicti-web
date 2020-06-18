@@ -23,7 +23,7 @@ import {
   MatSelectModule,
   MatSidenavModule, MatSnackBarModule, MatTableModule, MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
 } from '@angular/material';
 import { ManServicesComponent } from './admin/man-services/man-services.component';
 import { ManProjectsComponent } from './admin/man-projects/man-projects.component';
@@ -50,7 +50,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 // firebase modules
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule }  from '@angular/fire/auth';
-import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database'
+import {  AngularFireDatabaseModule } from '@angular/fire/database'
+import { AngularFireStorageModule } from '@angular/fire/storage'
 import { environment } from 'src/environments/environment';
 
 
@@ -119,9 +120,11 @@ import { environment } from 'src/environments/environment';
     FlexLayoutModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   entryComponents: [
     DialogBoxComponent
