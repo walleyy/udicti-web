@@ -22,12 +22,12 @@
             <h3 class="section-subheading text-muted">Projects that have been done under Udicti</h3>
           </div>
         </div>
-        <div class="slides"  >
-          <ngx-slick-carousel class="carousel flex-wrap"
+        <div class="slides" >
+          <ngx-slick-carousel class="carousel"
 
                               [config]="slideConfig">
 
-            <div ngxSlickItem *ngFor="let project of manualProjects;let i = index" class="slide mat-elevation-z3 portfolio-item" style="margin: 25px;width: fit-content">
+            <div ngxSlickItem *ngFor="let project of manualProjects;let i = index" class="slide mat-elevation-z3 portfolio-item" style="margin: 25px;">
               <a class="portfolio-link" data-toggle="modal" href="#">
                 <div class="portfolio-hover">
                   <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i><p> More Details</p></div>
