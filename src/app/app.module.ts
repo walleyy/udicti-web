@@ -27,7 +27,6 @@ import {
 } from '@angular/material';
 import { ManServicesComponent } from './admin/man-services/man-services.component';
 import { ManProjectsComponent } from './admin/man-projects/man-projects.component';
-// import {SlickCarouselModule} from 'ngx-slick-carousel';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {CommonModule} from '@angular/common';
@@ -45,13 +44,14 @@ import { ActivitiesComponent } from './incubatee/profile/activities/activities.c
 import { ResourceComponent } from './coach/resource/resource.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginNavComponent } from './login/login-nav/login-nav.component';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
+// import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 // firebase modules
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule }  from '@angular/fire/auth';
-import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database'
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
+import {SlickCarouselModule} from 'ngx-slick-carousel';
 
 
 
@@ -121,7 +121,8 @@ import { environment } from 'src/environments/environment';
     MatProgressBarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    SlickCarouselModule
   ],
   entryComponents: [
     DialogBoxComponent
