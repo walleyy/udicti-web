@@ -3,6 +3,12 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../service/auth.service';
+
+export interface Credentials{
+  email:string;
+  password:any;
+}
 
 
 @Component({
@@ -11,71 +17,46 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   email:string;
   password:string;
-  student:Boolean=true;
+  credentials: Credentials;
+  isStudent:boolean=true;
   subtitle="Incubatee"
   linkText="Or, coach"
   private userUrl= "/users-role"
 
   constructor(private route: Router, 
             private af:AngularFireAuth,
-            private db:AngularFireDatabase) {
+            private db:AngularFireDatabase,
+            private authService:AuthService) {
   }
 
   ngOnInit() {
   }
 
   login() {
-    this.af.auth.signInWithEmailAndPassword(this.email, this.password).
-    then(authState=>{ 
-      //navigate programmatic to incubatee/coach
-
-      if(this.student){
-        // navigate to incubatee page
-      this.db.list(`${this.userUrl}/` + authState.user.uid)
-      .snapshotChanges()
-      .pipe(map((arr)=>{
-          return arr.map((res)=>Object.assign(res.payload.val(),{$key:res.key}))
-      })).subscribe(snap=>{
-                console.log(snap[0]['role']);
-                if(snap[0]['role']=='applicant'){
-                  this.route.navigate(['/pending', snap[0]['id']]);
-                }
-                else if(snap[0]['role']=='incubatee'){
-                  this.route.navigate(['/incubatee', snap[0]['id']])
-                }
-              });  
-              return;
-      }
-      //navigate to coachs page
-      this.route.navigate(['/coach', authState.user.uid]);
-
-
-      console.log(authState)})
-    .catch(error=>console.log(error));
-
+      this.credentials={email:this.email, password:this.password}
+      this.authService.login(this.isStudent,this.credentials)
   }
 
   toggle(){
-    if(this.student){
-      this.student=!this.student
+    if(this.isStudent){
+      this.isStudent=!this.isStudent
       this.subtitle="Coach";
       this.linkText="Or, Incubatee";
-      console.log(this.student);
+      console.log(this.isStudent);
     
     }
     else{
-      this.student=!this.student
+      this.isStudent=!this.isStudent
       this.subtitle="Incubatee";
       this.linkText="Or, Coach";
-      console.log(this.student); 
+      console.log(this.isStudent); 
     }
 
   }
   
-
-
   coachLogin() {
     this.route.navigate(['coach']);
   }

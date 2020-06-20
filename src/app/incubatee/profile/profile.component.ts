@@ -6,6 +6,8 @@ import {StudentService} from '../../service/student.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import { delay } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -26,7 +28,9 @@ export class ProfileComponent  implements OnInit {
               private router: Router,
               private snackBar: MatSnackBar,
               private route : ActivatedRoute,
-              private activityService:ActivityService
+              private activityService:ActivityService,
+              private authService:AuthService,
+              private af:AngularFireAuth
            ) {
     this.initiateForm();
   }
@@ -64,25 +68,33 @@ export class ProfileComponent  implements OnInit {
     } 
 }
 
-onActivityAdd(){
-var data= this.registrationForm.value;
-  this.activityDetails= new ActivityDetails({ activityTitle:data.act_title, 
-    activityDescription: data.act_details, file:this.file }); 
-   this.activityService.upload(this.activityDetails, this.key);
-   this.activityService.getpercentageChange().subscribe(x=>{
-    this.barActive= true;
-    this.percentage= Math.round(x)
-      // resetting form
-    if(this.percentage===100){
-      console.log('Hhere goes 100');
-      this.registrationForm = new FormGroup({
-        act_title: new FormControl(''),
-        act_details: new FormControl('')
-      });
-      this.barActive=false;
-    }
-    console.log(x)
-  });
-}
+  onActivityAdd(){
+  var data= this.registrationForm.value;
+    this.activityDetails= new ActivityDetails({ activityTitle:data.act_title, 
+      activityDescription: data.act_details, file:this.file }); 
+
+    this.activityService.upload(this.activityDetails, this.key);
+    this.activityService.getpercentageChange().subscribe(x=>{
+      this.barActive= true;
+      this.percentage= Math.round(x)
+        // resetting form
+      if(this.percentage===100){
+        console.log('Hhere goes 100');
+        this.registrationForm = new FormGroup({
+          act_title: new FormControl(''),
+          act_details: new FormControl('')
+        });
+        this.barActive=false;
+      }
+      console.log(x)
+    });
+  }
+
+
+//logout method
+
+logout(){
+  this.authService.logOut();
+  }
 
 }

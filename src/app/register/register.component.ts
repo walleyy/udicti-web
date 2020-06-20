@@ -107,7 +107,8 @@ export class RegisterComponent implements OnInit {
 
       //navigate to login page
       this.route.navigate(['/login']);
-    })
+    })// end of then()
+    
     .catch(error=>{
       console.log(error.message);
       
