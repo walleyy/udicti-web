@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {ManAboutComponent} from './admin/man-about/man-about.component';
 import {ManServicesComponent} from './admin/man-services/man-services.component';
@@ -13,6 +13,7 @@ import {NotfoundComponent} from './notfound/notfound.component';
 import {PendingComponent} from './incubatee/pending/pending.component';
 import {CoachComponent} from './coach/coach.component';
 import {DashboardComponent} from './admin/dashboard/dashboard.component';
+import { AuthGuard } from './service/auth-guard.service';
 
 
 const routes: Routes = [
@@ -26,7 +27,7 @@ const routes: Routes = [
   {path: 'incubatee/:userId', component: IncubateeComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'pending/:applicantId', component: PendingComponent},
-  {path: 'coach', component: CoachComponent},
+  {path: 'coach', component: CoachComponent, canActivate:[AuthGuard]},
   {path: 'dashboard', component: DashboardComponent},
   {path: '**', component: NotfoundComponent }
 ];

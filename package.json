@@ -23,6 +23,7 @@
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
+    "@auth0/angular-jwt": "^4.2.0",
     "@ngu/carousel": "^1.5.5",
     "angular-ui-carousel": "^0.1.10",
     "bootstrap": "^4.5.0",

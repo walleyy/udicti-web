@@ -5,7 +5,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {StudentService} from '../../service/student.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
-import { delay } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -22,7 +21,7 @@ export class ProfileComponent  implements OnInit {
   activityDetails:ActivityDetails;
   key:string;
   percentage:number;
-  barActive:Boolean=false;
+  barActive:boolean=false;
 
   constructor(private studentService: StudentService,
               private router: Router,
