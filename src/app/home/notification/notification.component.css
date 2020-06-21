@@ -12,8 +12,8 @@
     justify-content: center;
     justify-items: center;
     padding: 0;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    /*margin-top: 5px;*/
+    /*margin-bottom: 10px;*/
 
   }
 
@@ -27,7 +27,11 @@
     left: 20vw;
   }
   #events{
-    max-height: 300px;
+    height: fit-content;
+    align-content: space-evenly;
+  }
+  mat-card{
+    border-spacing: 4px;
   }
   }
 
@@ -40,6 +44,7 @@ section{
     justify-content: center;
   padding: 0!important;
     flex: auto;
+  height: auto;
     /*margin-top: 2vh;*/
   background-image: linear-gradient(grey,whitesmoke);
     /*border-radius: 5px;*/
@@ -50,27 +55,31 @@ section{
     /*border-left: 10px solid #FCDB00;*/
     /*border-right: 10px solid #FCDB00;*/
     border-top: none;
-    padding: 15px;
     color: black;
     font-size: small;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    border-radius: 25vw;
+    /*border-radius: 25vw;*/
     overflow: auto;
-    max-height: 250px;
+    /*overflow-y: hidden;*/
+    height: 280px;
+    align-content: space-evenly;
+  border-spacing: 3px;
   }
 
 #poster{
-  max-height: 250px;
-  padding: 2px;
+  max-height: 280px;
+  margin-top: 20px;
   color: black;
   font-size: small;
-  display: flow;
+  /*display: flow;*/
+  display: flex;
+  justify-items: right;
   align-content: center;
   flex-direction: column;
-  border:  2px red;
+  padding-top: 15px;
   }
 
 h3 {
@@ -90,12 +99,12 @@ h3 {
 
 }
 
-.card-css{
-  display: flex;
-  width:fit-content;
-  height: fit-content;
-  flex-direction: row;
-}
+/*.card-css{*/
+/*  display: flex;*/
+/*  width:fit-content;*/
+/*  height: fit-content;*/
+/*  flex-direction: row;*/
+/*}*/
 
 p{
   border-radius: 5px;
@@ -119,3 +128,11 @@ a:hover {
 a::before{color: #007bff}
 a::after{color: #17a2b8}
 
+mat-icon{
+  transform: scale(0.6);
+}
+mat-card{
+  margin: 5px;
+  padding: 0;
+  border-spacing: 5px;
+}

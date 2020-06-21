@@ -1,6 +1,6 @@
 <title>Home - UDICTI</title>
-<div style="overflow: scroll;overflow-x: hidden; background:url('../../assets/img/home/header.jpg') no-repeat center;background-size:cover;width: 100%;height: 100vh;position: fixed;margin-top: 60px ">
-  <div id="page-top">
+<div style="overflow: scroll;overflow-x: hidden; background:url('../../assets/img/home/header.jpg') no-repeat center;background-size:cover;width: 100%;height: 100vh;position: fixed;margin-top: 30px ">
+  <div >
     <app-navbar fullNav="fullNav"></app-navbar>
     <header class="masthead" style="height: 120%;width: 100%;margin-top:2vw;">
       <div class="container">
@@ -22,12 +22,12 @@
             <h3 class="section-subheading text-muted">Projects that have been done under Udicti</h3>
           </div>
         </div>
-        <div class="slides"  >
-          <ngx-slick-carousel class="carousel flex-wrap"
+        <div class="slides" >
+          <ngx-slick-carousel class="carousel"
 
                               [config]="slideConfig">
 
-            <div ngxSlickItem *ngFor="let project of manualProjects;let i = index" class="slide mat-elevation-z3 portfolio-item" style="margin: 25px;width: fit-content">
+            <div ngxSlickItem *ngFor="let project of manualProjects;let i = index" class="slide mat-elevation-z3 portfolio-item" style="margin: 25px;">
               <a class="portfolio-link" data-toggle="modal" href="#">
                 <div class="portfolio-hover">
                   <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i><p> More Details</p></div>
