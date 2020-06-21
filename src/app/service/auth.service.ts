@@ -4,10 +4,15 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
- 
-export interface Credentials{
-  email:string;
-  password:any;
+
+export interface Credentials {
+  email: string;
+  password: any;
+}
+
+class CredentialsImpl implements Credentials {
+  email: string;
+  password: any;
 }
 
 
@@ -15,6 +20,7 @@ export interface Credentials{
   providedIn: 'root'
 })
 export class AuthService {
+
   
   private userUrl= "/users-role";
   private tk;
@@ -41,10 +47,12 @@ export class AuthService {
 
       //navigate programmatic to incubatee/coach
       if(isStudent){
+
         // navigate to incubatee page
 
       this.db.list(`${this.userUrl}/` + authState.user.uid)
       .snapshotChanges()
+
       .pipe(map((arr)=>{
           return arr.map((res)=>Object.assign(res.payload.val(),{$key:res.key}))
       })).subscribe(snap=>{
@@ -72,6 +80,7 @@ export class AuthService {
       this.af.auth.signOut();
     }
 
+
     isLoggedIn(){
       let jwt= new JwtHelperService();
       const token= localStorage.getItem('token');
@@ -84,8 +93,5 @@ export class AuthService {
        */
     }
 
-    isStudent(){
-
-    }
 
 }
