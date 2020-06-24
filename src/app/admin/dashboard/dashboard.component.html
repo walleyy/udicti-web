@@ -15,7 +15,7 @@
       </div>
     </div>
   </nav>
-  <mat-sidenav-container class="col-2 side ">
+  <mat-sidenav-container class="col-2 side shadow ">
 
     <mat-card class="side-item">
       <a   [routerLink]="['/dashboard', 'projects']" routerLinkActive="active">
@@ -55,7 +55,7 @@
     </mat-expansion-panel>
 
   </mat-sidenav-container>
-  <mat-card class="col-10" id="center">
+  <mat-card class="col-10 shadow" id="center">
     <router-outlet></router-outlet>
   </mat-card>
 </div>
