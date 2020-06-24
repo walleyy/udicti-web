@@ -1,15 +1,18 @@
-<mat-card >
-<app-login-nav></app-login-nav>
-  <section  >
-  <app-man-about></app-man-about>
-</section>
-<div class="row">
-<section class="col-md-3">
-  <app-man-projects></app-man-projects>
-</section >
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid" >
+    <a class="navbar-brand text-white" routerLink = "/dashboard" (click)="scroll('page-top')">
+      <img src="../../assets/img/udsm_logo.png" width="15%;">ADMIN</a>
+    <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive" >
 
-<section class="col-md-3">
-  <app-services></app-services>
-</section>
+      <ul class="nav navbar-nav ml-auto text-uppercase " >
+        <li class="nav-item " role="presentation"><a class="nav-link js-scroll-trigger text-white-50"  routerLink="" routerLinkActive="active">
+          <i class="fa fa-sign-out"></i>Logout</a></li>
+      </ul>
+    </div>
   </div>
-</mat-card>
+</nav>
+<div class="row">
+
+</div>

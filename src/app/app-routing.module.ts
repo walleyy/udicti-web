@@ -16,18 +16,21 @@ import {DashboardComponent} from './admin/dashboard/dashboard.component';
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'about', component: ManAboutComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
   {path: 'aboutUs' , component: AboutComponent},
-  {path: 'service', component: ManServicesComponent},
-  {path: 'projects', component: ManProjectsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'incubatee', component: IncubateeComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'pending', component: PendingComponent},
   {path: 'coach', component: CoachComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent , children: [
+      {path: 'about', component: ManAboutComponent},
+      {path: 'service', component: ManServicesComponent},
+      {path: 'projects', component: ManProjectsComponent},
+    ]
+  },
   {path: '**', component: NotfoundComponent }
 ];
 

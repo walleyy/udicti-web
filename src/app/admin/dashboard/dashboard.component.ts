@@ -10,5 +10,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
+  scroll(id: string) {
+    const el = document.getElementById(id);
+    el.scrollIntoView();
+  }
 
 }
