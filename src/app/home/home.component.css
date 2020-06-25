@@ -19,7 +19,7 @@
 
 #contact {
   background-color: #3F33CD!important;
-  background-image:url('../../assets/img/map-image.png');
+  background-image:url('../../assets/img/map-image.png')!important;
 }
 
 .social-buttons a {
