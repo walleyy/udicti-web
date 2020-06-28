@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {AccountsService} from '../service/accounts.service';
 import {AboutService} from '../service/about.service';
-import {ServicesService} from '../service/services.service';
 import {ProjectService} from '../service/project.service';
 import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
@@ -62,14 +62,14 @@ export class HomeComponent implements OnInit {
     image: '../../assets/img/projects/innovationSquare.png'
   }];
 
-  constructor(private aboutService: AboutService,
-              private servicesService: ServicesService,
+  constructor(private accountService: AccountsService,
               private projectService: ProjectService,
               private snackBar: MatSnackBar,
+              private aboutService: AboutService,
               private formBuilder: FormBuilder) {
     this.initiateForm();
     this.getAllAboutUs();
-    this.getAllServices();
+    this.getAllAccounts();
     this.getAllProjects();
   }
 
@@ -96,8 +96,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getAllServices() {
-    this.servicesService.listServices().then(value => {
+  getAllAccounts() {
+    this.accountService.listAccount().then(value => {
       this.services = value._embedded.services;
     }).catch(reason => {
       this.snackBar.open('Failed to load data', 'Ok', {duration: 2000});

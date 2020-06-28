@@ -25,7 +25,6 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
-import { ManServicesComponent } from './admin/man-services/man-services.component';
 import { ManProjectsComponent } from './admin/man-projects/man-projects.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -52,6 +51,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import {SlickCarouselModule} from 'ngx-slick-carousel';
+import { AccountsComponent } from './admin/accounts/accounts.component';
 
 
 
@@ -62,7 +62,6 @@ import {SlickCarouselModule} from 'ngx-slick-carousel';
     AppComponent,
     HomeComponent,
     ManAboutComponent,
-    ManServicesComponent,
     ManProjectsComponent,
     RegisterComponent,
     LoginComponent,
@@ -78,7 +77,8 @@ import {SlickCarouselModule} from 'ngx-slick-carousel';
     ActivitiesComponent,
     ResourceComponent,
     DashboardComponent,
-    LoginNavComponent
+    LoginNavComponent,
+    AccountsComponent
   ],
   imports: [
     BrowserModule,

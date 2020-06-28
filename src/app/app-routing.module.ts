@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {ManAboutComponent} from './admin/man-about/man-about.component';
-import {ManServicesComponent} from './admin/man-services/man-services.component';
 import {ManProjectsComponent} from './admin/man-projects/man-projects.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
@@ -13,6 +12,7 @@ import {NotfoundComponent} from './notfound/notfound.component';
 import {PendingComponent} from './incubatee/pending/pending.component';
 import {CoachComponent} from './coach/coach.component';
 import {DashboardComponent} from './admin/dashboard/dashboard.component';
+import {AccountsComponent} from './admin/accounts/accounts.component';
 
 
 const routes: Routes = [
@@ -27,7 +27,7 @@ const routes: Routes = [
   {path: 'coach', component: CoachComponent},
   {path: 'dashboard', component: DashboardComponent , children: [
       {path: 'about', component: ManAboutComponent},
-      {path: 'service', component: ManServicesComponent},
+      {path: 'accounts', component: AccountsComponent},
       {path: 'projects', component: ManProjectsComponent},
     ]
   },
