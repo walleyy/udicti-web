@@ -6,13 +6,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  email:string;
-  password:string;
+  email: string;
+  password: string;
 
-  constructor(private route: Router, private af:AngularFireAuth) {
+  constructor(private route: Router, private af: AngularFireAuth) {
   }
 
   ngOnInit() {
@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.af.auth.signInWithEmailAndPassword(this.email, this.password).
-    then(authState=>console.log(authState))
-    .catch(error=>console.log(error));
+    then(authState => console.log(authState))
+    .catch(error => console.log(error));
 
   }
   coachLogin() {

@@ -57,6 +57,7 @@ import { AccountsComponent } from './admin/accounts/accounts.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +79,7 @@ import { AccountsComponent } from './admin/accounts/accounts.component';
     ResourceComponent,
     DashboardComponent,
     LoginNavComponent,
-    AccountsComponent
+    AccountsComponent,
   ],
   imports: [
     BrowserModule,

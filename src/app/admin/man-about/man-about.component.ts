@@ -5,7 +5,7 @@ import {AboutService} from '../../service/about.service';
 @Component({
   selector: 'app-man-about',
   templateUrl: './man-about.component.html',
-  styleUrls: ['./man-about.component.css']
+  styleUrls: ['./man-about.component.scss']
 })
 export class ManAboutComponent {
   abouts = [];

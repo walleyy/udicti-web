@@ -7,7 +7,7 @@ import {of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import {CoachUploadService } from '../service/coach-upload.service';
 import {DialogBoxComponent} from '../dialog-box/dialog-box.component';
-import {Pipe} from '@angular/core';
+
 
 export interface UsersData {
   name: string;
@@ -22,7 +22,7 @@ const ELEMENT_DATA: UsersData[] = [
 @Component({
   selector: 'app-coach',
   templateUrl: './coach.component.html',
-  styleUrls: ['./coach.component.css']
+  styleUrls: ['./coach.component.scss']
 })
 export class CoachComponent implements OnInit {
   boolean = true;
