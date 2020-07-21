@@ -10,9 +10,15 @@ import {IncubateeComponent} from './incubatee/incubatee.component';
 import {AboutComponent} from './home/about/about.component';
 import {NotfoundComponent} from './notfound/notfound.component';
 import {PendingComponent} from './incubatee/pending/pending.component';
-import {CoachComponent} from './coach/coach.component';
 import {DashboardComponent} from './admin/dashboard/dashboard.component';
 import {AccountsComponent} from './admin/accounts/accounts.component';
+import {CoachComponent} from './coach/coach.component';
+import {StudentActivityComponent} from './coach/student-activity/student-activity.component';
+import {NotificationsComponent} from './coach/notifications/notifications.component';
+import {ResourcesComponent} from './coach/resources/resources.component';
+import {SessionComponent} from './coach/session/session.component';
+import {ApplicantsComponent} from './coach/applicants/applicants.component';
+import {MySettingComponent} from './coach/my-setting/my-setting.component';
 
 
 const routes: Routes = [
@@ -24,8 +30,18 @@ const routes: Routes = [
   {path: 'incubatee', component: IncubateeComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'pending', component: PendingComponent},
-  {path: 'coach', component: CoachComponent},
-  {path: 'dashboard', component: DashboardComponent , children: [
+  {path: 'coach', component: CoachComponent , children:
+   [
+      {path: 'notification' , component: NotificationsComponent},
+      {path: 'resources' , component: ResourcesComponent},
+      {path: 'session' , component: SessionComponent},
+      {path: 'student-activity' , component: StudentActivityComponent},
+      {path: 'applicant' , component: ApplicantsComponent},
+      {path: 'my-setting' , component: MySettingComponent},
+   ]
+  },
+  {path: 'dashboard', component: DashboardComponent , children:
+    [
       {path: 'about', component: ManAboutComponent},
       {path: 'accounts', component: AccountsComponent},
       {path: 'projects', component: ManProjectsComponent},

@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -7,43 +7,40 @@
   user-select: none;
 }
 
-body{
+body {
   min-height: 100vh;
   font-family: Roboto, sans-serif;
 }
 
-.sidebar{
+.sidebar {
   position: fixed;
   height: 100%;
   width: 20vh;
-  //background: rgba(0, 128, 255, 0.27);
   overflow: hidden;
-  transition: .8s;
-  box-shadow: 5px 10px 10px rgb(141, 141, 141);
+  transition: 0.8s;
+  box-shadow: 5px 10px 10px #8d8d8d;
 }
 
-
-.sidebar:hover .menu ul li span{
+.sidebar:hover .menu ul li span {
   padding: 40px 70px;
   opacity: 1;
   pointer-events: visible;
 }
 
-.sidebar .menu{
+.sidebar .menu {
   display: flex;
   width: fit-content;
   height: 100%;
-  //background: #0080ff;
   color: #f2f2f2;
 }
 
-.menu a i{
+.menu a i {
   margin: 40px 0 10px 20px;
   font-size: 40px;
   font-weight: bolder;
 }
 
-.menu span a{
+.menu span a {
   position: absolute;
   margin: 40px 32px;
   font-size: 30px;
@@ -52,9 +49,7 @@ body{
   color: white;
 }
 
-
-
-.menu li ul span{
+.menu li ul span {
   position: absolute;
   color: #ececec;
   letter-spacing: 1px;
@@ -65,27 +60,28 @@ body{
   transition: 0.8s;
 }
 
-.spacer{
+.spacer {
   flex: 1 1 auto;
 }
 
-mat-toolbar{
+mat-toolbar {
   padding-left: 0 !important;
 }
 
-i{
-  padding: 10px
+i {
+  padding: 10px;
 }
- .outlet{
-   padding-left: 20px !important;
-   padding-top: 20px;
- }
 
-a{color: #353030 !important;
-display: flex;
-align-items: center;
-justify-content: center}
+.outlet {
+  padding-left: 20px !important;
+  padding-top: 20px;
+}
 
+a {
+  color: #353030 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-
-
+/*# sourceMappingURL=coach.component.css.map */

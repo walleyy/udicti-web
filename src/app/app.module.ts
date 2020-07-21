@@ -17,7 +17,7 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatNativeDateModule,
+  MatListModule, MatMenuModule, MatNativeDateModule,
   MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule,
   MatRadioModule,
   MatSelectModule,
@@ -36,14 +36,12 @@ import { ProfileComponent } from './incubatee/profile/profile.component';
 import { NotificationComponent } from './home/notification/notification.component';
 import { AboutComponent } from './home/about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { CoachComponent } from './coach/coach.component';
 import { PendingComponent } from './incubatee/pending/pending.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { ActivitiesComponent } from './incubatee/profile/activities/activities.component';
-import { ResourceComponent } from './coach/resource/resource.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginNavComponent } from './login/login-nav/login-nav.component';
-// import { SlickCarouselModule } from 'ngx-slick-carousel';
+
 
 // firebase modules
 import { AngularFireModule } from '@angular/fire';
@@ -52,10 +50,13 @@ import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/da
 import { environment } from 'src/environments/environment';
 import {SlickCarouselModule} from 'ngx-slick-carousel';
 import { AccountsComponent } from './admin/accounts/accounts.component';
-
-
-
-
+import { CoachComponent } from './coach/coach.component';
+import { StudentActivityComponent } from './coach/student-activity/student-activity.component';
+import { ResourcesComponent } from './coach/resources/resources.component';
+import { SessionComponent } from './coach/session/session.component';
+import { ApplicantsComponent } from './coach/applicants/applicants.component';
+import { NotificationsComponent } from './coach/notifications/notifications.component';
+import { MySettingComponent } from './coach/my-setting/my-setting.component';
 
 
 @NgModule({
@@ -72,14 +73,19 @@ import { AccountsComponent } from './admin/accounts/accounts.component';
     NotificationComponent,
     AboutComponent,
     NotfoundComponent,
-    CoachComponent,
     PendingComponent,
     DialogBoxComponent,
     ActivitiesComponent,
-    ResourceComponent,
     DashboardComponent,
     LoginNavComponent,
     AccountsComponent,
+    CoachComponent,
+    StudentActivityComponent,
+    ResourcesComponent,
+    SessionComponent,
+    ApplicantsComponent,
+    NotificationsComponent,
+    MySettingComponent,
   ],
   imports: [
     BrowserModule,
@@ -123,7 +129,8 @@ import { AccountsComponent } from './admin/accounts/accounts.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    MatMenuModule,
   ],
   entryComponents: [
     DialogBoxComponent
