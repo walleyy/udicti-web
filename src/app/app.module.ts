@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { ManAboutComponent } from './admin/man-about/man-about.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  MatAutocompleteModule,
   MatBadgeModule,
   MatButtonModule,
   MatCardModule, MatCheckboxModule, MatChipsModule,
@@ -21,7 +22,7 @@ import {
   MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule,
   MatRadioModule,
   MatSelectModule,
-  MatSidenavModule, MatSnackBarModule, MatTableModule, MatTabsModule,
+  MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTableModule, MatTabsModule,
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
@@ -131,6 +132,8 @@ import { MySettingComponent } from './coach/my-setting/my-setting.component';
     AngularFireDatabaseModule,
     SlickCarouselModule,
     MatMenuModule,
+    MatStepperModule,
+    MatAutocompleteModule,
   ],
   entryComponents: [
     DialogBoxComponent
