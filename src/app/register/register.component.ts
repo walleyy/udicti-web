@@ -18,12 +18,8 @@ import { merge} from 'rxjs';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-<<<<<<< HEAD
   private basePath='/applicant';
   private userUrl= "/users-role";
-=======
-  private basePath = '/applicant';
->>>>>>> sass-frontend
   public registrationForm: FormGroup;
   accept = false;
   Roles: any = ['Admin', 'Author', 'Reader'];

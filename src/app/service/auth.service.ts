@@ -10,11 +10,6 @@ export interface Credentials {
   password: any;
 }
 
-class CredentialsImpl implements Credentials {
-  email: string;
-  password: any;
-}
-
 
 @Injectable({
   providedIn: 'root'
@@ -41,9 +36,7 @@ export class AuthService {
          this.tk=token;
          localStorage.setItem('token', token);
       });
-      let jwt= new JwtHelperService();
-
-
+ 
 
       //navigate programmatic to incubatee/coach
       if(isStudent){
@@ -56,9 +49,9 @@ export class AuthService {
       .pipe(map((arr)=>{
           return arr.map((res)=>Object.assign(res.payload.val(),{$key:res.key}))
       })).subscribe(snap=>{
-                console.log(snap[0]['role']);
+                console.log(snap[0]);
                 //navigate to the specific pages
-                if(snap[0]['role']=='applicant'){
+              if(snap[0]['role']=='applicant'){
                   this.router.navigate(['/pending', snap[0]['id']]);
                 }
                 else if(snap[0]['role']=='incubatee'){
@@ -74,7 +67,7 @@ export class AuthService {
       console.log(authState)
           })// end of then()
        .catch(error=>{console.log('error',error)});
-}
+}// end of login()
 
     logOut(){
       this.af.auth.signOut();

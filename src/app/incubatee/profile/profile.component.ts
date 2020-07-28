@@ -44,7 +44,8 @@ export class ProfileComponent  implements OnInit {
   private initiateForm() {
     this.registrationForm = new FormGroup({
       act_title: new FormControl('', [Validators.required]),
-      act_details: new FormControl('', [Validators.required])
+      act_details: new FormControl('', [Validators.required]),
+      act_date: new FormControl('', [Validators.required])
     });
   }
 
@@ -70,8 +71,9 @@ export class ProfileComponent  implements OnInit {
 
   onActivityAdd(){
   var data= this.registrationForm.value;
+  console.log(data);
     this.activityDetails= new ActivityDetails({ activityTitle:data.act_title, 
-      activityDescription: data.act_details, file:this.file }); 
+      activityDescription: data.act_details, date: new Date().toLocaleString(), file:this.file }); 
 
     this.activityService.upload(this.activityDetails, this.key);
     this.activityService.getpercentageChange().subscribe(x=>{

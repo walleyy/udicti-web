@@ -133,6 +133,7 @@ import { SplashpgComponent } from './coach/splashpg/splashpg.component';
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
         AngularFireDatabaseModule,
+        AngularFireStorageModule,
         SlickCarouselModule,
         MatMenuModule,
         MatStepperModule,
