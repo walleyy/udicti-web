@@ -5,7 +5,7 @@ import {ProjectService} from '../../service/project.service';
 @Component({
   selector: 'app-man-projects',
   templateUrl: './man-projects.component.html',
-  styleUrls: ['./man-projects.component.css']
+  styleUrls: ['./man-projects.component.scss']
 })
 export class ManProjectsComponent {
 

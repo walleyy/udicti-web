@@ -1,0 +1,73 @@
+<mat-sidenav-container class="container-fluid" style="min-height: 100vh" >
+  <mat-sidenav #sidenav  mode="over" class="sidebar" opened>
+
+    <div class=" row">
+      <div class="row" >
+        <mat-toolbar>
+          <a class="navbar-brand"  routerLink = "/coach" >
+            <img src="../../assets/img/udsm_logo.png" width="35%" >UDICTI</a>
+        </mat-toolbar>
+      </div>
+      <div class="col-12 shadow">
+        <mat-card class="side-item" >
+          <a   [routerLink]="['/coach', 'student-activity']" routerLinkActive="active">
+            <mat-icon >view_headline</mat-icon> <span class="spacer">Activities</span>
+          </a>
+        </mat-card>
+        <mat-divider></mat-divider>
+        <mat-card class="side-item">
+          <a   [routerLink]="['/coach', 'session']" routerLinkActive="active">
+            <mat-icon>class</mat-icon><span class="spacer">Sessions</span>
+          </a>
+        </mat-card>
+        <mat-divider></mat-divider>
+        <mat-card class="side-item">
+          <a   [routerLink]="['/coach', 'notification']" routerLinkActive="active">
+            <mat-icon>notifications</mat-icon><span class="spacer">Notification</span>
+          </a>
+        </mat-card>
+        <mat-divider></mat-divider>
+        <mat-card class="side-item">
+          <a   [routerLink]="['/coach', 'resources']" routerLinkActive="active">
+            <mat-icon>folder</mat-icon><span class="spacer">Resources</span>
+          </a>
+        </mat-card>
+        <mat-divider></mat-divider>
+        <mat-card class="side-item">
+          <a   [routerLink]="['/coach', 'applicant']" routerLinkActive="active">
+            <mat-icon>account_circle</mat-icon><span class="spacer">Applicant</span>
+          </a>
+        </mat-card>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button mat-button (click)="sidenav.toggle()" ><mat-icon>menu</mat-icon></button>
+      <span class="spacer"></span>
+      <img width="3%" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-0">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button  [routerLink]="['/coach', 'my-setting']" mat-menu-item>
+          <i class="fa fa-cogs" aria-hidden="true"></i>
+          <span> Account settings</span>
+        </button>
+        <button mat-menu-item routerLink="/home">
+          <i class="fa fa-sign-out"></i>
+          <span>log out</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <div class="outlet">
+
+      <div>
+        <p>1</p>
+        <p>2</p>
+      </div>
+    </div>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

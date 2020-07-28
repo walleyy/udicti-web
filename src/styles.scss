@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow: hidden;
+}
+
+
+.main-bgcolor {
+  background-color: #3F33CD!important;
+/*  background-color: #181944;
+  background-color: #302A99;
+  background-color: #3F33CD;*/
+}
+
+.reg-login-bgcolor {
+  background-color: #363638;
+}
+.slick-next:before, .slick-prev:before {
+  color: #33366C!important;
+}

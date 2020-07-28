@@ -1,15 +1,61 @@
-<mat-card >
-<app-login-nav></app-login-nav>
-  <section  >
-  <app-man-about></app-man-about>
-</section>
-<div class="row">
-<section class="col-md-3">
-  <app-man-projects></app-man-projects>
-</section >
 
-<section class="col-md-3">
-  <app-services></app-services>
-</section>
-  </div>
-</mat-card>
+<div class="row">
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark col-12">
+    <div class="container-fluid" >
+      <a class="navbar-brand text-white" routerLink = "/dashboard" (click)="scroll('page-top')">
+        <img src="../../assets/img/udsm_logo.png" width="15%;">ADMIN</a>
+      <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
+              aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive" >
+
+        <ul class="nav navbar-nav ml-auto text-uppercase " >
+          <li class="nav-item " role="presentation"><a class="nav-link js-scroll-trigger text-white-50"  routerLink="" routerLinkActive="active">
+            <i class="fa fa-sign-out"></i>Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <mat-sidenav-container class="col-2 side shadow ">
+
+    <mat-card class="side-item">
+      <a   [routerLink]="['/dashboard', 'projects']" routerLinkActive="active">
+      <mat-icon>view_headline</mat-icon> projects
+      </a>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <mat-card class="side-item">
+      <a   [routerLink]="['/dashboard', 'projects']" routerLinkActive="active">
+        <mat-icon>design_services</mat-icon>My settings
+      </a>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <mat-card class="side-item">
+      <a   [routerLink]="['/dashboard', 'accounts']" routerLinkActive="active">
+        <mat-icon>account_circle</mat-icon>accounts
+      </a>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <mat-expansion-panel class="side">
+      <mat-expansion-panel-header style="color: whitesmoke">
+        global design
+      </mat-expansion-panel-header>
+      <mat-card class="side-item">
+        <a   [routerLink]="['/dashboard', 'about']" routerLinkActive="active">
+          <mat-icon>eco</mat-icon>about
+        </a>
+      </mat-card>
+      <mat-divider></mat-divider>
+      <mat-card class="side-item">
+        <a   [routerLink]="['/dashboard', 'about']" routerLinkActive="active">
+          <mat-icon>image</mat-icon>images
+        </a>
+      </mat-card>
+      <mat-divider></mat-divider>
+
+    </mat-expansion-panel>
+
+  </mat-sidenav-container>
+  <mat-card class="col-10 shadow" id="center">
+    <router-outlet></router-outlet>
+  </mat-card>
+</div>

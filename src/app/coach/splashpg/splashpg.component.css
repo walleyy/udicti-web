@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  user-select: none;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Roboto, sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  height: 100%;
+  width: 26vh;
+  overflow: hidden;
+}
+
+.sidebar:hover .menu ul li span {
+  padding: 40px 70px;
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.sidebar .menu {
+  display: flex;
+  width: fit-content;
+  height: 100%;
+  color: #f2f2f2;
+}
+
+.menu a i {
+  margin: 40px 0 10px 20px;
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+.menu span a {
+  position: absolute;
+  margin: 40px 32px;
+  font-size: 30px;
+  opacity: 0;
+  transition: 1.2s;
+  color: white;
+}
+
+.menu li ul span {
+  position: absolute;
+  color: #ececec;
+  letter-spacing: 1px;
+  padding: 40px 0 40px 0;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 25px;
+  transition: 0.8s;
+}
+
+.spacer {
+  flex: 1 1 auto;
+  font-size: 14px;
+}
+
+mat-toolbar {
+  padding-left: 0 !important;
+}
+
+i {
+  padding: 10px;
+}
+
+.outlet {
+  padding-left: 5px !important;
+  padding-top: 10px;
+}
+
+a {
+  color: #353030 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-card {
+  height: 6.5vh !important;
+  display: flex;
+  margin-bottom: 1px;
+}
+
+mat-icon {
+  transform: scale(0.8) !important;
+  padding-right: 5vh;
+}
+
+/*# sourceMappingURL=splashpg.component.css.map */

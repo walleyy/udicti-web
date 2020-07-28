@@ -1,117 +1,97 @@
-a:hover {
-  cursor: pointer;
-}
-.timeline-container {
-  position: relative;
-  padding-top: 4px;
-  padding-bottom: 30px
-}
-
-.timeline-container:before {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 40px;
-  top: 0;
-  bottom: 0;
-  border: 1px solid #E2E3E7;
-  background-color: #E7EAEF;
-  width: 1px;
-
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 8px;
-}
-
-.timeline-info {
-  float: left;
-  width: 60px;
-  text-align: center;
-  position: relative
-}
-
-.timeline-info img {
-  border-radius: 100%;
-  max-width: 42px
-}
-
-.timeline-indicator {
-  opacity: 1;
-  border-radius: 100%;
-  display: inline-block;
-  font-size: 16px;
-  height: 36px;
-  line-height: 30px;
-  width: 36px;
-  text-align: center;
-  text-shadow: none!important;
+* {
+  margin: 0;
   padding: 0;
-  cursor: default;
-  border: 3px solid #FFF!important
-}
-
-.timeline-label {
-  background-color: #3F33CD;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 10px;
-  margin-top: -5px;
-}
-
-.timeline-item img {
-  border: 1px solid #AAA;
-  padding: 2px;
-  background-color: #FFF
-}
-
-.shift {
-  margin: 0 21px;
-
-}
-
-
-
-
-.timeline-item .widget-box {
-  background-color: #F2F6F9;
-  color: #595C66;
-  width: 80%;
-}
-
-.timeline-item .transparent.widget-box {
-  border-left: 3px solid #DAE1E5
-}
-
-.timeline-item .transparent .widget-header {
-  background-color: #ECF1F4;
-  border-bottom-width: 0
-}
-
-.timeline-item .transparent .widget-header>.widget-title {
-  margin-left: 8px
-}
-@media only screen and (max-width:767px) {
-  .widget-box {
-    margin-top: 7px;
-    margin-bottom: 7px
-  }
-}
-p{
-  padding: 2%;
-
-}
-.list-group-item{
-  margin: 1vh;
-  box-shadow: rgba(113, 153, 255, 0.42);
   box-sizing: border-box;
-  border-radius: 20px;
-  width: 30%;
+  text-decoration: none;
+  list-style: none;
+  user-select: none;
 }
-.mat-table{
+
+body {
+  min-height: 100vh;
+  font-family: Roboto, sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  height: 100%;
+  width: 26vh;
+  overflow: hidden;
+}
+
+.sidebar:hover .menu ul li span {
+  padding: 40px 70px;
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.sidebar .menu {
+  display: flex;
   width: fit-content;
+  height: 100%;
+  color: #f2f2f2;
 }
-.mat-expansion-panel{
-  margin-bottom: 2vh;
+
+.menu a i {
+  margin: 40px 0 10px 20px;
+  font-size: 40px;
+  font-weight: bolder;
 }
+
+.menu span a {
+  position: absolute;
+  margin: 40px 32px;
+  font-size: 30px;
+  opacity: 0;
+  transition: 1.2s;
+  color: white;
+}
+
+.menu li ul span {
+  position: absolute;
+  color: #ececec;
+  letter-spacing: 1px;
+  padding: 40px 0 40px 0;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 25px;
+  transition: 0.8s;
+}
+
+.spacer {
+  flex: 1 1 auto;
+  font-size: 14px;
+}
+
+mat-toolbar {
+  padding-left: 0 !important;
+}
+
+i {
+  padding: 10px;
+}
+
+.outlet {
+  padding-left: 5px !important;
+  padding-top: 10px;
+}
+
+a {
+  color: #353030 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-card {
+  height: 6.5vh !important;
+  display: flex;
+  margin-bottom: 1px;
+}
+
+mat-icon {
+  transform: scale(0.8) !important;
+  padding-right: 5vh;
+}
+
+/*# sourceMappingURL=coach.component.css.map */

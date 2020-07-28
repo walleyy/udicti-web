@@ -14,7 +14,7 @@ export interface Credentials {
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -53,6 +53,9 @@ export class LoginComponent implements OnInit {
       this.linkText = 'Or, Coach';
       console.log(this.isStudent);
     }
+    this.af.auth.signInWithEmailAndPassword(this.email, this.password).
+    then(authState => console.log(authState))
+    .catch(error => console.log(error));
 
   }
 

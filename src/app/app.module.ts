@@ -8,24 +8,24 @@ import { HomeComponent } from './home/home.component';
 import { ManAboutComponent } from './admin/man-about/man-about.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatBadgeModule,
-  MatButtonModule,
-  MatCardModule, MatCheckboxModule, MatChipsModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatDividerModule, MatExpansionModule, MatFormFieldModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule, MatNativeDateModule,
-  MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule,
-  MatRadioModule,
-  MatSelectModule,
-  MatSidenavModule, MatSnackBarModule, MatTableModule, MatTabsModule,
-  MatToolbarModule,
-  MatTooltipModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatCardModule, MatCheckboxModule, MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule, MatExpansionModule, MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule, MatMenuModule, MatNativeDateModule,
+    MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTableModule, MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule, MatTreeModule
 } from '@angular/material';
-import { ManServicesComponent } from './admin/man-services/man-services.component';
 import { ManProjectsComponent } from './admin/man-projects/man-projects.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -37,14 +37,12 @@ import { ProfileComponent } from './incubatee/profile/profile.component';
 import { NotificationComponent } from './home/notification/notification.component';
 import { AboutComponent } from './home/about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { CoachComponent } from './coach/coach.component';
 import { PendingComponent } from './incubatee/pending/pending.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { ActivitiesComponent } from './incubatee/profile/activities/activities.component';
-import { ResourceComponent } from './coach/resource/resource.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginNavComponent } from './login/login-nav/login-nav.component';
-// import { SlickCarouselModule } from 'ngx-slick-carousel';
+
 
 // firebase modules
 import { AngularFireModule } from '@angular/fire';
@@ -53,9 +51,15 @@ import {  AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import {SlickCarouselModule} from 'ngx-slick-carousel';
-
-
-
+import { AccountsComponent } from './admin/accounts/accounts.component';
+import { CoachComponent } from './coach/coach.component';
+import { StudentActivityComponent } from './coach/student-activity/student-activity.component';
+import { ResourcesComponent } from './coach/resources/resources.component';
+import { SessionComponent } from './coach/session/session.component';
+import { ApplicantsComponent } from './coach/applicants/applicants.component';
+import { NotificationsComponent } from './coach/notifications/notifications.component';
+import { MySettingComponent } from './coach/my-setting/my-setting.component';
+import { SplashpgComponent } from './coach/splashpg/splashpg.component';
 
 
 @NgModule({
@@ -63,7 +67,6 @@ import {SlickCarouselModule} from 'ngx-slick-carousel';
     AppComponent,
     HomeComponent,
     ManAboutComponent,
-    ManServicesComponent,
     ManProjectsComponent,
     RegisterComponent,
     LoginComponent,
@@ -73,60 +76,69 @@ import {SlickCarouselModule} from 'ngx-slick-carousel';
     NotificationComponent,
     AboutComponent,
     NotfoundComponent,
-    CoachComponent,
     PendingComponent,
     DialogBoxComponent,
     ActivitiesComponent,
-    ResourceComponent,
     DashboardComponent,
-    LoginNavComponent
+    LoginNavComponent,
+    AccountsComponent,
+    CoachComponent,
+    StudentActivityComponent,
+    ResourcesComponent,
+    SessionComponent,
+    ApplicantsComponent,
+    NotificationsComponent,
+    MySettingComponent,
+    SplashpgComponent,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule, // step 1
-    FormsModule,
-    ReactiveFormsModule, // srep 5
-    CommonModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatBadgeModule,
-    MatListModule,
-    MatGridListModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatChipsModule,
-    MatTooltipModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatCardModule,
-    MatInputModule,
-    MatDividerModule,
-    MatListModule,
-    MatTooltipModule,
-    MatDialogModule,
-    SlickCarouselModule,
-    MatCheckboxModule,
-    MatSnackBarModule,
-    MatExpansionModule,
-    MatTabsModule,
-    FlexLayoutModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
-    AngularFireStorageModule,
-    SlickCarouselModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule, // step 1
+        FormsModule,
+        ReactiveFormsModule, // srep 5
+        CommonModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatBadgeModule,
+        MatListModule,
+        MatGridListModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatRadioModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatChipsModule,
+        MatTooltipModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatCardModule,
+        MatInputModule,
+        MatDividerModule,
+        MatListModule,
+        MatTooltipModule,
+        MatDialogModule,
+        SlickCarouselModule,
+        MatCheckboxModule,
+        MatSnackBarModule,
+        MatExpansionModule,
+        MatTabsModule,
+        FlexLayoutModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        AngularFireDatabaseModule,
+        SlickCarouselModule,
+        MatMenuModule,
+        MatStepperModule,
+        MatAutocompleteModule,
+        MatTreeModule,
+    ],
   entryComponents: [
     DialogBoxComponent
   ],

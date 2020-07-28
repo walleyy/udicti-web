@@ -1,0 +1,82 @@
+@media only screen and (max-width: 600px){
+  #cover{
+    width: fit-content;
+  }
+}
+
+
+.a:hover {
+  background-color: #7C99FB;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+}
+.text-shadow {
+  text-shadow: 1px 3px 3px #000000;
+}
+
+.project-modal {
+  width:70%; height: 70%; margin: 0;
+}
+
+#contact {
+  background-color: #3F33CD!important;
+  background-image:url('../../assets/img/map-image.png')!important;
+}
+
+.social-buttons a {
+  background-color: #3F33CD!important;
+}
+
+.body {height:100%!important;margin:0;padding:0;}
+.body{background-image:url(../../assets/img/home/header.jpg)!important;background-position:center;background-size:cover;background-repeat:no-repeat;min-height:100vh;font-family:'Roboto', sans-serif;}
+
+#portfolio{
+  padding: 15px;
+}
+
+.service-list {
+  list-style: none;
+  text-align: justify;
+}
+.service-list li:before {
+  content: '✓';
+  padding-right: 5px;
+}
+#join{
+   position: relative;
+   animation-name: a-join;
+   animation-duration: 7s;
+   animation-delay: 2ms;
+ }
+@keyframes a-join {
+  0%   {background-color: yellow;}
+  25%  {background-color: yellowgreen;}
+  50%  {background-color: lightseagreen;}
+  100% {background-color: lightblue;}
+}
+
+.intro-lead-in{
+  position: relative;
+  animation-name: welcome;
+  animation-duration: 2.65s;
+  animation-delay: 1ms;
+}
+@keyframes welcome {
+  from {top: 40vh;}
+  to {top: 0;}
+}
+.intro-heading{
+  position: relative;
+  animation-name: welcome;
+  animation-duration: 2s;
+  animation-delay: 1ms;
+}
+section {
+  background: whitesmoke!important;
+}
+footer{
+  background-color: whitesmoke;
+}
+h2{
+  font-family: "Courier New", serif;
+  letter-spacing: 2px;
+}

@@ -5,7 +5,11 @@
   "projects": {
     "udicti-web": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -24,7 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
+              "src/styles.scss",
               "node_modules/slick-carousel/slick/slick.css",
               "node_modules/slick-carousel/slick/slick-theme.css"
             ],
@@ -94,11 +98,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
-
+              "src/styles.scss"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           }
         },
         "lint": {
@@ -127,6 +129,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "udicti-web"
 }
