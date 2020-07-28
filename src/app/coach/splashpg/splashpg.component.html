@@ -3,11 +3,11 @@
 
     <div class=" row">
       <div class="row" >
-     <mat-toolbar>
-       <a class="navbar-brand"  routerLink = "/coach" >
-         <img src="../../assets/img/udsm_logo.png" width="35%" >UDICTI</a>
-     </mat-toolbar>
-    </div>
+        <mat-toolbar>
+          <a class="navbar-brand"  routerLink = "/coach" >
+            <img src="../../assets/img/udsm_logo.png" width="35%" >UDICTI</a>
+        </mat-toolbar>
+      </div>
       <div class="col-12 shadow">
         <mat-card class="side-item" >
           <a   [routerLink]="['/coach', 'student-activity']" routerLinkActive="active">
@@ -45,7 +45,7 @@
     <mat-toolbar>
       <button mat-button (click)="sidenav.toggle()" ><mat-icon>menu</mat-icon></button>
       <span class="spacer"></span>
-        <img width="3%" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-0">
+      <img width="3%" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-0">
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
       </button>
@@ -62,7 +62,12 @@
     </mat-toolbar>
     <div class="outlet">
 
-      <router-outlet></router-outlet>
+      <div>
+        <p>1</p>
+        <p>2</p>
+      </div>
     </div>
+
+
   </mat-sidenav-content>
 </mat-sidenav-container>

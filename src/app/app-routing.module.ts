@@ -19,6 +19,7 @@ import {ResourcesComponent} from './coach/resources/resources.component';
 import {SessionComponent} from './coach/session/session.component';
 import {ApplicantsComponent} from './coach/applicants/applicants.component';
 import {MySettingComponent} from './coach/my-setting/my-setting.component';
+import {SplashpgComponent} from './coach/splashpg/splashpg.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,8 @@ const routes: Routes = [
   {path: 'incubatee', component: IncubateeComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'pending', component: PendingComponent},
+  {path: 'splashpg' , component: SplashpgComponent},
+  {path: 'coach', redirectTo: 'splashpg', pathMatch: 'full'},
   {path: 'coach', component: CoachComponent , children:
    [
       {path: 'notification' , component: NotificationsComponent},

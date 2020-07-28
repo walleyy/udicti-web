@@ -1,0 +1,18 @@
+.container-fluid{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  //border-spacing: 50px;
+
+}
+.tableDiv{
+margin-top: 20px;
+
+  padding: 10px;
+}
+table {
+  width: 100%;
+}
+mat-card-actions{
+  overflow: hidden;
+}

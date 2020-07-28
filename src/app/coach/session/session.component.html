@@ -1,1 +1,64 @@
-<p>session works!</p>
+<div class="container-fluid" >
+  <div class="col-12">
+  <form [formGroup]="sessionForm" (ngSubmit)="getSession()" fxLayout="column" >
+    <mat-form-field   appearance="outline" style=" margin-top: 20px;width: 50%">
+      <mat-label>Session Title</mat-label>
+      <input matInput type="text" formControlName="name">
+      <mat-error *ngIf="hasError('name', 'required')">session title is required</mat-error>
+    </mat-form-field>
+  </form>
+  <mat-card style="margin-top:10px;margin-bottom: 10px; width: 50%;">
+    <mat-card-content>
+      <ul>
+        <li *ngFor="let file of files">
+          <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+          <span id="file-label">
+          </span>
+        </li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="warn" (click)="onClick()">
+        <mat-icon>attach_file</mat-icon>
+        Upload
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="application/pdf/*" style="display:none;" />
+  <button style="float: right; background-color: rgba(0,123,255,0.51);border-style: none" mat-button type="submit">Add</button>
+</div>
+  <div  class="col-12 tableDiv">
+    <table mat-table [dataSource]="dataSource" #mytable class="my-table mat-elevation-z8">
+
+<!--                        - Note that these columns can be defined in any order.-->
+<!--                            The actual rendered columns are set as a property on the row definition"-->
+
+<!--                         Id Column-->
+                        <ng-container matColumnDef="id">
+                          <th mat-header-cell *matHeaderCellDef> ID. </th>
+                          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                        </ng-container>
+
+                         Name Column
+                        <ng-container matColumnDef="name">
+                          <th mat-header-cell *matHeaderCellDef> SessionName </th>
+                          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+
+                         Action Column
+                        <ng-container matColumnDef="action">
+                          <th mat-header-cell *matHeaderCellDef> Action </th>
+                          <td mat-cell *matCellDef="let element" class="action-link">
+                            <a (click)="openDialog('Update',element)">Edit</a> |
+                            <a (click)="openDialog('Delete',element)">Delete</a>
+                          </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                   </table>
+  </div>
+</div>
+
+
+
