@@ -77,15 +77,15 @@ mat-toolbar{
 i{
   padding: 10px
 }
- .outlet{
-   padding-left: 5px !important;
-   padding-top: 10px;
- }
+.outlet{
+  padding-left: 5px !important;
+  padding-top: 10px;
+}
 
 a{color: #353030 !important;
-display: flex;
-align-items: center;
-justify-content: center}
+  display: flex;
+  align-items: center;
+  justify-content: center}
 
 mat-card{
   height: 6.5vh!important;
@@ -93,6 +93,4 @@ mat-card{
   margin-bottom: 1px;
 }
 mat-icon{transform: scale(0.8)!important;
-padding-right:5vh}
-
-
+  padding-right:5vh}

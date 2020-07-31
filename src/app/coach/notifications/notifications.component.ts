@@ -3,13 +3,30 @@ import { Component, OnInit , ElementRef, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
-import {Observable, Observer} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {MatTableDataSource} from '@angular/material/table';
 
-export interface ExampleTab {
-  label: string;
-  content: string;
+
+export interface PeriodicElement {
+  heading: string;
+  type: number;
+  timeId: number;
+  members: string[any];
 }
+const ELEMENT_DATA: PeriodicElement[] = [
+  {type: 1, heading: 'Hydrogen', timeId: 1.0079, members: 'H,e,r'},
+  {type: 2, heading: 'Helium', timeId: 4.0026, members: 'He'},
+  {type: 3, heading: 'Lithium', timeId: 6.941, members: 'Li'},
+  {type: 4, heading: 'Beryllium', timeId: 9.0122, members: 'Be'},
+  {type: 5, heading: 'Boron', timeId: 10.811, members: 'B'},
+  {type: 6, heading: 'Carbon', timeId: 12.0107, members: 'C'},
+  {type: 7, heading: 'Nitrogen', timeId: 14.0067, members: 'N'},
+  {type: 8, heading: 'Oxygen', timeId: 15.9994, members: 'O'},
+  {type: 9, heading: 'Fluorine', timeId: 18.9984, members: 'F'},
+  {type: 10, heading: 'Neon', timeId: 20.1797, members: 'Ne'},
+];
+
+
 
 @Component({
   selector: 'app-notifications',
@@ -17,6 +34,7 @@ export interface ExampleTab {
   styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent implements OnInit {
+  // for mat-chip
   visible = true;
   selectable = true;
   removable = true;
@@ -29,20 +47,15 @@ export class NotificationsComponent implements OnInit {
   @ViewChild('fruitInput', {static: true}) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
-  asyncTabs: Observable<ExampleTab[]>;
+// for table
+  displayedColumns: string[] = ['type', 'heading', 'timeId', 'members'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   constructor() {
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-
-    this.asyncTabs = new Observable((observer: Observer<ExampleTab[]>) => {
-      setTimeout(() => {
-        observer.next([
-          {label: 'history', content: 'table'},
-        ]);
-      }, 1000);
-    });
   }
 
   ngOnInit() {

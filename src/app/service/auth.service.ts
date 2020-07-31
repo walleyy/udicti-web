@@ -16,8 +16,8 @@ export interface Credentials {
 })
 export class AuthService {
 
-  
-  private userUrl= "/users-role";
+
+  private userUrl = '/users-role';
   private tk;
 
   constructor( private router: Router, 
@@ -26,7 +26,7 @@ export class AuthService {
    ) { }
 
 
- login(isStudent:boolean, credentials:Credentials){
+ login(isStudent: boolean, credentials: Credentials) {
     this.af.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
     .then(authState=>{ 
 
@@ -35,48 +35,47 @@ export class AuthService {
          this.tk=token;
          localStorage.setItem('token', token);
       });
- 
 
-      //navigate programmatic to incubatee/coach
-      if(isStudent){
+
+      // navigate programmatic to incubatee/coach
+       if (isStudent) {
 
         // navigate to incubatee page
 
       this.db.list(`${this.userUrl}/` + authState.user.uid)
       .snapshotChanges()
 
-      .pipe(map((arr)=>{
-          return arr.map((res)=>Object.assign(res.payload.val(),{$key:res.key}))
-      })).subscribe(snap=>{
+      .pipe(map((arr) => {
+          return arr.map((res) => Object.assign(res.payload.val(), {$key: res.key}));
+      })).subscribe(snap => {
                 console.log(snap[0]);
-                //navigate to the specific pages
-              if(snap[0]['role']=='applicant'){
+                // navigate to the specific pages
+                if (snap[0]['role'] === 'applicant') {
                   this.router.navigate(['/pending', snap[0]['id']]);
+                } else if (snap[0]['role'] === 'incubatee') {
+                  this.router.navigate(['/incubatee', snap[0]['id']]);
                 }
-                else if(snap[0]['role']=='incubatee'){
-                  this.router.navigate(['/incubatee', snap[0]['id']])
-                }
-              });  
-              return;
+              });
+      return;
       }
-      //navigate to coachs page
-      this.router.navigate(['/coach', authState.user.uid]);
+      // navigate to coachs page
+       this.router.navigate(['/coach', authState.user.uid]);
 
 
-      console.log(authState)
+       console.log(authState);
           })// end of then()
-       .catch(error=>{console.log('error',error)});
+       .catch(error => {console.log('error', error); });
 }// end of login()
 
-    logOut(){
+    logOut() {
       this.af.auth.signOut();
     }
 
 
-    isLoggedIn(){
-      let jwt= new JwtHelperService();
-      const token= localStorage.getItem('token');
-      return token!=null &&  !jwt.isTokenExpired(token);  
+    isLoggedIn() {
+      const jwt = new JwtHelperService();
+      const token = localStorage.getItem('token');
+      return token != null &&  !jwt.isTokenExpired(token);
 
       /**
        * for the method to be true either parts should be true

@@ -7,3 +7,17 @@ form{
   justify-content: flex-start;
   overflow: hidden;
 }
+
+table {
+  width: 100%;
+}
+.table-mat{
+  display: flex;
+  justify-content: center;
+  margin: 2vh;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}

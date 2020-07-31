@@ -42,6 +42,7 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { ActivitiesComponent } from './incubatee/profile/activities/activities.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginNavComponent } from './login/login-nav/login-nav.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 // firebase modules
@@ -60,6 +61,7 @@ import { ApplicantsComponent } from './coach/applicants/applicants.component';
 import { NotificationsComponent } from './coach/notifications/notifications.component';
 import { MySettingComponent } from './coach/my-setting/my-setting.component';
 import { SplashpgComponent } from './coach/splashpg/splashpg.component';
+import { IncubateeTimelineComponent } from './coach/student-activity/incubatee-timeline/incubatee-timeline.component';
 
 
 @NgModule({
@@ -90,6 +92,7 @@ import { SplashpgComponent } from './coach/splashpg/splashpg.component';
     NotificationsComponent,
     MySettingComponent,
     SplashpgComponent,
+    IncubateeTimelineComponent,
   ],
     imports: [
         BrowserModule,
@@ -139,6 +142,7 @@ import { SplashpgComponent } from './coach/splashpg/splashpg.component';
         MatStepperModule,
         MatAutocompleteModule,
         MatTreeModule,
+        ChartsModule
     ],
   entryComponents: [
     DialogBoxComponent

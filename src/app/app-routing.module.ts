@@ -20,6 +20,7 @@ import {SessionComponent} from './coach/session/session.component';
 import {ApplicantsComponent} from './coach/applicants/applicants.component';
 import {MySettingComponent} from './coach/my-setting/my-setting.component';
 import {SplashpgComponent} from './coach/splashpg/splashpg.component';
+import {IncubateeTimelineComponent} from './coach/student-activity/incubatee-timeline/incubatee-timeline.component';
 
 
 const routes: Routes = [
@@ -33,8 +34,7 @@ const routes: Routes = [
   {path: 'pending', component: PendingComponent},
   {path: 'splashpg' , component: SplashpgComponent},
   {path: 'coach', redirectTo: 'splashpg', pathMatch: 'full'},
-  {path: 'coach', component: CoachComponent , children:
-   [
+  {path: 'coach', component: CoachComponent , children: [
       {path: 'notification' , component: NotificationsComponent},
       {path: 'resources' , component: ResourcesComponent},
       {path: 'session' , component: SessionComponent},
@@ -43,13 +43,15 @@ const routes: Routes = [
       {path: 'my-setting' , component: MySettingComponent},
    ]
   },
-  {path: 'dashboard', component: DashboardComponent , children:
-    [
+  {path: 'dashboard', component: DashboardComponent , children: [
       {path: 'about', component: ManAboutComponent},
       {path: 'accounts', component: AccountsComponent},
       {path: 'projects', component: ManProjectsComponent},
     ]
   },
+  {path: 'student-activity', component: CoachComponent , children: [
+      {path: 'incubateeTimeline', component: IncubateeTimelineComponent},
+    ]},
   {path: '**', component: NotfoundComponent }
 ];
 
