@@ -37,7 +37,8 @@ export class ProfileComponent  implements OnInit {
 
   ngOnInit(){
 
-    this.key= this.route.snapshot.paramMap.get('userId');
+   localStorage.setItem('key',this.route.snapshot.paramMap.get('userId'));
+
     console.log('userID',this.route.snapshot.paramMap.get('userId'));
   }
 
@@ -73,9 +74,9 @@ export class ProfileComponent  implements OnInit {
   var data= this.registrationForm.value;
   console.log(data);
     this.activityDetails= new ActivityDetails({ activityTitle:data.act_title, 
-      activityDescription: data.act_details, date: new Date().toLocaleString(), file:this.file }); 
+      activityDescription: data.act_details, date: new Date().toLocaleString(), file:this.file, filename:this.filename }); 
 
-    this.activityService.upload(this.activityDetails, this.key);
+    this.activityService.upload(this.activityDetails);
     this.activityService.getpercentageChange().subscribe(x=>{
       this.barActive= true;
       this.percentage= Math.round(x)
@@ -87,6 +88,7 @@ export class ProfileComponent  implements OnInit {
           act_details: new FormControl('')
         });
         this.barActive=false;
+        this.filename='';
       }
       console.log(x)
     });

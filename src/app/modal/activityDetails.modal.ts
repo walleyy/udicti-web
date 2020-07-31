@@ -5,5 +5,7 @@ export class ActivityDetails {
         date: string;
         file?: File;
         fileUrl?: string;
+        filename?: string;
+        key?: string;
     }) {}
 }

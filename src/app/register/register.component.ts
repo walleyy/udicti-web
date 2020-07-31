@@ -114,7 +114,7 @@ export class RegisterComponent implements OnInit {
      //This  method save to data to the database
     private saveData(dataTosave:any, key:string){
       this.db.list(`${this.basePath}/`).push(dataTosave).then(data=>{
-        this.db.list(`${this.userUrl}/` +key).push({role:"applicant", id:data.key})
+        this.db.list(`${this.userUrl}/`).push({role:"applicant", id:data.key})
       })
     }
 }

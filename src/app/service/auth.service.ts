@@ -20,7 +20,6 @@ export class AuthService {
   private userUrl= "/users-role";
   private tk;
 
-
   constructor( private router: Router, 
     private af:AngularFireAuth,
     private db:AngularFireDatabase,
@@ -30,7 +29,7 @@ export class AuthService {
  login(isStudent:boolean, credentials:Credentials){
     this.af.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
     .then(authState=>{ 
-      
+
       //saving the token to the localStorange
        authState.user.getIdToken().then((token:string)=>{
          this.tk=token;
@@ -85,6 +84,7 @@ export class AuthService {
        * means the isTokenExpired() should be false meaning token is not obselete
        */
     }
+
 
 
 }

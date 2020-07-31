@@ -1,11 +1,11 @@
-
-
   <div style="margin-top: 10px;">
+
     <div>
-      <div class="timeline-container"  *ngFor="let about of images; index as i" >
+
+      <div class="timeline-container"  *ngFor="let activity of activityDetailsArray">
         <div  class="timeline-item clearfix">
           <label class="timeline-label shadow">
-            <b>Jan. 2017</b>
+            <b>{{activity.activityDetails.date}}</b>
           </label>
         </div>
 
@@ -22,16 +22,15 @@
               </div>
 
               <div class="col-9" style="background-color: #ffffff; color: darkgrey">
-                <div class="">
-                  <h6 >Activity Title</h6>
+                <div class="" >
+                  <h6 >{{ activity.activityDetails.activityTitle }} </h6>
                   <mat-divider></mat-divider>
-                  <label >
-                    Going to cafe for lunch  Going to cafe for lunchGoing to cafe for lunchGoing to cafe for lunch
-                    Going to cafe for lunchGoing to cafe for lunchGoing to cafe for lunch Going to cafe for lunch
-                    Going to cafe for lunch Going to cafe for lunchGoing to cafe for lunch
+                  <label> {{ activity.activityDetails.activityDescription }}
                   </label>
                 </div>
                 <mat-divider></mat-divider>
+                <p><a mat-button href="{{activity.activityDetails.fileUrl}}"  target="_blank" style="margin-left: -30px">
+                  <mat-icon>attachment</mat-icon>View Attachment - ({{ activity.activityDetails.filename }})</a></p>
               </div>
             </div>
           </div>
