@@ -42,6 +42,7 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { ActivitiesComponent } from './incubatee/profile/activities/activities.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginNavComponent } from './login/login-nav/login-nav.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 // firebase modules
@@ -141,6 +142,7 @@ import { IncubateeTimelineComponent } from './coach/student-activity/incubatee-t
         MatStepperModule,
         MatAutocompleteModule,
         MatTreeModule,
+        ChartsModule
     ],
   entryComponents: [
     DialogBoxComponent

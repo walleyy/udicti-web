@@ -60,12 +60,24 @@
         </button>
       </mat-menu>
     </mat-toolbar>
-    <div class="outlet">
-
+    <div class=" outlet">
       <div>
-        <p>1</p>
-        <p>2</p>
+       <p>Welcome  </p>
       </div>
+
+        <div class="chart1">
+          <div >
+            <canvas baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType">
+            </canvas>
+          </div>
+          <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+        </div>
     </div>
 
 

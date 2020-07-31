@@ -80,6 +80,9 @@ i{
 .outlet{
   padding-left: 5px !important;
   padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 98%;
 }
 
 a{color: #353030 !important;
@@ -94,3 +97,12 @@ mat-card{
 }
 mat-icon{transform: scale(0.8)!important;
   padding-right:5vh}
+
+.chart1{
+  display: block;
+  padding: 5vh;
+  //margin: 5vh
+}
+canvas{
+  height: 70vh!important;
+}

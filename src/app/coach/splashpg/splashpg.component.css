@@ -74,6 +74,9 @@ i {
 .outlet {
   padding-left: 5px !important;
   padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 98%;
 }
 
 a {
@@ -92,6 +95,15 @@ mat-card {
 mat-icon {
   transform: scale(0.8) !important;
   padding-right: 5vh;
+}
+
+.chart1 {
+  display: block;
+  padding: 5vh;
+}
+
+canvas {
+  height: 70vh !important;
 }
 
 /*# sourceMappingURL=splashpg.component.css.map */
