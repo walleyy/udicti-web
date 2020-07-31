@@ -4,6 +4,7 @@ import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material/table';
 
 
@@ -45,21 +46,38 @@ export class NotificationsComponent implements OnInit {
   allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
 
   @ViewChild('fruitInput', {static: true}) fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+  @ViewChild('auto', {static: true}) matAutocomplete: MatAutocomplete;
 
 // for table
   displayedColumns: string[] = ['type', 'heading', 'timeId', 'members'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
+  // for options
+  options: string[] = ['public', 'private'];
+  isDisabled = true;
+  setNotification = new FormControl();
+
+
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  constructor() {
+  constructor() { this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+    startWith(null),
+    map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
   }
 
   ngOnInit() {
   }
+
+  change(s: string) {
+    if (s !== 'private') {
+      this.isDisabled = false;
+    }
+    console.log(s);
+  }
+
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
