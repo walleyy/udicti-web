@@ -1,6 +1,6 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Component, OnInit , ElementRef, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
@@ -55,7 +55,13 @@ export class NotificationsComponent implements OnInit {
   // for options
   options: string[] = ['public', 'private'];
   isDisabled = true;
-  setNotification = new FormControl();
+  // form declaration
+  setNotification = new FormGroup({
+  heading : new FormControl(''),
+  type: new FormControl(''),
+  details: new FormControl(''),
+  dateID: new FormControl('')
+  });
 
 
 
@@ -71,11 +77,14 @@ export class NotificationsComponent implements OnInit {
   ngOnInit() {
   }
 
-  change(s: string) {
-    if (s !== 'private') {
+  changeType(value) {
+    console.log(value);
+    if (value === 'private') {
       this.isDisabled = false;
+      return this.isDisabled;
+    } else {
+      return !this.isDisabled;
     }
-    console.log(s);
   }
 
   add(event: MatChipInputEvent): void {
