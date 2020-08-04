@@ -20,7 +20,6 @@ import {SessionComponent} from './coach/session/session.component';
 import {ApplicantsComponent} from './coach/applicants/applicants.component';
 import {MySettingComponent} from './coach/my-setting/my-setting.component';
 import {SplashpgComponent} from './coach/splashpg/splashpg.component';
-import {IncubateeTimelineComponent} from './coach/student-activity/incubatee-timeline/incubatee-timeline.component';
 
 
 const routes: Routes = [
@@ -48,12 +47,7 @@ const routes: Routes = [
       {path: 'accounts', component: AccountsComponent},
       {path: 'projects', component: ManProjectsComponent},
     ]
-  },
-  {path: 'student-activity', component: CoachComponent , children: [
-      {path: 'incubateeTimeline', component: IncubateeTimelineComponent},
-    ]},
-  {path: '**', component: NotfoundComponent }
-];
+  }]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

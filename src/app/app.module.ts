@@ -61,7 +61,6 @@ import { ApplicantsComponent } from './coach/applicants/applicants.component';
 import { NotificationsComponent } from './coach/notifications/notifications.component';
 import { MySettingComponent } from './coach/my-setting/my-setting.component';
 import { SplashpgComponent } from './coach/splashpg/splashpg.component';
-import { IncubateeTimelineComponent } from './coach/student-activity/incubatee-timeline/incubatee-timeline.component';
 
 
 @NgModule({
@@ -92,7 +91,7 @@ import { IncubateeTimelineComponent } from './coach/student-activity/incubatee-t
     NotificationsComponent,
     MySettingComponent,
     SplashpgComponent,
-    IncubateeTimelineComponent,
+ 
   ],
     imports: [
         BrowserModule,

@@ -1,31 +1,39 @@
 <div class="container-fluid" >
   <div class="col-12">
-  <form [formGroup]="sessionForm" (ngSubmit)="getSession()" fxLayout="column" >
+  <form [formGroup]="sessionForm" (ngSubmit)="uploadSession()" fxLayout="column">
     <mat-form-field   appearance="outline" style=" margin-top: 20px;width: 50%">
       <mat-label>Session Title</mat-label>
       <input matInput type="text" formControlName="name">
       <mat-error *ngIf="hasError('name', 'required')">session title is required</mat-error>
     </mat-form-field>
+
+    <mat-form-field   appearance="outline" style=" margin-top: 20px;width: 50%">
+      <mat-label>Session Description</mat-label>
+      <textarea matInput type="text" formControlName="description"></textarea>
+      <mat-error *ngIf="hasError('description', 'required')">session Description is required</mat-error>
+    </mat-form-field>
+
+    <mat-card style="margin-top:10px;margin-bottom: 10px; width: 50%;">
+      <mat-card-content>
+        <ul>
+          <li *ngFor="let file of files">
+            <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+            <span id="file-label">
+            </span>
+          </li>
+        </ul>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="warn" (click)="fileUpload.click()" type="button">
+          <mat-icon>attach_file</mat-icon>
+          Upload
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <input type="file" #fileUpload id="fileUpload" name="fileUpload"  (change)="handleFiles($event)" multiple="multiple" accept="application/pdf/*" style="display:none;" />
+    <button style="float: right; background-color: rgba(0,123,255,0.51);border-style: none" mat-button type="submit">Add</button>
   </form>
-  <mat-card style="margin-top:10px;margin-bottom: 10px; width: 50%;">
-    <mat-card-content>
-      <ul>
-        <li *ngFor="let file of files">
-          <mat-progress-bar [value]="file.progress"></mat-progress-bar>
-          <span id="file-label">
-          </span>
-        </li>
-      </ul>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button color="warn" (click)="onClick()">
-        <mat-icon>attach_file</mat-icon>
-        Upload
-      </button>
-    </mat-card-actions>
-  </mat-card>
-  <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="application/pdf/*" style="display:none;" />
-  <button style="float: right; background-color: rgba(0,123,255,0.51);border-style: none" mat-button type="submit">Add</button>
+
 </div>
   <div  class="col-12 tableDiv">
     <table mat-table [dataSource]="dataSource" #mytable class="my-table mat-elevation-z8">

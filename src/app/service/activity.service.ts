@@ -12,7 +12,6 @@ import { finalize, map } from 'rxjs/operators';
 export class ActivityService {
  private baseUrl = '/incubatee';
  key;
-
  uploadTask;
 
   constructor( private storage: AngularFireStorage,
@@ -32,6 +31,7 @@ export class ActivityService {
  const ref = this.storage.ref(`${this.baseUrl}`);
 
  this.uploadTask = ref.child(details.activityDetails.file.name).put(details.activityDetails.file);
+ 
 
 
  this.uploadTask.snapshotChanges().pipe(

@@ -8,6 +8,29 @@ import {MatSnackBar} from '@angular/material';
 import { delay } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/service/auth.service';
+import {MatTableDataSource} from '@angular/material/table';
+
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  Date: number;
+  PostedBy: string;
+}
+
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {position: 1, name: 'Hydrogen', Date: 1.0079, PostedBy: 'H'},
+  {position: 2, name: 'Helium', Date: 4.0026, PostedBy: 'He'},
+  {position: 3, name: 'Lithium', Date: 6.941, PostedBy: 'Li'},
+  {position: 4, name: 'Beryllium', Date: 9.0122, PostedBy: 'Be'},
+  {position: 5, name: 'Boron', Date: 10.811, PostedBy: 'B'},
+  {position: 6, name: 'Carbon', Date: 12.0107, PostedBy: 'C'},
+  {position: 7, name: 'Nitrogen', Date: 14.0067, PostedBy: 'N'},
+  {position: 8, name: 'Oxygen', Date: 15.9994, PostedBy: 'O'},
+  {position: 9, name: 'Fluorine', Date: 18.9984, PostedBy: 'F'},
+  {position: 10, name: 'Neon', Date: 20.1797, PostedBy: 'Ne'},
+];
 
 @Component({
   selector: 'app-profile',
@@ -40,6 +63,15 @@ export class ProfileComponent  implements OnInit {
    localStorage.setItem('key',this.route.snapshot.paramMap.get('userId'));
 
     console.log('userID',this.route.snapshot.paramMap.get('userId'));
+  }
+
+
+  displayedColumns: string[] = ['position', 'name', 'Date', 'PostedBy'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   private initiateForm() {

@@ -1,3 +1,5 @@
+import { SessionService } from './../../service/session.service';
+import { Session } from './../../modal/session.modal';
 import { Component, OnInit , ViewChild, ElementRef } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {of } from 'rxjs';
@@ -12,6 +14,8 @@ export interface UsersData {
   name: string;
   id: number;
 }
+
+
 const ELEMENT_DATA: UsersData[] = [
   {id: 1560608769632, name: 'Artificial Intelligence'},
   {id: 1560608796014, name: 'Machine Learning'},
@@ -28,7 +32,8 @@ export class SessionComponent implements OnInit {
   public sessionForm: FormGroup;
   displayedColumns: string[] = ['id', 'name', 'action'];
   dataSource = ELEMENT_DATA;
-
+  file:File;
+  filename='';
   @ViewChild('fileUpload', {static: false}) fileUpload: ElementRef; files  = [];
   @ViewChild(MatTable, {static: true}) table: MatTable<any>;
 
@@ -37,6 +42,7 @@ export class SessionComponent implements OnInit {
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
     private route: Router,
+    private sessionService: SessionService
   ) {
     this.initiateForm();
   }
@@ -44,58 +50,38 @@ export class SessionComponent implements OnInit {
   private initiateForm() {
     this.sessionForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required])
+      
     });
+  
   }
 
   public hasError = (controlName: string, errorName: string) => {
     return this.sessionForm.controls[controlName].hasError(errorName);
   }
 
-  uploadFile(file) {
-    const formData = new FormData();
-    formData.append('file', file.data);
-    file.inProgress = true;
-    this.uploadService.upload(formData).pipe(
-      map(event => {
-        switch (event.type) {
-          case HttpEventType.UploadProgress:
-            file.progress = Math.round(event.loaded * 100 / event.total);
-            break;
-          case HttpEventType.Response:
-            return event;
-        }
-      }),
-      catchError((error: HttpErrorResponse) => {
-        file.inProgress = false;
-        return of(`${file.data.name} upload failed.`);
-      })).subscribe((event: any) => {
-      if (typeof (event) === 'object') {
-        console.log(event.body);
-      }
-    });
+
+  handleFiles(event:any){
+    this.file= event.target.files[0];
+    console.log(this.file);
   }
 
-  private uploadFiles() {
-    this.fileUpload.nativeElement.value = '';
-    this.files.forEach(file => {
-      this.uploadFile(file);
-    });
-  }
+  uploadSession(){
+    var data= this.sessionForm.value;
+    let upload= new Session({ sessionName: data.name, 
+      sessionDescription: data.description, 
+      sessionDate: new Date().toLocaleString(),
+       file: this.file,
+       filename: this.file.name
+      })
 
-  onClick() {
-    const fileUpload = this.fileUpload.nativeElement;
-    fileUpload.onchange = () => {
-      // tslint:disable-next-line:prefer-for-of
-      for (let index = 0; index < fileUpload.files.length; index++) {
-        const file = fileUpload.files[index];
-        this.files.push({ data: file, inProgress: false, progress: 0});
-      }
-      this.uploadFiles();
-    };
-    fileUpload.click();
+      this.sessionService.uploadSession(upload);
+
   }
 
   getSession() {
+    console.log('clicked')
+   console.log(this.sessionForm.value)
 
   }
   // uploading with mat dialog
