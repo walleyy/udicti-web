@@ -41,4 +41,12 @@
   font-weight: bold;
 }
 
+th, td {
+  margin: 10px;
+}
+
+table, mat-table {
+  width: 100% !important;
+}
+
 /*# sourceMappingURL=man-projects.component.css.map */

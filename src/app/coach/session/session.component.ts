@@ -5,8 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import {CoachUploadService } from '../../service/coach-upload.service';
 import {DialogBoxComponent} from '../../dialog-box/dialog-box.component';
 import {HttpErrorResponse, HttpEventType} from '@angular/common/http';
-import {MatDialog, MatSnackBar, MatTable} from '@angular/material';
-import {Router} from '@angular/router';
+import {MatDialog, MatTable} from '@angular/material';
 
 export interface UsersData {
   name: string;
@@ -35,8 +34,6 @@ export class SessionComponent implements OnInit {
   constructor(
     private uploadService: CoachUploadService,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    private route: Router,
   ) {
     this.initiateForm();
   }

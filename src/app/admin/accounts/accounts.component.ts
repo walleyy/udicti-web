@@ -8,7 +8,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./accounts.component.scss']
 })
 export class AccountsComponent implements OnInit {
-  accounts: [ ];
+  accounts = [
+    { namee: 'amina' },
+    { namee: 'abdul'},
+    { namee: 'anna' } ,
+    ];
   newLink: string;
   editData: [];
   accountFormGroup: FormGroup;
@@ -17,8 +21,9 @@ export class AccountsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private accountService: AccountsService
   ) {
-    this.getAllAccounts();
+    // this.getAllAccounts();
     this.initiateForm();
+    this.print();
   }
 
   ngOnInit() {
@@ -30,14 +35,16 @@ export class AccountsComponent implements OnInit {
       details: ['', [Validators.required, Validators.nullValidator]]
     });
   }
-
-  private getAllAccounts() {
-    this.accountService.listAccount().then(value => {
-      this.accounts = value._embedded.accounts;
-    }).catch(reason => {
-      alert('Amegoma kuleta data');
-    });
-  }
+print() {
+    console.log(this.accounts);
+}
+  // private getAllAccounts() {
+  //   this.accountService.listAccount().then(value => {
+  //     this.accounts = value._embedded.accounts;
+  //   }).catch(reason => {
+  //     alert('Amegoma kuleta data');
+  //   });
+  // }
 
   editAccount(pageId: string, link: string) {
     this.editClicked = true;
@@ -57,7 +64,7 @@ export class AccountsComponent implements OnInit {
     this.newLink = link.replace('ide:3000', 'api.udicti.tk:8000/ide/api');
     if (confirm('Are you sure to delete ')) {
       this.accountService.deleteAccount(this.newLink).then(value => {
-        this.getAllAccounts();
+        // this.getAllAccounts();
       }).catch(error => {
         alert('Failed to add data');
       });
@@ -68,7 +75,7 @@ export class AccountsComponent implements OnInit {
     this.editClicked = false;
     this.accountService.updateAccount(this.newLink, this.accountFormGroup.value).then(value => {
       this.accountFormGroup.reset();
-      this.getAllAccounts();
+      // this.getAllAccounts();
     }).catch(error => {
       alert('Failed to add data');
     });
@@ -77,5 +84,10 @@ export class AccountsComponent implements OnInit {
   cancel() {
     this.accountFormGroup.reset();
     this.editClicked = false;
+  }
+
+  scroll(id: string) {
+    const el = document.getElementById(id);
+    el.scrollIntoView();
   }
 }

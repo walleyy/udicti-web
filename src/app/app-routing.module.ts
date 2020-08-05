@@ -21,6 +21,9 @@ import {ApplicantsComponent} from './coach/applicants/applicants.component';
 import {MySettingComponent} from './coach/my-setting/my-setting.component';
 import {SplashpgComponent} from './coach/splashpg/splashpg.component';
 import {IncubateeTimelineComponent} from './coach/student-activity/incubatee-timeline/incubatee-timeline.component';
+import {StudentListComponent} from './admin/accounts/student-list/student-list.component';
+import {CoachListComponent} from './admin/accounts/coach-list/coach-list.component';
+import {AnnouncementsComponent} from './admin/announcements/announcements.component';
 
 
 const routes: Routes = [
@@ -47,11 +50,17 @@ const routes: Routes = [
       {path: 'about', component: ManAboutComponent},
       {path: 'accounts', component: AccountsComponent},
       {path: 'projects', component: ManProjectsComponent},
+      {path: 'Announcement', component: AnnouncementsComponent},
     ]
   },
   {path: 'student-activity', component: CoachComponent , children: [
       {path: 'incubateeTimeline', component: IncubateeTimelineComponent},
     ]},
+  {path: 'accounts', component: AccountsComponent , children: [
+      {path: 'student-list', component: StudentListComponent},
+      {path: 'coach-list', component: CoachListComponent}
+    ]
+  },
   {path: '**', component: NotfoundComponent }
 ];
 
