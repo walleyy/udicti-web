@@ -61,8 +61,6 @@ export class ActivityService {
   }
 
   getActivities(){
-  //get id from localstorage
-    console.log('this.key',this.key);
      return this.db.list(`${this.baseUrl}/` + this.key).snapshotChanges().pipe(map(arr=>{
        return arr.map(res=>{
          return Object.assign(res.payload.val(), {$key:res.key})

@@ -1,10 +1,11 @@
+import { NotificationService } from './../../service/notification.service';
+import { SessionService } from './../../service/session.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Component, OnInit , ElementRef, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material/table';
 
 
@@ -13,6 +14,14 @@ export interface PeriodicElement {
   type: number;
   timeId: number;
   members: string[any];
+}
+
+export interface Notification{
+  notificationHeader:string;
+  notificationType:string;
+  notificationDetails:string;
+  notificationDate:string;
+
 }
 const ELEMENT_DATA: PeriodicElement[] = [
   {type: 1, heading: 'Hydrogen', timeId: 1.0079, members: 'H,e,r'},
@@ -35,26 +44,39 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent implements OnInit {
-  // for mat-chip
-  visible = true;
-  selectable = true;
-  removable = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Lemon'];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+ table_array:any[]=[];
+ displayedColumns: string[]=[];
+ dataSource;
+ spinnerLoaded= true;
 
-  @ViewChild('fruitInput', {static: true}) fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: true}) matAutocomplete: MatAutocomplete;
+  constructor(private notificationService:NotificationService) { }
 
-// for table
-  displayedColumns: string[] = ['type', 'heading', 'timeId', 'members'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  ngOnInit() {
+    this.notificationService.getNotification().subscribe(res=>{
+      this.spinnerLoaded=false;
+      console.log('res', res);
 
+    let count:number=0;
+    this.table_array= [];
+      res.forEach(element=>{
+        count++;
+   
+    this.table_array.push({position:count, heading: element['notificationHeader'], date: element['notificationDate'], type: element['notificationType']})
+
+      })
+        
+      this.table_array.sort((a,b):any=>{ a.Date< b.Date? -1 : a.Date > a.Date ? 1 : 0});
+      console.log('table',this.table_array);
+      this.displayedColumns = ['position', 'heading', 'date', 'type'];
+      this.dataSource = new MatTableDataSource(this.table_array);
+     
+    })
+  }
+ 
   // for options
   options: string[] = ['public', 'private'];
   isDisabled = true;
+
   // form declaration
   setNotification = new FormGroup({
   heading : new FormControl(''),
@@ -69,13 +91,7 @@ export class NotificationsComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  constructor() { this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-    startWith(null),
-    map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-  }
-
-  ngOnInit() {
-  }
+ 
 
   changeType(value) {
     console.log(value);
@@ -87,39 +103,14 @@ export class NotificationsComponent implements OnInit {
     }
   }
 
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    // Add our fruit
-    if ((value || '').trim()) {
-      this.fruits.push(value.trim());
-    }
-
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-
-    this.fruitCtrl.setValue(null);
+  postNotification(){
+  console.log("Button works");
+  var notification:Notification={
+    notificationHeader: this.setNotification.value.heading,
+    notificationDetails:this.setNotification.value.details,
+    notificationType: this.setNotification.value.type,
+    notificationDate: this.setNotification.value.dateID.toString()
   }
-  remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
-
-    if (index >= 0) {
-      this.fruits.splice(index, 1);
-    }
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+  this.notificationService.postNotification(notification);
   }
 }

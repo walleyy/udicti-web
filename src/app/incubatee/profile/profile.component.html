@@ -106,23 +106,24 @@
               <ng-template mat-tab-label style="color: #3F33CD">
                 <mat-icon>library_books</mat-icon>Sessions
               </ng-template>
-              <div><!--Div when sessions present-->
-                <mat-card>
+              <div *ngIf="session_array.length>0; else noSession"><!--Div when sessions present-->
+                <mat-card  *ngFor="let session of session_array">
                   <mat-card>
                     <mat-card-header>
                       <div mat-card-avatar class="avatar-image"></div>
-                      <mat-card-title>Session Title</mat-card-title>
-                      <mat-card-subtitle>Posted by</mat-card-subtitle>
-                      <mat-card-subtitle>Date</mat-card-subtitle>
+                      <mat-card-title>{{session.sessionName}}</mat-card-title>
+                      <mat-card-subtitle>Posted by: </mat-card-subtitle>
+                      <mat-card-subtitle>Date: {{ session.sessionDate | date:'fullDate'}} </mat-card-subtitle>
                     </mat-card-header>
   
                     <mat-card-content>
                       Session Description
+                      <p>{{ session.sessionDescription}}</p>
                     </mat-card-content>
                     
                     <mat-card-actions>
                
-                   <p style="color:#3F33CD"><a mat-button href=""><mat-icon>attachment</mat-icon>View Attachment</a></p>
+                   <p style="color:#3F33CD"><a mat-button href="{{ session.fileUrl}}"><mat-icon>attachment</mat-icon>View Attachment</a></p>
                     </mat-card-actions>
                   </mat-card>
             
@@ -131,9 +132,10 @@
 
               </div>
 
-              <div><!--Div when session is not present-->
+              <ng-template  #noSession><!--Div when session is not present-->
 
-              </div>
+
+              </ng-template>
             </mat-tab>
 
             <mat-tab>
@@ -143,7 +145,7 @@
 
               <mat-form-field>
                 <mat-label>Filter</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. erd" #input>
               </mat-form-field>
               
               <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -165,7 +167,16 @@
                   <th mat-header-cell *matHeaderCellDef> Date </th>
                   <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
                 </ng-container>
-              
+
+                <!-- URL Column -->
+                <ng-container matColumnDef="URL">
+                  <th mat-header-cell *matHeaderCellDef> Date </th>
+                  <td mat-cell *matCellDef="let element"> <a [href]="element.URL"> View File</a></td>
+                </ng-container>
+
+
+
+                   
                 <!-- Symbol Column -->
                 <ng-container matColumnDef="PostedBy">
                   <th mat-header-cell *matHeaderCellDef> PostedBy </th>
