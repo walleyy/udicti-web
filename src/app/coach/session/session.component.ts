@@ -31,8 +31,8 @@ export class SessionComponent implements OnInit {
   public sessionForm: FormGroup;
   displayedColumns: string[] = ['id', 'name', 'action'];
   dataSource = ELEMENT_DATA;
-  file:File;
-  filename='';
+  file: File;
+  filename = '';
   @ViewChild('fileUpload', {static: false}) fileUpload: ElementRef; files  = [];
   @ViewChild(MatTable, {static: true}) table: MatTable<any>;
 
@@ -48,9 +48,9 @@ export class SessionComponent implements OnInit {
     this.sessionForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required])
-      
+
     });
-  
+
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -58,27 +58,27 @@ export class SessionComponent implements OnInit {
   }
 
 
-  handleFiles(event:any){
-    this.file= event.target.files[0];
+  handleFiles(event: any) {
+    this.file = event.target.files[0];
     console.log(this.file);
   }
 
-  uploadSession(){
-    var data= this.sessionForm.value;
-    let upload= new Session({ sessionName: data.name, 
-      sessionDescription: data.description, 
+  uploadSession() {
+    const data = this.sessionForm.value;
+    const upload = new Session({ sessionName: data.name,
+      sessionDescription: data.description,
       sessionDate: new Date().toLocaleString(),
        file: this.file,
        filename: this.file.name
-      })
+      });
 
-      this.sessionService.uploadSession(upload);
+    this.sessionService.uploadSession(upload);
 
   }
 
   getSession() {
-    console.log('clicked')
-   console.log(this.sessionForm.value)
+    console.log('clicked');
+    console.log(this.sessionForm.value);
 
   }
   // uploading with mat dialog

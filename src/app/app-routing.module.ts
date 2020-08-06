@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {ManAboutComponent} from './admin/man-about/man-about.component';
-import {ManProjectsComponent} from './admin/man-projects/man-projects.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './incubatee/profile/profile.component';
@@ -17,13 +16,13 @@ import {StudentActivityComponent} from './coach/student-activity/student-activit
 import {NotificationsComponent} from './coach/notifications/notifications.component';
 import {ResourcesComponent} from './coach/resources/resources.component';
 import {SessionComponent} from './coach/session/session.component';
-import {ApplicantsComponent} from './coach/applicants/applicants.component';
 import {MySettingComponent} from './coach/my-setting/my-setting.component';
 import {SplashpgComponent} from './coach/splashpg/splashpg.component';
 import {IncubateeTimelineComponent} from './coach/student-activity/incubatee-timeline/incubatee-timeline.component';
 import {StudentListComponent} from './admin/accounts/student-list/student-list.component';
 import {CoachListComponent} from './admin/accounts/coach-list/coach-list.component';
 import {AnnouncementsComponent} from './admin/announcements/announcements.component';
+import {UsersComponent} from './admin/accounts/users/users.component';
 
 
 const routes: Routes = [
@@ -42,14 +41,12 @@ const routes: Routes = [
       {path: 'resources' , component: ResourcesComponent},
       {path: 'session' , component: SessionComponent},
       {path: 'student-activity' , component: StudentActivityComponent},
-      {path: 'applicant' , component: ApplicantsComponent},
       {path: 'my-setting' , component: MySettingComponent},
    ]
   },
   {path: 'dashboard', component: DashboardComponent , children: [
       {path: 'about', component: ManAboutComponent},
       {path: 'accounts', component: AccountsComponent},
-      {path: 'projects', component: ManProjectsComponent},
       {path: 'Announcement', component: AnnouncementsComponent},
     ]
   },
@@ -58,7 +55,8 @@ const routes: Routes = [
     ]},
   {path: 'accounts', component: AccountsComponent , children: [
       {path: 'student-list', component: StudentListComponent},
-      {path: 'coach-list', component: CoachListComponent}
+      {path: 'coach-list', component: CoachListComponent},
+      {path: 'users' , component: UsersComponent}
     ]
   },
   {path: '**', component: NotfoundComponent }

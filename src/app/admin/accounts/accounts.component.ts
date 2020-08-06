@@ -22,8 +22,8 @@ export class AccountsComponent implements OnInit {
     private accountService: AccountsService
   ) {
     // this.getAllAccounts();
-    this.initiateForm();
-    this.print();
+    // this.initiateForm();
+    // this.print();
   }
 
   ngOnInit() {

@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { ManAboutComponent } from './admin/man-about/man-about.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,7 +26,6 @@ import {
     MatToolbarModule,
     MatTooltipModule, MatTreeModule
 } from '@angular/material';
-import { ManProjectsComponent } from './admin/man-projects/man-projects.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {CommonModule} from '@angular/common';
@@ -38,12 +37,11 @@ import { NotificationComponent } from './home/notification/notification.componen
 import { AboutComponent } from './home/about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { PendingComponent } from './incubatee/pending/pending.component';
-import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { ActivitiesComponent } from './incubatee/profile/activities/activities.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginNavComponent } from './login/login-nav/login-nav.component';
 import { ChartsModule } from 'ng2-charts';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 // firebase modules
 import { AngularFireModule } from '@angular/fire';
@@ -57,7 +55,6 @@ import { CoachComponent } from './coach/coach.component';
 import { StudentActivityComponent } from './coach/student-activity/student-activity.component';
 import { ResourcesComponent } from './coach/resources/resources.component';
 import { SessionComponent } from './coach/session/session.component';
-import { ApplicantsComponent } from './coach/applicants/applicants.component';
 import { NotificationsComponent } from './coach/notifications/notifications.component';
 import { MySettingComponent } from './coach/my-setting/my-setting.component';
 import { SplashpgComponent } from './coach/splashpg/splashpg.component';
@@ -65,15 +62,14 @@ import { IncubateeTimelineComponent } from './coach/student-activity/incubatee-t
 import { StudentListComponent } from './admin/accounts/student-list/student-list.component';
 import { CoachListComponent } from './admin/accounts/coach-list/coach-list.component';
 import { AnnouncementsComponent } from './admin/announcements/announcements.component';
-import { DialogComponent } from './admin/man-projects/dialog/dialog.component';
-
+import { DialogBoxComponent} from './dialog-box/dialog-box.component';
+import { UsersComponent } from './admin/accounts/users/users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ManAboutComponent,
-    ManProjectsComponent,
     RegisterComponent,
     LoginComponent,
     NavbarComponent,
@@ -83,7 +79,6 @@ import { DialogComponent } from './admin/man-projects/dialog/dialog.component';
     AboutComponent,
     NotfoundComponent,
     PendingComponent,
-    DialogBoxComponent,
     ActivitiesComponent,
     DashboardComponent,
     LoginNavComponent,
@@ -92,7 +87,6 @@ import { DialogComponent } from './admin/man-projects/dialog/dialog.component';
     StudentActivityComponent,
     ResourcesComponent,
     SessionComponent,
-    ApplicantsComponent,
     NotificationsComponent,
     MySettingComponent,
     SplashpgComponent,
@@ -100,7 +94,8 @@ import { DialogComponent } from './admin/man-projects/dialog/dialog.component';
     StudentListComponent,
     CoachListComponent,
     AnnouncementsComponent,
-    DialogComponent,
+    DialogBoxComponent,
+    UsersComponent
   ],
     imports: [
         BrowserModule,
@@ -150,11 +145,11 @@ import { DialogComponent } from './admin/man-projects/dialog/dialog.component';
         MatStepperModule,
         MatAutocompleteModule,
         MatTreeModule,
-        ChartsModule
+        ChartsModule,
+        NgbModule
     ],
   entryComponents: [
     DialogBoxComponent,
-    DialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

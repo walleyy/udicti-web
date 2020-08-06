@@ -103,15 +103,11 @@
         <a  class="navbar-brand  text-white" routerLink ="/dashboard" (click)="scroll('page-top')">
           <img src="../../assets/img/udsm_logo.png" width="25%;" style="float: left;margin-right: 10px"><span>ADMIN</span></a>
       </mat-toolbar>
-      <mat-divider></mat-divider>
-      <a  class="side-item"  [routerLink]="['/dashboard', 'projects']" routerLinkActive="active">
-        <mat-icon>view_headline</mat-icon> <span>Projects</span>
-      </a>
 
       <mat-divider></mat-divider>
 
       <a  class="side-item" [routerLink]="['/dashboard', 'Announcement']" routerLinkActive="active">
-        <mat-icon>design_services</mat-icon><span>Notification</span>
+        <mat-icon>notifications</mat-icon><span>Notification</span>
       </a>
 
       <mat-divider></mat-divider>
@@ -119,7 +115,7 @@
 
       <mat-expansion-panel class="side" >
         <mat-expansion-panel-header>
-          <mat-panel-title style="color: whitesmoke">accounts</mat-panel-title>
+          <mat-panel-title style="color: whitesmoke">Accounts</mat-panel-title>
         </mat-expansion-panel-header>
 
         <a  class="side-item" [routerLink]="['/accounts', 'student-list']" routerLinkActive="active">
@@ -127,6 +123,9 @@
         </a>
         <a  class="side-item" [routerLink]="['/accounts', 'coach-list']" routerLinkActive="active">
           <mat-icon>supervisor_account</mat-icon><span>Coaches</span>
+        </a>
+        <a  class="side-item" [routerLink]="['/accounts', 'users']" routerLinkActive="active">
+          <mat-icon>account_circle</mat-icon><span>Users</span>
         </a>
       </mat-expansion-panel>
 
@@ -136,14 +135,10 @@
           global design
         </mat-expansion-panel-header>
 
-        <a class="side-item"  [routerLink]="['/dashboard', 'about']" routerLinkActive="active">
-          <mat-icon>eco</mat-icon><span>about</span>
-        </a>
-
         <mat-divider></mat-divider>
 
         <a  class="side-item" [routerLink]="['/dashboard', 'about']" routerLinkActive="active">
-          <mat-icon>image</mat-icon><span>images</span>
+          <mat-icon>image</mat-icon><span>image</span>
         </a>
 
         <mat-divider></mat-divider>
@@ -156,15 +151,15 @@
   <mat-sidenav-content>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark col-12">
       <div class="container-fluid" >
-        <button mat-button (click)="sidenav.toggle()" ><mat-icon>keyboard_arrow_left</mat-icon></button>
+        <button mat-button style="color: white" (click)="sidenav.toggle()" ><mat-icon>keyboard_arrow_left</mat-icon></button>
         <span class="spacer"></span>
-        <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
+        <button style="color: white" data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
         <div class="collapse navbar-collapse" id="navbarResponsive" >
 
           <ul class="nav navbar-nav ml-auto text-uppercase " >
-            <li class="nav-item " role="presentation"><a class="nav-link js-scroll-trigger text-white-50"  routerLink="" routerLinkActive="active">
-              <i class="fa fa-sign-out"></i>Logout</a></li>
+            <li class="nav-item " role="presentation"><a class="nav-link js-scroll-trigger text-white"  routerLink="" routerLinkActive="active">
+              <i  class="fa fa-sign-out "></i>Logout</a></li>
           </ul>
         </div>
       </div>
