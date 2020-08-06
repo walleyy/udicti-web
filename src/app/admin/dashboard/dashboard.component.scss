@@ -2,12 +2,16 @@
 .side{
   background-color: rgba(52, 58, 64, 0.86);
   height:100%;
-  padding: 3px !important;
   opacity: 0.8;
   /*border:  ridge whitesmoke;*/
+  padding: 0!important;
   border-top: none;
   border-radius: 8px;
 
+}
+
+a{
+  color: rgba(245, 245, 245, 0.81);
 }
 
 .side-item{
@@ -15,7 +19,7 @@
   width: 100%;
   flex-direction: row;
   display: flex;
-  height: 5vh;
+  height: 6vh;
   justify-content: flex-start;
   padding-top: 1vh;
 
@@ -25,11 +29,11 @@
   padding-top: 10px;
 }
 mat-icon{
-  transform: scale(0.9)
+  transform: scale(0.9);
+  margin-right: 5px;
+  //margin-left: 5px;
 }
 .container-fluid{
   padding: 0!important;
 }
-mat-card{
-
-}
+mat-expansion-panel{}

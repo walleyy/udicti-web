@@ -1,91 +1,178 @@
-<div class="udicti_container">
+<!--<div class="udicti_container">-->
 
-  <div *ngIf="editClicked" id="addedit" class="udicti-form">
-    <label class="text-white" style="background-color: #33366C; padding: 20px; margin: 0 0 5px 0;border-radius: 15px 15px">
-      <span  class="row" style="padding: 0 40px 0 40px; ">
-        <h5 style="flex: 1 1 auto;">Add New  </h5>
-        <mat-icon>add</mat-icon>
-      </span>
-      <span *ngIf="editClicked" class="row" style="padding: 0 40px 0 40px;">
-           <h5 style="flex: 1 1 auto;">  Edit / Update </h5>
-          <mat-icon>edit</mat-icon>
-      </span>
-    </label>
-    <mat-card style="background-color: rgba(124, 153, 251,0.3);border-radius: 15px 15px">
-      <form [formGroup]="accountFormGroup" (ngSubmit)="editAccount('addedit', accounts._links.self.href)">
-        <div class="row">
-          <div class="col-md-4 align-self-center" style="width: 100%; height: 100%">
-            <div class="row justify-content-center">
-              <img class="rounded-circle img-fluid"
-                   style="opacity: 0.5;border-style: solid; padding: 1%;"
-                   src="../../../assets/img/add_a_photo.png">
-            </div>
-            <div  *ngIf="editClicked" class="row justify-content-center" style="margin-top: 10px">
-              <button mat-stroked-button
-                      style="padding: 10px; color: #33366C; background-color: #fcdb00; font-size: 18px">Select Image
-                <mat-icon>add_a_photo</mat-icon>
-              </button>
-            </div>
-          </div>
+<!--  <div *ngIf="editClicked" id="addedit" class="udicti-form">-->
+<!--    <label class="text-white" style="background-color: #33366C; padding: 20px; margin: 0 0 5px 0;border-radius: 15px 15px">-->
+<!--      <span  class="row" style="padding: 0 40px 0 40px; ">-->
+<!--        <h5 style="flex: 1 1 auto;">Add New  </h5>-->
+<!--        <mat-icon>add</mat-icon>-->
+<!--      </span>-->
+<!--      <span *ngIf="editClicked" class="row" style="padding: 0 40px 0 40px;">-->
+<!--           <h5 style="flex: 1 1 auto;">  Edit / Update </h5>-->
+<!--          <mat-icon>edit</mat-icon>-->
+<!--      </span>-->
+<!--    </label>-->
+<!--    <mat-card style="background-color: rgba(124, 153, 251,0.3);border-radius: 15px 15px">-->
+<!--      <form [formGroup]="accountFormGroup" (ngSubmit)="editAccount('addedit', accounts._links.self.href)">-->
+<!--        <div class="row">-->
+<!--          <div class="col-md-4 align-self-center" style="width: 100%; height: 100%">-->
+<!--            <div class="row justify-content-center">-->
+<!--              <img class="rounded-circle img-fluid"-->
+<!--                   style="opacity: 0.5;border-style: solid; padding: 1%;"-->
+<!--                   src="../../../assets/img/add_a_photo.png">-->
+<!--            </div>-->
+<!--            <div  *ngIf="editClicked" class="row justify-content-center" style="margin-top: 10px">-->
+<!--              <button mat-stroked-button-->
+<!--                      style="padding: 10px; color: #33366C; background-color: #fcdb00; font-size: 18px">Select Image-->
+<!--                <mat-icon>add_a_photo</mat-icon>-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
 
-        </div>
-<!--        <div *ngIf="editClicked" class="row flex justify-content-center ">-->
-<!--          <button mat-raised-button class="col-md-2 main-bgcolor text-white">Add-->
-<!--            <mat-icon>add</mat-icon>-->
+<!--        </div>-->
+<!--&lt;!&ndash;        <div *ngIf="editClicked" class="row flex justify-content-center ">&ndash;&gt;-->
+<!--&lt;!&ndash;          <button mat-raised-button class="col-md-2 main-bgcolor text-white">Add&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-icon>add</mat-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;          </button>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--        <div *ngIf="editClicked" class="row flex justify-content-center">-->
+<!--          <button mat-raised-button class="col-md-2 main-bgcolor text-white " style=" margin: 5px"-->
+<!--                  (click)="update()">Save-->
+<!--            <mat-icon>save</mat-icon>-->
+<!--          </button>-->
+<!--          <button mat-raised-button class="col-md-2 main-bgcolor text-white" style="margin: 5px"-->
+<!--                  (click)="cancel()">Cancel-->
+<!--            <mat-icon>cancel</mat-icon>-->
 <!--          </button>-->
 <!--        </div>-->
-        <div *ngIf="editClicked" class="row flex justify-content-center">
-          <button mat-raised-button class="col-md-2 main-bgcolor text-white " style=" margin: 5px"
-                  (click)="update()">Save
-            <mat-icon>save</mat-icon>
-          </button>
-          <button mat-raised-button class="col-md-2 main-bgcolor text-white" style="margin: 5px"
-                  (click)="cancel()">Cancel
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </div>
-      </form>
-    </mat-card>
-  </div>
-  <div class="udicti-form">
-    <label class="text-white" style="background-color:rgba(62,66,124,0.68) ; padding: 20px; margin: 0 0 5px 0;border-radius: 15px 15px">
-      <span class="row" style="padding: 0 40px 0 40px;">
-      <h5 style="flex: 1 1 auto;">Accounts List</h5>
-      <mat-icon>view_list</mat-icon>
-      </span>
-    </label>
-    <mat-card style="background-color: rgba(124,153,251,0.07); border-radius: 15px 15px">
-      <ul>
-        <li *ngFor="let account of accounts" style="list-style: none; padding: 2% 0 2% 0">
-          <div class="row" style="margin-bottom: 2% ">
-            <div class="col-md-3 align-self-center" style="width: 100%; height: 100%">
-              <div class="row justify-content-center">
-                <img class="rounded-circle img-fluid"
-                     style="opacity: 0.5;border-style: solid; padding: 1%;"
-                     src="../../../assets/img/add_a_photo.png">
-              </div>
-            </div>
-            <div class="col-md-7">
-              <h5>{{account}}</h5>
+<!--      </form>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+<!--  <div class="udicti-form">-->
+<!--    <label class="text-white" style="background-color:rgba(62,66,124,0.68) ; padding: 20px; margin: 0 0 5px 0;border-radius: 15px 15px">-->
+<!--      <span class="row" style="padding: 0 40px 0 40px;">-->
+<!--      <h5 style="flex: 1 1 auto;">Accounts List</h5>-->
+<!--      <mat-icon>view_list</mat-icon>-->
+<!--      </span>-->
+<!--    </label>-->
+<!--    <mat-card style="background-color: rgba(124,153,251,0.07); border-radius: 15px 15px">-->
+<!--      <ul>-->
+<!--        <li class="card" *ngFor="let account of accounts" style="list-style: none; padding: 2% 0 2% 0">-->
+<!--          <div class="row" style="margin-bottom: 2% ">-->
+<!--            <div class="col-md-3 align-self-center" style="width: 100%; height: 100%">-->
+<!--              <div class="row justify-content-center">-->
+<!--                <img class="rounded-circle img-fluid"-->
+<!--                     style="opacity: 0.5;border-style: solid; padding: 1%;"-->
+<!--                     src="../../../assets/img/add_a_photo.png" width="10%">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-7">-->
+<!--              <h5>{{account}}</h5>-->
 
-            </div>
-            <div class="col-md-2 align-self-center">
-              <div class="custom-control-inline">
-                <button mat-icon-button style="color: #33366C" matTooltip="Edit"
-                        matTooltipClass="edit-mat-tooltip"
-                        matTooltipPosition="above" (click)="editAccount('addedit', account._links.self.href)">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button color="warn" matTooltip="Delete" matTooltipClass="delete-mat-tooltip"
-                        matTooltipPosition="above" (click)="delete(accounts._links.self.href)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-            </div>
-          </div>
-          <mat-divider style="background-color: rgba(55,60,66,1); width: 90%; margin-left: 5%;"></mat-divider>
-        </li>
-      </ul>
-    </mat-card>
-  </div>
-</div>
+<!--            </div>-->
+<!--            <div class="col-md-2 align-self-center">-->
+<!--              <div class="custom-control-inline">-->
+<!--                <button mat-icon-button style="color: #33366C" matTooltip="Edit"-->
+<!--                        matTooltipClass="edit-mat-tooltip"-->
+<!--                        matTooltipPosition="above" (click)="editAccount('addedit', account._links.self.href)">-->
+<!--                  <mat-icon>edit</mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="warn" matTooltip="Delete" matTooltipClass="delete-mat-tooltip"-->
+<!--                        matTooltipPosition="above" (click)="delete(accounts._links.self.href)">-->
+<!--                  <mat-icon>delete</mat-icon>-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <mat-divider style="background-color: rgba(55,60,66,1); width: 90%; margin-left: 5%;"></mat-divider>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div  class="container-fluid">-->
+<!--  <router-outlet></router-outlet>-->
+<!--</div>-->
+
+<mat-sidenav-container class="container-fluid" style="min-height: 100vh" >
+  <mat-sidenav #sidenav  mode="over" style="width: 25vh;background-color: rgba(38,50,56,0.58)" opened>
+
+
+    <div >
+      <mat-toolbar   class="navbar navbar-expand-lg navbar-light bg-dark">
+
+        <a  class="navbar-brand  text-white" routerLink ="/dashboard" (click)="scroll('page-top')">
+          <img src="../../assets/img/udsm_logo.png" width="25%;" style="float: left;margin-right: 10px"><span>ADMIN</span></a>
+      </mat-toolbar>
+      <mat-divider></mat-divider>
+      <a  class="side-item"  [routerLink]="['/dashboard', 'projects']" routerLinkActive="active">
+        <mat-icon>view_headline</mat-icon> <span>Projects</span>
+      </a>
+
+      <mat-divider></mat-divider>
+
+      <a  class="side-item" [routerLink]="['/dashboard', 'Announcement']" routerLinkActive="active">
+        <mat-icon>design_services</mat-icon><span>Notification</span>
+      </a>
+
+      <mat-divider></mat-divider>
+
+
+      <mat-expansion-panel class="side" >
+        <mat-expansion-panel-header>
+          <mat-panel-title style="color: whitesmoke">accounts</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <a  class="side-item" [routerLink]="['/accounts', 'student-list']" routerLinkActive="active">
+          <mat-icon>how_to_reg</mat-icon><span>Students</span>
+        </a>
+        <a  class="side-item" [routerLink]="['/accounts', 'coach-list']" routerLinkActive="active">
+          <mat-icon>supervisor_account</mat-icon><span>Coaches</span>
+        </a>
+      </mat-expansion-panel>
+
+      <mat-divider></mat-divider>
+      <mat-expansion-panel class="side">
+        <mat-expansion-panel-header style="color: whitesmoke">
+          global design
+        </mat-expansion-panel-header>
+
+        <a class="side-item"  [routerLink]="['/dashboard', 'about']" routerLinkActive="active">
+          <mat-icon>eco</mat-icon><span>about</span>
+        </a>
+
+        <mat-divider></mat-divider>
+
+        <a  class="side-item" [routerLink]="['/dashboard', 'about']" routerLinkActive="active">
+          <mat-icon>image</mat-icon><span>images</span>
+        </a>
+
+        <mat-divider></mat-divider>
+
+      </mat-expansion-panel>
+
+
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark col-12">
+      <div class="container-fluid" >
+        <button mat-button (click)="sidenav.toggle()" ><mat-icon>keyboard_arrow_left</mat-icon></button>
+        <span class="spacer"></span>
+        <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive" >
+
+          <ul class="nav navbar-nav ml-auto text-uppercase " >
+            <li class="nav-item " role="presentation"><a class="nav-link js-scroll-trigger text-white-50"  routerLink="" routerLinkActive="active">
+              <i class="fa fa-sign-out"></i>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="outlet">
+
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

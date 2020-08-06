@@ -61,6 +61,11 @@ import { ApplicantsComponent } from './coach/applicants/applicants.component';
 import { NotificationsComponent } from './coach/notifications/notifications.component';
 import { MySettingComponent } from './coach/my-setting/my-setting.component';
 import { SplashpgComponent } from './coach/splashpg/splashpg.component';
+import { IncubateeTimelineComponent } from './coach/student-activity/incubatee-timeline/incubatee-timeline.component';
+import { StudentListComponent } from './admin/accounts/student-list/student-list.component';
+import { CoachListComponent } from './admin/accounts/coach-list/coach-list.component';
+import { AnnouncementsComponent } from './admin/announcements/announcements.component';
+import { DialogComponent } from './admin/man-projects/dialog/dialog.component';
 
 
 @NgModule({
@@ -91,7 +96,11 @@ import { SplashpgComponent } from './coach/splashpg/splashpg.component';
     NotificationsComponent,
     MySettingComponent,
     SplashpgComponent,
- 
+    IncubateeTimelineComponent,
+    StudentListComponent,
+    CoachListComponent,
+    AnnouncementsComponent,
+    DialogComponent,
   ],
     imports: [
         BrowserModule,
@@ -144,7 +153,8 @@ import { SplashpgComponent } from './coach/splashpg/splashpg.component';
         ChartsModule
     ],
   entryComponents: [
-    DialogBoxComponent
+    DialogBoxComponent,
+    DialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
