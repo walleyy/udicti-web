@@ -1,5 +1,5 @@
-<div class="container-fluid" >
-  <div class="col-12">
+<div class="container-fluid"  style="height: 100vh;overflow-y: scroll">
+  <div >
   <form [formGroup]="sessionForm" (ngSubmit)="uploadSession()" fxLayout="column">
     <mat-form-field   appearance="outline" style=" margin-top: 20px;width: 50%">
       <mat-label>Session Title</mat-label>
@@ -31,7 +31,7 @@
       </mat-card-actions>
     </mat-card>
     <input type="file" #fileUpload id="fileUpload" name="fileUpload"  (change)="handleFiles($event)" multiple="multiple" accept="application/pdf/*" style="display:none;" />
-    <button style="float: right; background-color: rgba(0,123,255,0.51);border-style: none" mat-button type="submit">Add</button>
+    <button style="align-self: center; background-color: rgba(0,123,255,0.51);border-style: none;width: 20vw" mat-button type="submit">Add</button>
   </form>
 
 </div>
