@@ -1,8 +1,5 @@
 import { Component, OnInit , NgModule } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS, } from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
-import * as _moment from 'moment';
 import {FormsModule, FormBuilder} from '@angular/forms';
 // tslint:disable-next-line:no-duplicate-imports
 // @ts-ignore
@@ -29,7 +26,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
 
-const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL',
@@ -46,16 +42,9 @@ export const MY_FORMATS = {
 @Component({
   selector: 'app-announcements',
   templateUrl: './announcements.component.html',
-  styleUrls: ['./announcements.component.scss'],
-  providers: [{
-    provide: DateAdapter,
-    useClass: MomentDateAdapter,
-    deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
-  },
-
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-   ]
+  styleUrls: ['./announcements.component.scss']
 })
+
 export class AnnouncementsComponent implements OnInit {
   // for history table
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -63,12 +52,6 @@ export class AnnouncementsComponent implements OnInit {
   private eventBuilder: FormBuilder;
 
   constructor() { }
-
-  date = new FormControl(moment());
-  time = {hour: 13, minute: 30};
-// eventForm = this.eventBuilder.group({
-//   time: [this.time],
-// });
 
   ngOnInit() {
   }

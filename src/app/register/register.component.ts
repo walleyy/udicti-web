@@ -8,9 +8,12 @@ import { AngularFireDatabase} from '@angular/fire/database';
 import { distinctUntilChanged, combineLatest } from 'rxjs/operators';
 import { merge} from 'rxjs';
 
-
-
-
+export interface User{
+  name:String;
+  email:string;
+  phoneNumber:string;
+  date:string;
+}
 
 @Component({
   selector: 'app-register',
@@ -19,7 +22,8 @@ import { merge} from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
   private basePath='/applicant';
-  private userUrl= "/users-role";
+  private userPath= '/users-role';
+  private toUsersPath='/users';
   public registrationForm: FormGroup;
   accept = false;
   Roles: any = ['Admin', 'Author', 'Reader'];
@@ -89,6 +93,13 @@ export class RegisterComponent implements OnInit {
       {projectStage: incubateeData.stage},
       );
 
+      const detailsToUsers:User={
+        name: this.registrationForm.value.firstname + "" + this.registrationForm.value.lastname,
+        email: this.registrationForm.value.email,
+        phoneNumber:this.registrationForm.value.phoneNumber,
+        date: new Date().toLocaleString()
+      };
+
     if (incubateeData.password !== incubateeData.confirmPassword) {
         this.snackBar.open('Password Mismatch', 'Ok', {duration: 2000});
         return;
@@ -98,7 +109,8 @@ export class RegisterComponent implements OnInit {
     .then(authState=>{
       this.snackBar.open('Welcome to Udicti, Thanks for registering', 'Ok', {duration: 3000})
       detailsToUpload.userId= authState.user.uid;
-      this.saveData(detailsToUpload,authState.user.uid);
+      this.saveData(detailsToUpload,authState.user.uid);// to applicant node
+      this.saveToUser(detailsToUsers) // to users
 
       // navigate to login page
       this.route.navigate(['/login']);
@@ -114,7 +126,12 @@ export class RegisterComponent implements OnInit {
      //This  method save to data to the database
     private saveData(dataTosave:any, key:string){
       this.db.list(`${this.basePath}/`).push(dataTosave).then(data=>{
-        this.db.list(`${this.userUrl}/`).push({role:"applicant", id:data.key})
+        this.db.list(`${this.userPath}/` +key).push({role:"applicant", id:data.key})
       })
+    }
+
+    private saveToUser(detailsToUser:User){
+      this.db.list(`${this.toUsersPath}/`).push(detailsToUser);
+      
     }
 }

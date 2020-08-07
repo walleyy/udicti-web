@@ -33,7 +33,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'incubatee/:userId', component: IncubateeComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'pending', component: PendingComponent},
+  {path: 'pending/:userId', component: PendingComponent},
   {path: 'splashpg' , component: SplashpgComponent},
   {path: 'coach', redirectTo: 'splashpg', pathMatch: 'full'},
   {path: 'coach', component: CoachComponent , children: [

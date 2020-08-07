@@ -1,3 +1,4 @@
+import { NotificationService } from './../../service/notification.service';
 import { SessionService } from './../../service/session.service';
 import { ActivityService } from './../../service/activity.service';
 import { ActivityDetails } from './../../modal/activityDetails.modal';
@@ -29,6 +30,7 @@ export class ProfileComponent  implements OnInit {
   table_array: any[]= [];
   session_array:any []= [];
   displayedColumns:string[];
+  notification_array: any[]=[]
   dataSource;
 
 
@@ -39,7 +41,8 @@ export class ProfileComponent  implements OnInit {
               private activityService:ActivityService,
               private authService:AuthService,
               private af:AngularFireAuth,
-              private sessionService: SessionService
+              private sessionService: SessionService,
+              private notificationService:NotificationService
            ) {
     this.initiateForm();
   }
@@ -68,6 +71,20 @@ export class ProfileComponent  implements OnInit {
         console.log('session', this.session_array);
         
         }); // end of subcription
+
+        
+        //pulling the nofication table
+
+        this.notificationService.getNotification().subscribe(res=>{
+   
+           res.forEach(element=>{
+             if (element['notificationType']==="private"){
+               this.notification_array.push(element)  
+             }
+           })
+
+           console.log("private", this.notification_array);
+        })
 
   }
 

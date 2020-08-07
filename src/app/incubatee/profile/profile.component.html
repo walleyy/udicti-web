@@ -207,12 +207,18 @@
               <mat-icon matBadge="15" matBadgeColor="accent" matBadgePosition="before" style="margin-top: 15px">notifications
               </mat-icon>Notifications</h5>
           </div>
+
+
+  
           <h6 style="font-family: 'Roboto Thin'"><em>This week</em></h6>
-          <div style="flex: fit-content;border: groove #86cfda;box-shadow: yellow;border-radius: 10px">
-            <li><span style="!important;color: #86cfda;font-family: 'Roboto Thin'"><em>Mkocha</em></span></li>
-            <blockquote><em>hello!guys lets meet at 1500hrs i want to view your progress</em></blockquote>
+         
+          <div *ngFor="let notification of notification_array">   
+            <div style="flex: fit-content;border: groove #86cfda;box-shadow: yellow;border-radius: 10px">
+              <li><span style="!important;color: #86cfda;font-family: 'Roboto Thin'"><em>Mkocha</em></span></li>
+              <blockquote><em>{{ notification.notificationDetails }}</em></blockquote>
+            </div>
           </div>
-          <div></div>
+
         </mat-card>
 
       </div>
