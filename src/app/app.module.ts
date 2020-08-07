@@ -64,6 +64,7 @@ import { CoachListComponent } from './admin/accounts/coach-list/coach-list.compo
 import { AnnouncementsComponent } from './admin/announcements/announcements.component';
 import { DialogBoxComponent} from './dialog-box/dialog-box.component';
 import { UsersComponent } from './admin/accounts/users/users.component';
+import { LandingadminComponent } from './admin/landingadmin/landingadmin.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { UsersComponent } from './admin/accounts/users/users.component';
     CoachListComponent,
     AnnouncementsComponent,
     DialogBoxComponent,
-    UsersComponent
+    UsersComponent,
+    LandingadminComponent
   ],
     imports: [
         BrowserModule,
