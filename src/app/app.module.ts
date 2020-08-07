@@ -8,23 +8,24 @@ import { HomeComponent } from './home/home.component';
 import { ManAboutComponent } from './admin/man-about/man-about.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-    MatAutocompleteModule,
-    MatBadgeModule,
-    MatButtonModule,
-    MatCardModule, MatCheckboxModule, MatChipsModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatDividerModule, MatExpansionModule, MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule, MatMenuModule, MatNativeDateModule,
-    MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTableModule, MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule, MatTreeModule
+  ErrorStateMatcher,
+  MatAutocompleteModule,
+  MatBadgeModule,
+  MatButtonModule,
+  MatCardModule, MatCheckboxModule, MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule, MatExpansionModule, MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule, MatMenuModule, MatNativeDateModule,
+  MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTableModule, MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule, MatTreeModule
 } from '@angular/material';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -153,7 +154,7 @@ import { LandingadminComponent } from './admin/landingadmin/landingadmin.compone
   entryComponents: [
     DialogBoxComponent,
   ],
-  providers: [],
+  providers: [ErrorStateMatcher],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
