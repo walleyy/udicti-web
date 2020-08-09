@@ -39,4 +39,8 @@ mat-tab {
   overflow-x: hidden !important;
 }
 
+li {
+  list-style: none;
+}
+
 /*# sourceMappingURL=profile.component.css.map */
