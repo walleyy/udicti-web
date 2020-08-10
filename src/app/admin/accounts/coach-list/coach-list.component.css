@@ -10,7 +10,6 @@ table {
 }
 .oda {
   display: flex;
-  flex-direction: row;
 }
 
 /*# sourceMappingURL=coach-list.component.css.map */

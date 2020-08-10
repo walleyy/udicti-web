@@ -4,13 +4,16 @@
       <form  class="oda" style="margin-top: 10px" [formGroup]="coachData" (ngSubmit)="addCoach()">
         <div class="col-md-6">
         <mat-form-field appearance="outline" class="col-md-6 " >
+      <form  style="margin-top: 10px" [formGroup]="coachData"  fxLayout="column">
+
+        <mat-form-field appearance="outline" class="col-md-5 " >
         <mat-label>Name</mat-label>
         <input matInput placeholder="Placeholder" formControlName="name">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint>Hint</mat-hint>
       </mat-form-field>
         <br>
-        <mat-form-field class="col-md-8" appearance="outline">
+        <mat-form-field class="col-md-5" appearance="outline">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" placeholder="Ex. pat@example.com">
         <mat-error *ngIf="coachData.get('email').invalid">
@@ -19,7 +22,7 @@
 
       </mat-form-field  >
         <br>
-        <mat-form-field class="col-8" appearance="outline" >
+        <mat-form-field class="col-md-4" appearance="outline" >
           <mat-label>Expertise</mat-label>
           <mat-select formControlName="expertise"  >
             <mat-option   *ngFor="let option of expertise" [value]="option">
@@ -33,11 +36,7 @@
 <!--          <label>photo</label>-->
 <!--          <input type="text" >-->
 <!--        </mat-form-field>-->
-
-
       </form>
-
-
     </mat-tab>
 
     <mat-tab label="Coaches">
@@ -95,7 +94,6 @@
       
       </div>
       
-
     </mat-tab>
   </mat-tab-group>
 </div>

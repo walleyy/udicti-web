@@ -98,7 +98,7 @@ import { LandingadminComponent } from './admin/landingadmin/landingadmin.compone
     AnnouncementsComponent,
     DialogBoxComponent,
     UsersComponent,
-    LandingadminComponent
+    LandingadminComponent,
   ],
     imports: [
         BrowserModule,
