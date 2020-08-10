@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../service/auth.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 export interface Credentials {
   email: string;
@@ -17,7 +18,7 @@ export interface Credentials {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  LoginData: FormGroup;
   email: string;
   password: string;
   credentials: Credentials;
@@ -33,6 +34,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.LoginData = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('' , Validators.required),
+    });
   }
 
   login() {
@@ -62,6 +67,12 @@ export class LoginComponent implements OnInit {
   coachLogin() {
     this.route.navigate(['coach']);
   }
+  getErrorMessage() {
+    if (this.LoginData.get('email').hasError('required')) {
+      return 'You must enter a value';
+    }
 
+    return this.LoginData.get('email').hasError('email') ? 'Not a valid email' : '';
+  }
 
 }

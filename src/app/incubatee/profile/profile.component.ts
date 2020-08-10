@@ -47,29 +47,30 @@ export class ProfileComponent  implements OnInit {
     this.initiateForm();
   }
 
- ngOnInit(){
+ ngOnInit() {
 
-   localStorage.setItem('key',this.route.snapshot.paramMap.get('userId'));
+   localStorage.setItem('key', this.route.snapshot.paramMap.get('userId'));
 
-    console.log('userID',this.route.snapshot.paramMap.get('userId'));
-    this.sessionService.getSession().subscribe( res=>{
-       let data_array :any[]= res;
-        var count:number=0;
-        data_array.forEach(data=>{
+   console.log('userID', this.route.snapshot.paramMap.get('userId'));
+   this.sessionService.getSession().subscribe( res => {
+     // tslint:disable-next-line:variable-name
+       const data_array: any[] = res;
+       let count = 0;
+       data_array.forEach(data => {
           data.forEach(element => {
            count++;
-           this.table_array.push({position:count, name:element.filename, Date:element.sessionDate, URL:element.fileUrl});
-           this.session_array.push(element)
+           this.table_array.push({position: count, name: element.filename, Date: element.sessionDate, URL: element.fileUrl});
+           this.session_array.push(element);
 
           });
-     
-        })
 
-        this.displayedColumns= ['position', 'name', 'Date','URL','PostedBy'];
-        this.dataSource = new MatTableDataSource(this.table_array);
-        console.log(this.table_array);
-        console.log('session', this.session_array);
-        
+        });
+
+       this.displayedColumns = ['position', 'name', 'Date', 'URL', 'PostedBy'];
+       this.dataSource = new MatTableDataSource(this.table_array);
+       console.log(this.table_array);
+       console.log('session', this.session_array);
+
         }); // end of subcription
 
         
@@ -116,44 +117,44 @@ export class ProfileComponent  implements OnInit {
     el.scrollIntoView();
   }
 
-//here we handing single files for the single activity
-  handleFiles(event:any){
+// here we handing single files for the single activity
+  handleFiles(event: any) {
     console.log(event);
-    if(event.target.files){
-      this.file= event.target.files[0];
-      this.filename=event.target.files[0].name
-    
-    } 
+    if (event.target.files) {
+      this.file = event.target.files[0];
+      this.filename = event.target.files[0].name;
+
+    }
 }
 
-  onActivityAdd(){
-  var data= this.registrationForm.value;
+  onActivityAdd() {
+  const data = this.registrationForm.value;
   console.log(data);
-    this.activityDetails= new ActivityDetails({ activityTitle:data.act_title, 
-      activityDescription: data.act_details, date: new Date().toLocaleString(), file:this.file, filename:this.filename }); 
+  this.activityDetails = new ActivityDetails({ activityTitle: data.act_title,
+      activityDescription: data.act_details, date: new Date().toLocaleString(), file: this.file, filename: this.filename });
 
-    this.activityService.upload(this.activityDetails);
-    this.activityService.getpercentageChange().subscribe(x=>{
-      this.barActive= true;
-      this.percentage= Math.round(x)
+  this.activityService.upload(this.activityDetails);
+  this.activityService.getpercentageChange().subscribe(x => {
+      this.barActive = true;
+      this.percentage = Math.round(x);
         // resetting form
-      if(this.percentage===100){
+      if (this.percentage === 100) {
         console.log('Hhere goes 100');
         this.registrationForm = new FormGroup({
           act_title: new FormControl(''),
           act_details: new FormControl('')
         });
-        this.barActive=false;
-        this.filename='';
+        this.barActive = false;
+        this.filename = '';
       }
-      console.log(x)
+      console.log(x);
     });
   }
 
 
-//logout method
+// logout method
 
-logout(){
+logout() {
   this.authService.logOut();
   }
 

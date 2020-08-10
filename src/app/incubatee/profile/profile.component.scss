@@ -30,3 +30,14 @@ table {
     margin-bottom: 7px
   }
 }
+mat-tab{
+  height: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.mat-tab-body-content{
+  overflow-x: hidden!important;
+}
+li{
+  list-style: none;
+}

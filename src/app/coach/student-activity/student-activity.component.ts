@@ -1,13 +1,12 @@
+import { Router } from '@angular/router';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Component, OnInit , ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { map } from 'rxjs/operators'
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-}
+
 /** Constants used to fill up our data base. */
 
 const NAMES: string[] = [
@@ -25,22 +24,42 @@ const NAMES: string[] = [
   styleUrls: ['./student-activity.component.scss']
 })
 export class StudentActivityComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'progress'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['number', 'projectName', 'name'];
+  dataSource: MatTableDataSource<any>;
+  private incubatee='/incubatee-coach';
+  private incubatee_array:any[];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+  constructor(private db:AngularFireDatabase,
+              private router:Router) {
+
+
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    //this.dataSource = new MatTableDataSource(users);
   }
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
+    this.db.list(`${this.incubatee}/`).snapshotChanges().pipe(map(arr=>{
+      return arr.map(res=>Object.assign(res.payload.val(), {key:res.key}))
+    })).subscribe(snap=>{
+            var count:number=0;
+            this.incubatee_array=[];
+          snap.forEach(data=>{
+            count++;
+            this.incubatee_array.push({number:count, projectName: data['projectName'], name:data['name'], userID:data['userID']})
+            console.log('data', this.incubatee_array)
+          })
+
+          this.dataSource = new MatTableDataSource(this.incubatee_array);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+    
+    })
+
+ 
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -50,16 +69,15 @@ export class StudentActivityComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  navigate(row:any){
+    this.router.navigate(['/student-activity', 'incubateeTimeline'], {
+      queryParams:{
+        search:row.userID
+      }
+    })
+    console.log(row);
+
+  }
 }
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name,
-    progress: Math.round(Math.random() * 100).toString(),
-  };
-}

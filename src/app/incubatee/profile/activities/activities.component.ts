@@ -20,20 +20,20 @@ export class ActivitiesComponent implements OnInit {
     '../../assets/img/team/3.jpg',
   ];
 
-  baseUrl='incubatee/';
+  baseUrl = 'incubatee/';
   activityDetailsArray;
-  filename:string;
+  filename: string;
 
   constructor( private activity: ActivityService
  ) { }
 
   ngOnInit() {
 
-    this.activity.getActivities().subscribe(res=>{
-      this.activityDetailsArray=res;
+    this.activity.getActivities().subscribe(res => {
+      this.activityDetailsArray = res;
       console.log(res);
 
-     })
+     });
 
   }
 

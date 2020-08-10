@@ -31,14 +31,11 @@
           </div>
           <mat-divider style="width: 90%; margin: 0px 15px"></mat-divider>
           <div style="padding: 40px 0 20px 0">
-            <p>Email address</p>
-            <p>davkimfray@gmail.com</p>
-            <p>Phone</p>
-            <p>0716729344</p>
+
           </div>
-          <div style="text-align: center;">
-            <a class="btn shadow text-white js-scroll-trigger main-bgcolor" (click)="scroll('editProfile')" style="padding: 10px 45px;" >
-              <img src="../../../assets/img/incubatee/userWhite.png" width="20%" style="margin-right: 5px;"> Edit Profile</a>
+          <div style="text-align: center;display: flex;flex-direction: row;">
+            <a class="btn shadow text-white js-scroll-trigger main-bgcolor" (click)="scroll('editProfile')" style="padding: 10px 45px;height:fit-content" >
+              <img src="../../../assets/img/incubatee/userWhite.png" width="20%" style="margin-right: 5px;"> Edit</a>
           </div>
         </div>
       </mat-card>
@@ -46,34 +43,34 @@
 
       <div class="col-md-8 ">
 
-        <mat-card id="editProfile"  style="height: fit-content width: 100%" >
+        <mat-card id="editProfile"  style="height: fit-content; width: 100%" >
           <mat-tab-group [(selectedIndex)]="profileTab">
-  
+
            <mat-tab>
              <ng-template mat-tab-label style="width: 50%">
                <mat-icon style="margin-right: 5px">timeline</mat-icon>Timeline
              </ng-template>
              <app-activities></app-activities>
            </mat-tab>
-  
+
             <mat-tab>
               <ng-template mat-tab-label>
                 <img src="../../../assets/img/incubatee/addActivity.png" width="25%" style="margin-right: 10px">Activity
               </ng-template>
               <form [formGroup]="registrationForm" (ngSubmit)="onActivityAdd()" class="container" fxLayout="column" fxLayoutAlign="center center">
-  
+
                 <mat-form-field appearance="outline" style="width: 95%; margin-top: 20px;">
                   <mat-label>Activity Title</mat-label>
                   <input matInput type="text" formControlName="act_title">
                   <mat-error *ngIf="hasError('act_title', 'required')">Activity Title is required</mat-error>
                 </mat-form-field>
-  
+
                 <mat-form-field appearance="outline" style="width: 95%">
                   <mat-label>Activity details</mat-label>
                   <textarea matInput type="text" formControlName="act_details" ></textarea>
                   <mat-error *ngIf="hasError('act_details', 'required')">Activity details is required</mat-error>
                 </mat-form-field>
-  
+
                 <div class="raised-box">
                   <div class="row">
                     <div class="col-md-3">
@@ -86,22 +83,22 @@
                   </div>
                   <input  style="display: none" type="file" name="fileInput"  #fileInput (change)="handleFiles($event)">
                 </div><br>
-   
-               
+
+
               <mat-form-field appearance="outline" style="width: 95%; margin-top: 20px">
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="act_date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
-              
+
               <mat-progress-bar *ngIf="barActive" mode="determinate" [value]="percentage"></mat-progress-bar><br>
               <button mat-button class="btn-block h5 shadow" style="background-color: #3F33CD; color: #ffffff; width: 70%;padding: 2px">Add Activity</button>
-             
-   
+
+
               </form>
             </mat-tab>
-  
+
             <mat-tab>
               <ng-template mat-tab-label style="color: #3F33CD">
                 <mat-icon>library_books</mat-icon>Sessions
@@ -115,18 +112,18 @@
                       <mat-card-subtitle>Posted by: </mat-card-subtitle>
                       <mat-card-subtitle>Date: {{ session.sessionDate | date:'fullDate'}} </mat-card-subtitle>
                     </mat-card-header>
-  
+
                     <mat-card-content>
                       Session Description
                       <p>{{ session.sessionDescription}}</p>
                     </mat-card-content>
-                    
+
                     <mat-card-actions>
-               
+
                    <p style="color:#3F33CD"><a mat-button href="{{ session.fileUrl}}"><mat-icon>attachment</mat-icon>View Attachment</a></p>
                     </mat-card-actions>
                   </mat-card>
-            
+
                 </mat-card>
 
 
@@ -147,21 +144,21 @@
                 <mat-label>Filter</mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="Ex. erd" #input>
               </mat-form-field>
-              
+
               <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-              
+
                 <!-- Position Column -->
                 <ng-container matColumnDef="position">
                   <th mat-header-cell *matHeaderCellDef> No. </th>
                   <td mat-cell *matCellDef="let element"> {{element.position}} </td>
                 </ng-container>
-              
+
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">
                   <th mat-header-cell *matHeaderCellDef> Name </th>
                   <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                 </ng-container>
-              
+
                 <!-- Weight Column -->
                 <ng-container matColumnDef="Date">
                   <th mat-header-cell *matHeaderCellDef> Date </th>
@@ -176,16 +173,16 @@
 
 
 
-                   
+
                 <!-- Symbol Column -->
                 <ng-container matColumnDef="PostedBy">
                   <th mat-header-cell *matHeaderCellDef> PostedBy </th>
                   <td mat-cell *matCellDef="let element"> {{element.PostedBy}} </td>
                 </ng-container>
-              
+
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              
+
                 <!-- Row shown when there is no matching data. -->
                 <tr class="mat-row" *matNoDataRow>
                   <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
@@ -197,9 +194,9 @@
         </mat-card>
       </div>
 
-     
 
-     
+
+
       <div  class="col-md-2 shadow">
         <mat-card id="private-notification"  style=" height: fit-content;height: fit-content">
           <div type="button"  (click)= "drawer.toggle()">
@@ -223,7 +220,7 @@
 
       </div>
 
-    
+
     </div>
   </div>
 
