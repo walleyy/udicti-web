@@ -1,5 +1,6 @@
 <div class="container-fluid"  style="height: 100vh;overflow-y: scroll">
-  <div >
+    <mat-tab-group>
+      <mat-tab label="Post session">
   <form [formGroup]="sessionForm" (ngSubmit)="uploadSession()" fxLayout="column">
     <mat-form-field   appearance="outline" style=" margin-top: 20px;width: 50%">
       <mat-label>Session Title</mat-label>
@@ -31,10 +32,10 @@
       </mat-card-actions>
     </mat-card>
     <input type="file" #fileUpload id="fileUpload" name="fileUpload"  (change)="handleFiles($event)" multiple="multiple" accept="application/pdf/*" style="display:none;" />
-    <button style="align-self: center; background-color: rgba(0,123,255,0.51);border-style: none;width: 20vw" mat-button type="submit">Add</button>
+    <button style="align-self: flex-end; background-color: rgba(0,123,255,0.51);border-style: none;width: 20vw" mat-button type="submit">Add</button>
   </form>
-
-</div>
+      </mat-tab>
+<mat-tab label="View Session">
   <div  class="col-12 tableDiv">
     <table mat-table [dataSource]="dataSource" #mytable class="my-table mat-elevation-z8">
 
@@ -64,9 +65,11 @@
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                   </table>
+    </table>
   </div>
-</div>
+</mat-tab>
+  </mat-tab-group>
+  </div>
 
 
 
