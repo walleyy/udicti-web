@@ -1,0 +1,94 @@
+
+
+<mat-sidenav-container class="container-fluid" style="min-height: 100vh" >
+  <mat-sidenav #sidenav  mode="over" style="width: 25vh;background-color: rgba(38,50,56,0.58)" opened>
+
+
+    <div >
+      <mat-toolbar   class="navbar navbar-expand-lg navbar-light bg-dark">
+
+        <a  class="navbar-brand  text-white" routerLink ="/dashboard" (click)="scroll('page-top')">
+          <img src="../../assets/img/udsm_logo.png" width="25%;" style="float: left;margin-right: 10px"><span>ADMIN</span></a>
+      </mat-toolbar>
+      <mat-divider></mat-divider>
+
+      <a  class="side-item" [routerLink]="['/dashboard', 'Announcement']" routerLinkActive="active">
+        <mat-icon>notifications</mat-icon><span>Notification</span>
+      </a>
+
+      <mat-divider></mat-divider>
+
+
+      <mat-expansion-panel class="side" >
+        <mat-expansion-panel-header>
+          <mat-panel-title style="color: whitesmoke">Accounts</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <a  class="side-item" [routerLink]="['/accounts', 'student-list']" routerLinkActive="active">
+          <mat-icon>how_to_reg</mat-icon><span>Incubatees</span>
+        </a>
+        <a  class="side-item" [routerLink]="['/accounts', 'coach-list']" routerLinkActive="active">
+          <mat-icon>supervisor_account</mat-icon><span>Coaches</span>
+        </a>
+        <a  class="side-item" [routerLink]="['/accounts', 'users']" routerLinkActive="active">
+          <mat-icon>account_circle</mat-icon><span>Applicants</span>
+        </a>
+      </mat-expansion-panel>
+
+      <mat-divider></mat-divider>
+      <mat-expansion-panel class="side">
+        <mat-expansion-panel-header style="color: whitesmoke">
+          global design
+        </mat-expansion-panel-header>
+
+        <mat-divider></mat-divider>
+
+        <a  class="side-item" [routerLink]="['/dashboard', 'about']" routerLinkActive="active">
+          <mat-icon>image</mat-icon><span>image</span>
+        </a>
+
+        <mat-divider></mat-divider>
+
+      </mat-expansion-panel>
+
+
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark col-12">
+      <div class="container-fluid" >
+        <button style="color: white" mat-button (click)="sidenav.toggle()" ><mat-icon>keyboard_arrow_left</mat-icon></button>
+        <span class="spacer"></span>
+        <button style="color: white" data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive" >
+
+          <ul class="nav navbar-nav ml-auto text-uppercase " >
+            <li class="nav-item " role="presentation"><a class="nav-link js-scroll-trigger text-white"  routerLink="" routerLinkActive="active">
+              <i class="fa fa-sign-out"></i>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="outlet">
+      <div>
+        <p>Welcome  </p>
+      </div>
+
+      <div class="chart1">
+        <div >
+          <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [plugins]="barChartPlugins"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType">
+          </canvas>
+        </div>
+        <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+      </div>
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

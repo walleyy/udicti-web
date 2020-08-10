@@ -1,3 +1,5 @@
+import { MatSnackBar } from '@angular/material';
+import { User } from './../register/register.component';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -23,6 +25,7 @@ export class AuthService {
   constructor( private router: Router, 
     private af:AngularFireAuth,
     private db:AngularFireDatabase,
+    private snackBar: MatSnackBar
    ) { }
 
 
@@ -49,6 +52,13 @@ export class AuthService {
           return arr.map((res) => Object.assign(res.payload.val(), {$key: res.key}));
       })).subscribe(snap => {
                 console.log(snap[0]);
+
+                if(snap[0]['deleteUser']){
+                  this.af.auth.currentUser.delete();
+                  this.snackBar.open("Sorry! You application has been denied..Try again Next time", 'OK', {duration:5000})
+                  this.router.navigate(['/'])
+                  return;
+                }
                 // navigate to the specific pages
                 if (snap[0]['role'] === 'applicant') {
                   this.router.navigate(['/pending', snap[0]['id']]);

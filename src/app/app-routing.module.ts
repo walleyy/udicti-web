@@ -23,6 +23,7 @@ import {StudentListComponent} from './admin/accounts/student-list/student-list.c
 import {CoachListComponent} from './admin/accounts/coach-list/coach-list.component';
 import {AnnouncementsComponent} from './admin/announcements/announcements.component';
 import {UsersComponent} from './admin/accounts/users/users.component';
+import {LandingadminComponent} from './admin/landingadmin/landingadmin.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,8 @@ const routes: Routes = [
       {path: 'my-setting' , component: MySettingComponent},
    ]
   },
+  {path: 'landingadmin' , component: LandingadminComponent},
+  {path: 'dashboard', redirectTo: 'landingadmin', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent , children: [
       {path: 'about', component: ManAboutComponent},
       {path: 'accounts', component: AccountsComponent},

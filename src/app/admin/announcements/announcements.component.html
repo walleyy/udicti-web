@@ -4,7 +4,7 @@
       <mat-tab label="Set event">
         <form ngForm style="margin: 5px">
 
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline" class="col-md-4">
             <mat-label> datepicker</mat-label>
             <input matInput [matDatepicker]="dp" [formControl]="date">
             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
@@ -19,17 +19,17 @@
 <!--                   [ngxTimepicker]="appendedToInput" readonly>-->
 <!--            <ngx-material-timepicker #appendedToInput></ngx-material-timepicker>-->
 <!--          </div>-->
-          <mat-form-field>
+          <mat-form-field appearance="outline" class="col-md-3">
             <mat-label>Time</mat-label>
             <input matInput type="number" value="number">
           </mat-form-field>
           <br>
-             <mat-form-field>
+             <mat-form-field appearance="outline"class="col-md-4">
              <mat-label>Title</mat-label>
              <input matInput type="text" value="title">
              </mat-form-field>
 
-             <mat-form-field>
+             <mat-form-field class="col-md-4" appearance="outline">
              <mat-label>location</mat-label>
              <input matInput type="text" value="location">
              </mat-form-field>
@@ -39,7 +39,7 @@
       </mat-tab>
       <mat-tab label="recent">
 
-          <div class="card table-bordered">
+          <div class="card table-bordered" style="height: 100vh;overflow-y: scroll">
             <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
               <!-- Position Column -->
               <ng-container matColumnDef="position">

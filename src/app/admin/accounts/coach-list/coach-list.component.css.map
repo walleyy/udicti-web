@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"coach-list.component.css"}
+{"version":3,"sourceRoot":"","sources":["coach-list.component.scss"],"names":[],"mappings":"AACA;EACE;;;AAGF;EACE;IACE;IACA;;;AAGJ;EACE;EACA","file":"coach-list.component.css"}

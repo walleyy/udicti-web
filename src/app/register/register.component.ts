@@ -5,14 +5,21 @@ import {StudentService} from '../service/student.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import { AngularFireDatabase} from '@angular/fire/database';
-import { distinctUntilChanged, combineLatest } from 'rxjs/operators';
-import { merge} from 'rxjs';
+import { X } from '@angular/cdk/keycodes';
 
 export interface User{
   name:String;
   email:string;
   phoneNumber:string;
   date:string;
+}
+
+export interface Application{
+  name:string;
+  projectName:string;
+  date: string;
+  userID?: string;
+  nodeID?:string
 }
 
 @Component({
@@ -24,6 +31,7 @@ export class RegisterComponent implements OnInit {
   private basePath='/applicant';
   private userPath= '/users-role';
   private toUsersPath='/users';
+  private applicationPath='/application';
   public registrationForm: FormGroup;
   accept = false;
   Roles: any = ['Admin', 'Author', 'Reader'];
@@ -79,7 +87,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.registrationForm);
     console.log(incubateeData);
 
-    const detailsToUpload = new IncubateeDetails(
+   const detailsToUpload = new IncubateeDetails(
      {
       firstname: incubateeData.firstname,
        lastname: incubateeData.lastname,
@@ -100,6 +108,12 @@ export class RegisterComponent implements OnInit {
         date: new Date().toLocaleString()
       };
 
+      const application:Application={
+        name: this.registrationForm.value.firstname + "" + this.registrationForm.value.lastname,
+        date: new Date().toLocaleString(),
+        projectName: this.registrationForm.value.businessIdea,
+      }
+
     if (incubateeData.password !== incubateeData.confirmPassword) {
         this.snackBar.open('Password Mismatch', 'Ok', {duration: 2000});
         return;
@@ -109,8 +123,11 @@ export class RegisterComponent implements OnInit {
     .then(authState=>{
       this.snackBar.open('Welcome to Udicti, Thanks for registering', 'Ok', {duration: 3000})
       detailsToUpload.userId= authState.user.uid;
+      detailsToUpload.userRole= 'applicant';
+      application.userID= authState.user.uid;
       this.saveData(detailsToUpload,authState.user.uid);// to applicant node
-      this.saveToUser(detailsToUsers) // to users
+      this.saveToUser(detailsToUsers) // to users node
+      this.saveToApplication(application) // to application node
 
       // navigate to login page
       this.route.navigate(['/login']);
@@ -126,12 +143,20 @@ export class RegisterComponent implements OnInit {
      //This  method save to data to the database
     private saveData(dataTosave:any, key:string){
       this.db.list(`${this.basePath}/`).push(dataTosave).then(data=>{
-        this.db.list(`${this.userPath}/` +key).push({role:"applicant", id:data.key})
+        this.db.list(`${this.userPath}/` +key).push({role:"applicant", applicantID:data.key, deleteUser:false}).then(x=>{
+          this.db.object(`${this.userPath}/` + key + '/' + x.key).update({nodeID: x.key})
+        })
       })
     }
 
     private saveToUser(detailsToUser:User){
-      this.db.list(`${this.toUsersPath}/`).push(detailsToUser);
-      
+      this.db.list(`${this.toUsersPath}/`).push(detailsToUser);  
     }
+
+    private saveToApplication(application:Application){
+      this.db.list(`${this.applicationPath}`).push(application).then(x=>{
+        this.db.object(`${this.applicationPath}/`+ x.key).update({nodeID:x.key});
+      })
+    }
+    
 }
