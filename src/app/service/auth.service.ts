@@ -61,9 +61,9 @@ export class AuthService {
                 }
                 // navigate to the specific pages
                 if (snap[0]['role'] === 'applicant') {
-                  this.router.navigate(['/pending', snap[0]['id']]);
+                  this.router.navigate(['/pending', snap[0]['userID']]);
                 } else if (snap[0]['role'] === 'incubatee') {
-                  this.router.navigate(['/incubatee', snap[0]['id']]);
+                  this.router.navigate(['/incubatee', snap[0]['userID']]);
                 }
               });
       return;

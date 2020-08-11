@@ -1,3 +1,4 @@
+
 //*{
 //  margin: 0;
 //  padding: 0;
@@ -364,6 +365,27 @@
 }
 .timeline>li{
   margin: 1vh!important;
+}
+
+.avatar {
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.animated{
+  -webkit-animation-duration: 200ms;
+  -moz-animation-duration: 200ms;
+  animation-duration: 200ms;
 }
 
 

@@ -1,14 +1,15 @@
-
+<mat-card class="container">
+  <h4 class="text-center"><span><img class="avatar center"src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></span>{{ incubateeName }}</h4>
+</mat-card>
 
 <mat-card class="container-fluid " >
-
   <div class="timeline-body"  style="overflow-y:scroll;height: 80vh"  >
     <ul class="timeline" >
-      <li *ngFor=" let activity of activities">
+      <li *ngFor=" let activity of activity_array">
         <!-- begin timeline-time -->
         <div class="timeline-time">
-          <span  class="date ">today</span>
-          <span class="time">04:20</span>
+          <span  class="date ">{{ activity.activityDetails.date | date:'shortDate'}}</span>
+          <span class="time">{{ activity.activityDetails.date | date:'shortTime'}}</span>
         </div>
         <!-- end timeline-time -->
         <!-- begin timeline-icon -->
@@ -20,14 +21,30 @@
         <div class="timeline-body">
 
           <div class="timeline-header">
-            <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></span>
-            <span class="username "><a href="javascript:;">{{activity.Name}}</a> <small></small></span>
+            <mat-icon background-color="#F8F9FA" style=" margin-right: 10px; color: #17A2B8">work</mat-icon>
+            <span class="username "><a href="javascript:;">{{activity.activityDetails.activityTitle}}</a> <small></small></span>
             <span class="pull-right text-muted">Viewed</span>
           </div>
           <div class="timeline-content">
             <p>
-              {{activity.Content}}
+              {{activity.activityDetails.activityDescription}}
             </p>
+            <mat-divider></mat-divider>
+            <p style="margin-top: 40px;"> <a href="{{ activity.activityDetails.fileUrl}}" mat-button> 
+              <mat-icon>attachment</mat-icon>
+              View Attachment</a></p>
+          </div>
+
+          <div>
+            Comments
+            <mat-list role="list">
+              <ul *ngFor="let comment of comment_array">
+              <li *ngIf="comment.activityID===activity.activityDetails.nodeID" class="animated rubberBand"><mat-list-item role="listitem">{{ comment.comment}}</mat-list-item></li>
+           
+            </ul>
+        
+            </mat-list>
+     
           </div>
 
 
@@ -36,9 +53,9 @@
             <div class="input">
               <form action="">
                 <div class="input-group">
-                  <input type="text" class="form-control rounded-corner cdk-keyboard-focused" placeholder="Write a comment...">
+                  <input type="text" class="form-control rounded-corner cdk-keyboard-focused" placeholder="Write a comment..."  #name name="comment">
                   <span class="input-group-btn p-l-10">
-                        <button class="btn btn-primary f-s-10 rounded-corner" type="button">Comment</button>
+                        <button class="btn btn-primary f-s-10 rounded-corner" type="button" (click)="addComment(activity.activityDetails.nodeID, name)">Comment</button>
                         </span>
                 </div>
               </form>
@@ -46,6 +63,7 @@
           </div>
         </div>
         <!-- end timeline-body -->
+      </li>
     </ul>
   </div>
 </mat-card>

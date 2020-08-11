@@ -52,7 +52,7 @@ export class ActivityService {
   private saveToFirebaseDb(details: any, key: string) {
     this.db.list(`${this.baseUrl}/` + key).push(details).then(x=>{
        //updating the nodes to add their own keys
-      this.db.object('/incubatee/' + key + '/' + x.key + '/' + 'activityDetails').update({key: x.key});
+      this.db.object('/incubatee/' + key + '/' + x.key + '/' + 'activityDetails').update({nodeID: x.key});
     });
   }
 

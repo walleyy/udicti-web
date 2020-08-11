@@ -73,7 +73,8 @@ export class StudentActivityComponent implements OnInit {
   navigate(row:any){
     this.router.navigate(['/student-activity', 'incubateeTimeline'], {
       queryParams:{
-        search:row.userID
+        search:row.userID,
+        name: row.name
       }
     })
     console.log(row);
