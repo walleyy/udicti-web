@@ -20,6 +20,7 @@ export class AuthService {
 
 
   private userUrl = '/users-role';
+  private coachPath='/coaches';
   private tk;
 
   constructor( private router: Router, 
@@ -32,7 +33,7 @@ export class AuthService {
  login(isStudent: boolean, credentials: Credentials) {
     this.af.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
     .then(authState=>{ 
-
+      
       //saving the token to the localStorange
        authState.user.getIdToken().then((token:string)=>{
          this.tk=token;
@@ -68,11 +69,25 @@ export class AuthService {
               });
       return;
       }
+
+
       // navigate to coachs page
-       this.router.navigate(['/coach', authState.user.uid]);
 
+        this.db.list(`${this.coachPath}/` + authState.user.uid).snapshotChanges()
+           .pipe(map(arr=>{
+             return arr.map(res=>Object.assign(res.payload.val(), {key:res.key}))
+           }))
+            .subscribe(snap=>{
+              console.log(snap[0]['role'])
 
-       console.log(authState);
+              if(snap[0]['role']==='admin'){
+              this.router.navigate(['/landingadmin'])
+              }
+              else if (snap[0]['role']==='coach'){
+                this.router.navigate(['/splashpg', authState.user.uid]);
+              }
+            })
+  
           })// end of then()
        .catch(error => {console.log('error', error); });
 }// end of login()

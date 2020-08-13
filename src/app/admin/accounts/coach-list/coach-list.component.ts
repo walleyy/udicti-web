@@ -11,6 +11,7 @@ export interface Coach{
   name: string,
   expertise:string,
   email: string,
+  role: string;
   imageUrl?: string,
   coachID?: string;
 }
@@ -44,10 +45,12 @@ export class CoachListComponent implements OnInit {
       return res.map(data=> Object.assign(Object.values(data.payload.val()), {key:data.key}))
 
     })).subscribe(res=>{
+      this.coach_array=[];
       res.map(element=>{
+     
         this.coach_array.push(element[0]);
       })
-      console.log(this.coach_array);
+      console.log('coach array',this.coach_array);
     })
   }
 
@@ -69,15 +72,19 @@ export class CoachListComponent implements OnInit {
         let coach:Coach={
           name: coachData.name,
           expertise: coachData.expertise,
+          role: 'coach',
           email: coachData.name,
           coachID: authState.user.uid
         }
+
+        console.log(coach);
       
       this.db.list(`${this.coachPath}/` + authState.user.uid).push(coach);
       this.snackBar.open('Coach added', 'OK!', {duration: 2000})
+      this.initiliazeFormWithNoValidator();
       }
     })
-   this.initiliazeFormWithNoValidator();
+
     
   }
 

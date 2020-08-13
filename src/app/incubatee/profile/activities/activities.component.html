@@ -31,6 +31,12 @@
                 <mat-divider></mat-divider>
                 <p><a mat-button href="{{activity.activityDetails.fileUrl}}"  target="_blank" style="margin-left: -30px">
                   <mat-icon>attachment</mat-icon>View Attachment - ({{ activity.activityDetails.filename }})</a></p>
+
+                <div >Comments
+                  <ul role="list" *ngFor="let comment of comments_array">
+                    <li role="listitem" *ngIf="comment.activityID===activity.$key">{{ comment.comment }}</li>
+                    </ul>
+                </div>
               </div>
             </div>
           </div>

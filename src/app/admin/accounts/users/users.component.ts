@@ -67,8 +67,10 @@ export class UsersComponent implements OnInit {
 
     let incubatee:any={
     name:applicant.name,
+    college: applicant.college,
     projectName: applicant.projectName,
-    userID: applicant.userID
+    userID: applicant.userID,
+    phoneNumber:applicant.phoneNumber,
     }
     this.db.list(`${this.incubateeCoachPath}/`).push(incubatee);
     

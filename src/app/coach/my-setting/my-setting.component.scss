@@ -56,3 +56,10 @@ body{
 .shadow-none {
   box-shadow: none!important;
 }
+.raised-box{
+  box-shadow: 0.8px 1.5px 2px grey;
+  height: 80px;
+  width:100%;
+  padding: 30px 10px 10px 10px;
+
+}

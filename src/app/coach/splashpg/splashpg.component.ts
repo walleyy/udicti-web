@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit , ViewChild} from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -31,7 +32,12 @@ export class SplashpgComponent implements OnInit {
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'projects' }
   ];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+
+    console.log(this.route.snapshot.paramMap.get('coachId'));
+    localStorage.setItem('coachId', this.route.snapshot.paramMap.get('coachId'));
+
+   }
 
   ngOnInit() {
   }

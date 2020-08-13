@@ -24,14 +24,14 @@ export class ActivityService {
                 }
 
 
- upload(details: any) {
-   // const id= Math.random().toString(36).substring(2)
+  upload(details: any) {
+    // const id= Math.random().toString(36).substring(2)
 
+    
+  const ref = this.storage.ref(`${this.baseUrl}`);
+
+  this.uploadTask = ref.child(details.activityDetails.file.name).put(details.activityDetails.file);
   
- const ref = this.storage.ref(`${this.baseUrl}`);
-
- this.uploadTask = ref.child(details.activityDetails.file.name).put(details.activityDetails.file);
- 
 
 
  this.uploadTask.snapshotChanges().pipe(

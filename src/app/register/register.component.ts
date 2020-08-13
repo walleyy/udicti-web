@@ -18,6 +18,8 @@ export interface Application{
   name:string;
   projectName:string;
   date: string;
+  college:string;
+  phoneNumber?: string;
   userID?: string;
   nodeID?:string
 }
@@ -112,6 +114,8 @@ export class RegisterComponent implements OnInit {
         name: this.registrationForm.value.firstname + "" + this.registrationForm.value.lastname,
         date: new Date().toLocaleString(),
         projectName: this.registrationForm.value.businessIdea,
+        college:this.registrationForm.value.college,
+        phoneNumber: this.registrationForm.value.phone_no
       }
 
     if (incubateeData.password !== incubateeData.confirmPassword) {

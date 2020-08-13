@@ -2,6 +2,9 @@ import { ActivityService } from './../../../service/activity.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Component, OnInit } from '@angular/core';
 import { ActivityDetails } from 'src/app/modal/activityDetails.modal';
+import { map } from 'rxjs/operators';
+import { keyValuesToMap } from '@angular/flex-layout/extended/typings/style/style-transforms';
+
 
 
 
@@ -23,18 +26,28 @@ export class ActivitiesComponent implements OnInit {
   baseUrl = 'incubatee/';
   activityDetailsArray;
   filename: string;
+  private commentsPath='/comments';
+  private comments_array:any[];
 
-  constructor( private activity: ActivityService
- ) { }
+  constructor(private activity: ActivityService,
+              private db:AngularFireDatabase
+              ) { }
 
   ngOnInit() {
 
     this.activity.getActivities().subscribe(res => {
       this.activityDetailsArray = res;
       console.log(res);
-
      });
+    
 
+     this.db.list(`${this.commentsPath}/`).snapshotChanges().pipe(map(arr=>{
+       return arr.map(res=>Object.assign(res.payload.val(),{key:res.key}))
+     }))
+     .subscribe(snap=>{
+       console.log(snap);
+       this.comments_array=snap;
+      })
   }
 
 }

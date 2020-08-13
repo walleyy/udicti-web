@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from '@angular/fire/database';
 import { NotificationService } from './../../service/notification.service';
 import { SessionService } from './../../service/session.service';
 import { ActivityService } from './../../service/activity.service';
@@ -11,6 +12,7 @@ import { delay } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/service/auth.service';
 import {MatTableDataSource} from '@angular/material/table';
+import { map }  from 'rxjs/operators'
 
 
 @Component({
@@ -32,6 +34,12 @@ export class ProfileComponent  implements OnInit {
   displayedColumns:string[];
   notification_array: any[]=[]
   dataSource;
+  private incubateeCoachPath='/incubatee-coach';
+  private incubateeId:string;
+  public bioName:string;
+  public bioCollege:string;
+  public bioPhoneNumber?:string;
+  public bioProjectTitle:string;
 
 
   constructor(private studentService: StudentService,
@@ -42,9 +50,29 @@ export class ProfileComponent  implements OnInit {
               private authService:AuthService,
               private af:AngularFireAuth,
               private sessionService: SessionService,
-              private notificationService:NotificationService
+              private notificationService:NotificationService,
+              private db: AngularFireDatabase
            ) {
     this.initiateForm();
+
+    this.incubateeId=this.route.snapshot.paramMap.get('userId');
+
+    this.db.list(`${this.incubateeCoachPath}/`).snapshotChanges().pipe(map(arr=>{
+      return arr.map(res=>{
+        return Object.assign(res.payload.val(), {key:res.key})
+      })
+ }))
+ .subscribe(snap=>{
+   
+   snap.map(data=>{
+     if(data['userID']===this.incubateeId){
+       this.bioName=data['name'];
+       this.bioProjectTitle= data['projectName'];
+       this.bioPhoneNumber= data['phoneNumber'];
+       this.bioCollege= data['college'];
+     }
+   })
+ })
   }
 
  ngOnInit() {
@@ -85,13 +113,11 @@ export class ProfileComponent  implements OnInit {
            })
 
            console.log("private", this.notification_array);
-        })
+        }) //end
+
+     
 
   }
-
-
- // displayedColumns: string[] = ['position', 'name', 'Date', 'PostedBy'];
- // dataSource = new MatTableDataSource(ELEMENT_DATA);
 
 
   applyFilter(event: Event) {

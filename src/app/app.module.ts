@@ -57,7 +57,7 @@ import { StudentActivityComponent } from './coach/student-activity/student-activ
 import { ResourcesComponent } from './coach/resources/resources.component';
 import { SessionComponent } from './coach/session/session.component';
 import { NotificationsComponent } from './coach/notifications/notifications.component';
-import { MySettingComponent } from './coach/my-setting/my-setting.component';
+import { MySettingComponent, DialogContent, DialogDelete } from './coach/my-setting/my-setting.component';
 import { SplashpgComponent } from './coach/splashpg/splashpg.component';
 import { IncubateeTimelineComponent } from './coach/student-activity/incubatee-timeline/incubatee-timeline.component';
 import { StudentListComponent } from './admin/accounts/student-list/student-list.component';
@@ -99,6 +99,8 @@ import { LandingadminComponent } from './admin/landingadmin/landingadmin.compone
     DialogBoxComponent,
     UsersComponent,
     LandingadminComponent,
+    DialogContent,
+    DialogDelete
   ],
     imports: [
         BrowserModule,
@@ -153,6 +155,8 @@ import { LandingadminComponent } from './admin/landingadmin/landingadmin.compone
     ],
   entryComponents: [
     DialogBoxComponent,
+    DialogContent, 
+    DialogDelete
   ],
   providers: [ErrorStateMatcher],
   bootstrap: [AppComponent]
