@@ -107,6 +107,7 @@ export class ProfileComponent  implements OnInit {
         this.notificationService.getNotification().subscribe(res=>{
    
            res.forEach(element=>{
+             this.notification_array=[];
              if (element['notificationType']==="private"){
                this.notification_array.push(element)  
              }

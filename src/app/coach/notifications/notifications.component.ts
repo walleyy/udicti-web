@@ -21,21 +21,9 @@ export interface Notification{
   notificationType:string;
   notificationDetails:string;
   notificationDate:string;
+  notificationLocation?:string;
 
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  {type: 1, heading: 'Hydrogen', timeId: 1.0079, members: 'H,e,r'},
-  {type: 2, heading: 'Helium', timeId: 4.0026, members: 'He'},
-  {type: 3, heading: 'Lithium', timeId: 6.941, members: 'Li'},
-  {type: 4, heading: 'Beryllium', timeId: 9.0122, members: 'Be'},
-  {type: 5, heading: 'Boron', timeId: 10.811, members: 'B'},
-  {type: 6, heading: 'Carbon', timeId: 12.0107, members: 'C'},
-  {type: 7, heading: 'Nitrogen', timeId: 14.0067, members: 'N'},
-  {type: 8, heading: 'Oxygen', timeId: 15.9994, members: 'O'},
-  {type: 9, heading: 'Fluorine', timeId: 18.9984, members: 'F'},
-  {type: 10, heading: 'Neon', timeId: 20.1797, members: 'Ne'},
-];
-
 
 
 @Component({
@@ -82,7 +70,8 @@ export class NotificationsComponent implements OnInit {
   heading : new FormControl(''),
   type: new FormControl(''),
   details: new FormControl(''),
-  dateID: new FormControl('')
+  dateID: new FormControl(''),
+  location: new FormControl(),
   });
 
 
@@ -109,7 +98,8 @@ export class NotificationsComponent implements OnInit {
     notificationHeader: this.setNotification.value.heading,
     notificationDetails:this.setNotification.value.details,
     notificationType: this.setNotification.value.type,
-    notificationDate: this.setNotification.value.dateID.toString()
+    notificationDate: this.setNotification.value.dateID.toString(),
+    notificationLocation: this.setNotification.value.location
   }
   this.notificationService.postNotification(notification);
   }

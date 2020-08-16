@@ -1,60 +1,105 @@
-import { Component, OnInit , NgModule } from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {FormsModule, FormBuilder} from '@angular/forms';
-// tslint:disable-next-line:no-duplicate-imports
-// @ts-ignore
-import {default as _rollupMoment} from 'moment';
+import { NotificationService } from './../../service/notification.service';
+import { SessionService } from './../../service/session.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { Component, OnInit , ElementRef, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {Observable} from 'rxjs';
+import {MatTableDataSource} from '@angular/material/table';
 
-// for history table
+
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  heading: string;
+  type: number;
+  timeId: number;
+  members: string[any];
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'LL',
-  },
-  display: {
-    dateInput: 'LL',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
-
+export interface Notification{
+  notificationHeader:string;
+  notificationType:string;
+  notificationDetails:string;
+  notificationDate:string;
+  notificationLocation?: string,
+  
+}
 
 @Component({
-  selector: 'app-announcements',
+  selector: 'app-notifications',
   templateUrl: './announcements.component.html',
   styleUrls: ['./announcements.component.scss']
 })
-
 export class AnnouncementsComponent implements OnInit {
-  // for history table
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  private eventBuilder: FormBuilder;
+ table_array:any[]=[];
+ displayedColumns: string[]=[];
+ dataSource;
+ spinnerLoaded= true;
 
-  constructor() { }
+  constructor(private notificationService:NotificationService) { }
 
   ngOnInit() {
+    this.notificationService.getNotification().subscribe(res=>{
+      this.spinnerLoaded=false;
+      console.log('res', res);
+
+    let count:number=0;
+    this.table_array= [];
+      res.forEach(element=>{
+        count++;
+        if(element['notificationType']==='private') return;
+   
+      this.table_array.push({position:count, heading: element['notificationHeader'], date: element['notificationDate'], type: element['notificationType']})
+      })
+        
+      this.table_array.sort((a,b):any=>{ a.Date< b.Date? -1 : a.Date > b.Date ? 1 : 0});// sorting table by date
+      console.log('table',this.table_array);
+      this.displayedColumns = ['position', 'heading', 'date', 'type'];
+      this.dataSource = new MatTableDataSource(this.table_array);
+     
+    })
+  }
+ 
+  // for options
+  options: string[] = ['public', 'private'];
+  isDisabled = true;
+
+  // form declaration
+  setNotification = new FormGroup({
+  heading : new FormControl('', Validators.required),
+  type: new FormControl('', Validators.required),
+  details: new FormControl('', Validators.required),
+  dateID: new FormControl('',Validators.required),
+  location:new FormControl('')
+  });
+
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+ 
+
+  changeType(value) {
+    console.log(value);
+    if (value === 'private') {
+      this.isDisabled = false;
+      return this.isDisabled;
+    } else {
+      return !this.isDisabled;
+    }
+  }
+
+  postNotification(){
+  console.log("Button works");
+  var notification:Notification={
+    notificationHeader: this.setNotification.value.heading,
+    notificationDetails:this.setNotification.value.details,
+    notificationType: this.setNotification.value.type,
+    notificationDate: this.setNotification.value.dateID.toString(),
+    notificationLocation: this.setNotification.value.location
+  }
+  this.notificationService.postNotification(notification);
   }
 }

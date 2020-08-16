@@ -27,7 +27,7 @@ export class StudentActivityComponent implements OnInit {
   displayedColumns: string[] = ['number', 'projectName', 'name'];
   dataSource: MatTableDataSource<any>;
   private incubatee='/incubatee-coach';
-  private incubatee_array:any[];
+  public incubatee_array:any[];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;

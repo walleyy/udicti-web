@@ -25,7 +25,7 @@ export class MySettingComponent implements OnInit {
   private profilePhotoPath='/profilePhoto';
   private coachId:string;
   private nodeId;
-  private fileName:string;
+  public fileName:string;
   private fileSize:string;
   private file:File;
   private uploadData:UpdateProfile;

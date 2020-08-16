@@ -12,9 +12,9 @@ export class IncubateeTimelineComponent implements OnInit {
 
   private incubateePath='/incubatee';
   private commentsPath='/comments'
-  private incubateeName: string;
-  private activity_array: any[];
-  private comment_array: any[];
+  public incubateeName: string;
+  public activity_array: any[];
+  public comment_array: any[];
   private incubateeID: string;
   @ViewChild('name', {static:false}) name: ElementRef;
 

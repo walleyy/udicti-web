@@ -12,5 +12,16 @@
         "destination": "/index.html"
       }
     ]
+  },
+  "emulators": {
+    "hosting": {
+      "port": 5000
+    },
+    "pubsub": {
+      "port": null
+    },
+    "ui": {
+      "enabled": true
+    }
   }
 }

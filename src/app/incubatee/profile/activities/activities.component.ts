@@ -27,7 +27,7 @@ export class ActivitiesComponent implements OnInit {
   activityDetailsArray;
   filename: string;
   private commentsPath='/comments';
-  private comments_array:any[];
+  public comments_array:any[];
 
   constructor(private activity: ActivityService,
               private db:AngularFireDatabase
@@ -37,7 +37,7 @@ export class ActivitiesComponent implements OnInit {
 
     this.activity.getActivities().subscribe(res => {
       this.activityDetailsArray = res;
-      console.log(res);
+      console.log('activity',res);
      });
     
 

@@ -201,7 +201,7 @@
 
       <div  class="col-md-2 shadow">
         <mat-card id="private-notification"  style=" height: fit-content;height: fit-content">
-          <div type="button"  (click)= "drawer.toggle()">
+          <div type="button" >
             <h5 style="color: #c69500" >
               <mat-icon matBadge="15" matBadgeColor="accent" matBadgePosition="before" style="margin-top: 15px">notifications
               </mat-icon>Notifications</h5>
@@ -214,6 +214,8 @@
           <div *ngFor="let notification of notification_array">   
             <div style="flex: fit-content;border: groove #86cfda;box-shadow: yellow;border-radius: 10px">
               <li><span style="!important;color: #86cfda;font-family: 'Roboto Thin'"><em>Mkocha</em></span></li>
+              <li><span style="!important;color: #86cfda;font-family: 'Roboto Thin'">
+                 <em><mat-icon>bookmark</mat-icon>{{ notification.notificationHeader}}</em></span></li>
               <blockquote><em>{{ notification.notificationDetails }}</em></blockquote>
             </div>
           </div>

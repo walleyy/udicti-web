@@ -1,3 +1,4 @@
+import { NotificationService } from './../../service/notification.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationComponent implements OnInit {
 CurrentDate: number = Date.now();
+notification_array: any[]=[];
 upcoming = [
   {
     head: 'marketing strategies',
@@ -60,8 +62,29 @@ posts = [
   }
 ];
 
-  constructor() { }
+  constructor(private notificationService:NotificationService) { }
 
   ngOnInit() {
-  }
+    this.notificationService.getNotification().subscribe(res=>{
+
+      console.log('res', res);
+
+    let count:number=0;
+    this.notification_array= [];
+      res.forEach(element=>{
+        if(element['notificationType']==='private') return;
+        count++;
+        this.notification_array.push(element);
+       // 
+       if(this.notification_array.length > 6) this.notification_array=this.notification_array.slice(0,6);
+        this.notification_array.sort((a,b):any=>{ a.notificationDate< b.notificationDate ? -1 : a.notificationDate > b.notificationDate? 1: 0})
+       // this.notification_array.push({position:count, heading: element['notificationHeader'], date: element['notificationDate'], type: element['notificationType']})
+      })
+      
+      console.log(this.notification_array);
+     
+
+
+ })
+}
 }

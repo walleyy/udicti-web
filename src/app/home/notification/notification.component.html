@@ -6,7 +6,37 @@
     <h3 ><em>UPCOMING EVENTS</em></h3>
   </div>
   <div  id="events"  >
-    <div  *ngFor="let eventNo of upcoming" style="margin:0; )" >
+
+    <div  *ngFor="let notification of notification_array" style="margin:0; )" >
+
+
+      <mat-card class="row" style="height:fit-content;width:290px;box-shadow: 0 4px  3px 2px rgba(17,17,9,0.58);padding: 6px;border-radius: 20px 40px ;">
+        <div  style="border-right: solid gray;float: left;padding-right: 20px">
+          <label style="transform: scale(2);padding: 7px">{{notification.notificationDate |date: "dd"}}</label><br>
+          <span style="color: gray;padding: 7px;"> {{notification.notificationDate |date: "LL"}}</span>
+        </div>
+        <div style="flex-direction: column;display: flex;padding-left: 20px">
+          <span style="color: darkblue;padding-left: 7px;">{{notification.notificationDate | date:'HH:mm'}} hrs</span>
+          <span style="color: black;overflow-x: hidden;font-size: medium">{{notification.notificationHeader}}</span>
+          <span style="color: gray;padding-left: 0;" *ngIf="notification.notificationLocation"><mat-icon >location_on</mat-icon>{{notification.notificationLocation}}</span>
+        </div>
+  <!--      <div style="display: flex;align-self: flex-end">-->
+  <!--        <button mat-button style="border:none"><mat-icon>arrow_right</mat-icon></button>-->
+  <!--      </div>-->
+      </mat-card>
+  
+  
+      </div>
+
+
+
+
+
+
+
+   <!--
+
+<div  *ngFor="let eventNo of upcoming" style="margin:0; )" >
 
 
     <mat-card class="row" style="height:fit-content;width:290px;box-shadow: 0 4px  3px 2px rgba(17,17,9,0.58);padding: 6px;border-radius: 20px 40px ;">
@@ -19,13 +49,17 @@
         <span style="color: black;overflow-x: hidden;font-size: medium">{{eventNo.head}}</span>
         <span style="color: gray;padding-left: 0;"><mat-icon >location_on</mat-icon>{{eventNo.location}}</span>
       </div>
+    </mat-card>
+  </div> 
+
+   --> 
 <!--      <div style="display: flex;align-self: flex-end">-->
 <!--        <button mat-button style="border:none"><mat-icon>arrow_right</mat-icon></button>-->
 <!--      </div>-->
-    </mat-card>
+  
 
 
-    </div>
+   
   </div>
   </div>
 
