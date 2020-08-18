@@ -68,9 +68,9 @@ export class HomeComponent implements OnInit {
               private aboutService: AboutService,
               private formBuilder: FormBuilder) {
     this.initiateForm();
-    this.getAllAboutUs();
-    this.getAllAccounts();
-    this.getAllProjects();
+   /*this.getAllAboutUs();
+   this.getAllAccounts();
+    this.getAllProjects();*/
   }
 
   ngOnInit() {
@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getAllAboutUs() {
+  /*getAllAboutUs() {
     this.aboutService.listAbouts().then(value => {
       this.abouts = value._embedded.abouts;
     }).catch(reason => {
@@ -112,6 +112,6 @@ export class HomeComponent implements OnInit {
       this.snackBar.open('Failed to load data', 'Ok', {duration: 2000});
       console.log(reason);
     });
-  }
+  }*/
 
 }

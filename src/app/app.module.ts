@@ -66,6 +66,8 @@ import { AnnouncementsComponent } from './admin/announcements/announcements.comp
 import { DialogBoxComponent} from './dialog-box/dialog-box.component';
 import { UsersComponent } from './admin/accounts/users/users.component';
 import { LandingadminComponent } from './admin/landingadmin/landingadmin.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 
 @NgModule({
   declarations: [
@@ -151,7 +153,8 @@ import { LandingadminComponent } from './admin/landingadmin/landingadmin.compone
         MatAutocompleteModule,
         MatTreeModule,
         ChartsModule,
-        NgbModule
+        NgbModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
   entryComponents: [
     DialogBoxComponent,

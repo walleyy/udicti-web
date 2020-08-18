@@ -4,7 +4,7 @@
     <div class=" row">
       <div class="row" >
         <mat-toolbar>
-          <a class="navbar-brand"  routerLink = "/coach" >
+          <a class="navbar-brand"  [routerLink] = "['/splashpg']" >
             <img src="../../assets/img/udsm_logo.png" width="35%" >UDICTI</a>
         </mat-toolbar>
       </div>
@@ -41,7 +41,8 @@
     <mat-toolbar>
       <button mat-button (click)="sidenav.toggle()" ><mat-icon>menu</mat-icon></button>
       <span class="spacer"></span>
-      <img width="3%" src="../../../assets/img/coaches/fsimba.jpg" alt="" class="img-fluid rounded-circle z-depth-0">
+      <!-- <img width="3%" src="../../../assets/img/coaches/fsimba.jpg" alt="" class="img-fluid rounded-circle z-depth-0"> -->
+      <img  *ngIf="imageURL" width="3%" [src]="imageURL" alt="" class="img-fluid rounded-circle z-depth-0"> 
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
       </button>
@@ -50,7 +51,7 @@
           <i class="fa fa-cogs" aria-hidden="true"></i>
           <span> Account settings</span>
         </button>
-        <button mat-menu-item routerLink="/home">
+        <button mat-menu-item (click)="logOut()">
           <i class="fa fa-sign-out"></i>
           <span>log out</span>
         </button>

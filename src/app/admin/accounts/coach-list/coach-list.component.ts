@@ -14,6 +14,7 @@ export interface Coach{
   role: string;
   imageUrl?: string,
   coachID?: string;
+  deleteUser:false;
 }
 
 @Component({
@@ -26,6 +27,7 @@ export class CoachListComponent implements OnInit {
   private coachPath='/coaches';
   private coachRolePath='coach-role'
   coach_array: any[]=[];
+
   
 
   constructor(private auth:AngularFireAuth,
@@ -47,7 +49,8 @@ export class CoachListComponent implements OnInit {
     })).subscribe(res=>{
       this.coach_array=[];
       res.map(element=>{
-     
+        console.log('element',element)
+        if(element[0]['role']==='admin') return;
         this.coach_array.push(element[0]);
       })
       console.log('coach array',this.coach_array);
@@ -73,19 +76,43 @@ export class CoachListComponent implements OnInit {
           name: coachData.name,
           expertise: coachData.expertise,
           role: 'coach',
-          email: coachData.name,
-          coachID: authState.user.uid
+          email: coachData.email,
+          coachID: authState.user.uid,
+          deleteUser:false
+          
         }
+
+
 
         console.log(coach);
       
       this.db.list(`${this.coachPath}/` + authState.user.uid).push(coach);
+   
       this.snackBar.open('Coach added', 'OK!', {duration: 2000})
       this.initiliazeFormWithNoValidator();
       }
     })
 
     
+  }
+
+ deleteCoach(coach:any){
+
+    console.log('COACH', coach.coachID);
+ this.db.list(`${this.coachPath}/`+ coach.coachID).snapshotChanges().pipe(map(arr=>{
+     return arr.map(res=>{
+       return res.key;
+      })
+    })).subscribe(nodeKey=>{
+         this.db.object(`${this.coachPath}/` + coach.coachID + '/' + nodeKey[0]).update({deleteUser:true})
+         this.snackBar.open('Deleted', 'OK', {duration: 2000});
+    })
+
+    //this.db.object(`${this.coachPath}/` + coach)
+
+
+
+   
   }
 
   private initiliazeForm(){

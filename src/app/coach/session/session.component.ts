@@ -1,26 +1,15 @@
+import { AngularFireDatabase } from '@angular/fire/database';
 import { SessionService } from './../../service/session.service';
 import { Session } from './../../modal/session.modal';
 import { Component, OnInit , ViewChild, ElementRef } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import {CoachUploadService } from '../../service/coach-upload.service';
-import {DialogBoxComponent} from '../../dialog-box/dialog-box.component';
-import {HttpErrorResponse, HttpEventType} from '@angular/common/http';
 import {MatDialog, MatTable} from '@angular/material';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
-export interface UsersData {
-  name: string;
-  id: number;
-}
-
-
-const ELEMENT_DATA: UsersData[] = [
-  {id: 1560608769632, name: 'Artificial Intelligence'},
-  {id: 1560608796014, name: 'Machine Learning'},
-  {id: 1560608787815, name: 'Robotic Process Automation'},
-  {id: 1560608805101, name: 'Blockchain'}
-];
 @Component({
   selector: 'app-session',
   templateUrl: './session.component.html',
@@ -28,13 +17,16 @@ const ELEMENT_DATA: UsersData[] = [
 })
 export class SessionComponent implements OnInit {
   boolean = true;
+  session_array:any[]=[];
   public sessionForm: FormGroup;
-  displayedColumns: string[] = ['id', 'name', 'action'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['position', 'name', 'description', 'date', 'file'];
+  dataSource: MatTableDataSource<any>;
   file: File;
   filename = '';
   @ViewChild('fileUpload', {static: false}) fileUpload: ElementRef; files  = [];
   @ViewChild(MatTable, {static: true}) table: MatTable<any>;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private uploadService: CoachUploadService,
@@ -76,60 +68,43 @@ export class SessionComponent implements OnInit {
 
   }
 
-  getSession() {
-    console.log('clicked');
-    console.log(this.sessionForm.value);
-
-  }
-  // uploading with mat dialog
-  openDialog(action, obj) {
-    obj.action = action;
-    const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '250px',
-      data: obj
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'Add') {
-        this.addRowData(result.data);
-      } else if (result.event === 'Update') {
-        this.updateRowData(result.data);
-      } else if (result.event === 'Delete') {
-        this.deleteRowData(result.data);
-      }
-    });
-  }
-  // tslint:disable-next-line:variable-name
-  addRowData(row_obj) {
-    const d = new Date();
-    this.dataSource.push({
-      id: d.getTime(),
-      name: row_obj.name
-    });
-    this.table.renderRows();
-
-  }
-  // tslint:disable-next-line:variable-name
-  updateRowData(row_obj) {
-    this.dataSource = this.dataSource.filter((value, key) => {
-      if (value.id === row_obj.id) {
-        value.name = row_obj.name;
-      }
-      return true;
-    });
-  }
-  // tslint:disable-next-line:variable-name
-  deleteRowData(row_obj) {
-    this.dataSource = this.dataSource.filter((value, key) => {
-      return value.id !== row_obj.id;
-    });
-  }
-// on pending application
-  inc() {
-    this.boolean = false;
-  }
 
   ngOnInit() {
+
+    this.sessionService.getSession().subscribe(snap=>{
+
+      this.session_array=[];
+      var count:number=0;
+        snap.forEach(element=>{
+          element.forEach(data=>{
+            count++;
+            this.session_array.push({position:count, name: data['sessionName'], 
+            description: data['sessionDescription'], file: data['filename'], fileURL:data['fileUrl'], date: data['sessionDate']})
+  
+          })
+         
+        })
+     this.session_array= this.session_array.sort((a,b):any=>{ a.date < b.date ? -1 : a.date > b.date ? 1 : 0})
+
+      this.dataSource = new MatTableDataSource(this.session_array);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+      console.log('this array', this.session_array);
+    })
+
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }
+
+
+

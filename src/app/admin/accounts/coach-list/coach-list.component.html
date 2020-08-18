@@ -2,16 +2,16 @@
   <mat-tab-group class="col-md-12 " >
     <mat-tab label="Add Coach">
       <form  class="oda" style="margin-top: 10px" [formGroup]="coachData" (ngSubmit)="addCoach()">
-        <div class="col-md-6">
+        <div class="col-md-12">
           
-        <mat-form-field appearance="outline" class="col-md-5 " >
+        <mat-form-field appearance="outline" class="col-md-10 " >
         <mat-label>Name</mat-label>
         <input matInput placeholder="Placeholder" formControlName="name">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint>Hint</mat-hint>
       </mat-form-field>
         <br>
-        <mat-form-field class="col-md-5" appearance="outline">
+        <mat-form-field class="col-md-10" appearance="outline">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" placeholder="Ex. pat@example.com">
         <mat-error *ngIf="coachData.get('email').invalid">
@@ -20,7 +20,7 @@
 
       </mat-form-field  >
         <br>
-        <mat-form-field class="col-md-4" appearance="outline" >
+        <mat-form-field class="col-md-10" appearance="outline" >
           <mat-label>Expertise</mat-label>
           <mat-select formControlName="expertise"  >
             <mat-option   *ngFor="let option of expertise" [value]="option">
@@ -28,7 +28,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-          <button style="align-self: center; background-color: rgba(0,123,255,0.51);border-style: none;width: 20vw" mat-button >Add</button>
+          <button style="align-self: center; background-color: rgba(0,123,255,0.51);border-style: none;width: 40vw; margin-left:14px;" mat-button >Add</button>
         </div >
 
       </form>
@@ -53,7 +53,9 @@
                     <tbody>
                     <tr *ngFor="let coach of coach_array"><!--Loop here-->
                       <td>
-                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                      <!--  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""> -->
+                        <img src="{{ coach.imageURL}}" alt=""  class="img-fluid rounded-circle z-depth-0 thumbnail">
+
                         <a class="user-link">{{ coach.name }}</a>
                         <span class="user-subhead">Coach</span>
                       </td>
@@ -61,11 +63,12 @@
                         <p class="text-center">{{ coach.expertise }}</p>
                       </td>
                       <td style="width: 20%;">
-                        <a  type= "button"  class="table-link danger" matTooltip="Discard application " type="button" style="margin-left: 50px;">
-                        <span class="fa-stack ">
+                        <a *ngIf="coach.deleteUser==false" type="button"  class="table-link danger" (click)="deleteCoach(coach)" matTooltip="Delete Coach"  style="margin-left: 50px;">
+                        <!-- <span class="fa-stack ">
                           <i class="fa fa-square fa-stack-2x"></i>
                           <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                        </span>
+                        </span> -->
+                          <mat-icon>delete</mat-icon>
                         </a>
                     
                       </td>

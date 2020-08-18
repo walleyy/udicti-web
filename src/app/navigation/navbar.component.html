@@ -1,19 +1,19 @@
 
 <nav class="navbar navbar-dark navbar-expand-lg fixed-top main-bgcolor shadow" id="mainNav">
     <div class="container-fluid"  >
-      <a class="navbar-brand" routerLink = "" (click)="scroll('page-top')">
+      <a class="navbar-brand" routerLink = "/home" (click)="scroll('page-top')">
         <img src="../../assets/img/udsm_logo.png" width="15%">UDICTI</a>
       <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
               aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
       <div class="collapse navbar-collapse" id="navbarResponsive" >
         <ul *ngIf="fullNav" class="nav navbar-nav ml-auto text-uppercase">
           <li class="nav-item" role="presentation"><a class="nav-link " routerLink="/aboutUs">About</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" (click)="scroll('portfolio')"  href="#portfolio">Projects</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" (click)="scroll('portfolio')"  [routerLink]= "['/']" fragment="portfolio">Projects</a></li>
 <!--
           <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" (click)="scroll('services')"  href="#about">Services</a></li>
 -->
-          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" (click)="scroll('team')"  href="#team">Team</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" (click)="scroll('contact')"  href="#contact">Contact</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" (click)="scroll('team')" [routerLink]="['/']" fragment="team">Team</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" (click)="scroll('contact')" [routerLink]="['/']" fragment="contact">Contact</a></li>
           <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger"  routerLink="../login" routerLinkActive="active">Log In</a></li>
           <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger"  routerLink="../register" routerLinkActive="active">Register </a></li>
         </ul>

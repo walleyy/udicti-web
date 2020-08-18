@@ -1,3 +1,5 @@
+import { AuthGuard } from './service/auth-guard.service';
+import { AdminAuthGuardService } from './service/admin-auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 import {HomeComponent} from './home/home.component';
@@ -35,7 +37,7 @@ const routes: Routes = [
   {path: 'incubatee/:userId', component: IncubateeComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'pending/:userId', component: PendingComponent},
-  {path: 'splashpg/:coachId' , component: SplashpgComponent},
+  {path: 'splashpg' , component: SplashpgComponent},
   {path: 'coach', redirectTo: 'splashpg', pathMatch: 'full'},
   {path: 'coach', component: CoachComponent , children: [
       {path: 'notification' , component: NotificationsComponent},
@@ -45,7 +47,7 @@ const routes: Routes = [
       {path: 'my-setting' , component: MySettingComponent},
    ]
   },
-  {path: 'landingadmin' , component: LandingadminComponent},
+  {path: 'landingadmin' , component: LandingadminComponent, canActivate:[AuthGuard,AdminAuthGuardService] },
   {path: 'dashboard', redirectTo: 'landingadmin', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent , children: [
       {path: 'about', component: ManAboutComponent},

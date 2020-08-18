@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 export interface Credentials {
@@ -26,7 +26,8 @@ export class AuthService {
   constructor( private router: Router, 
     private af:AngularFireAuth,
     private db:AngularFireDatabase,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private route:ActivatedRoute
    ) { }
 
 
@@ -39,6 +40,9 @@ export class AuthService {
          this.tk=token;
          localStorage.setItem('token', token);
       });
+
+      let returnURL= this.route.snapshot.queryParamMap.get('returnUrl') //getting return URL
+
 
 
       // navigate programmatic to incubatee/coach
@@ -62,9 +66,9 @@ export class AuthService {
                 }
                 // navigate to the specific pages
                 if (snap[0]['role'] === 'applicant') {
-                  this.router.navigate(['/pending', snap[0]['userID']]);
+                  this.router.navigate([returnURL ||'/pending', snap[0]['userID']]);
                 } else if (snap[0]['role'] === 'incubatee') {
-                  this.router.navigate(['/incubatee', snap[0]['userID']]);
+                  this.router.navigate([returnURL || '/incubatee', snap[0]['userID']]);
                 }
               });
       return;
@@ -79,12 +83,19 @@ export class AuthService {
            }))
             .subscribe(snap=>{
               console.log(snap[0]['role'])
-
-              if(snap[0]['role']==='admin'){
-              this.router.navigate(['/landingadmin'])
+            
+              if(snap[0] && snap[0]['role']==='admin'){
+              this.router.navigate([returnURL || '/landingadmin'])
               }
-              else if (snap[0]['role']==='coach'){
-                this.router.navigate(['/splashpg', authState.user.uid]);
+              else if ( snap[0] && snap[0]['role']==='coach'){
+                if( snap[0]['deleteUser']){
+                  //deleting user's account
+                    this.af.auth.currentUser.delete();
+                    this.db.object('/coaches/' + authState.user.uid).remove();
+                    this.snackBar.open('Your account has been deactivated', 'OK', {duration: 3000})
+                    this.router.navigate(['/'])
+                }
+                this.router.navigate([returnURL || '/splashpg']);
               }
             })
   

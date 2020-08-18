@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -32,7 +33,7 @@ export class LandingadminComponent implements OnInit {
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'projects' }
   ];
 
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit() {
   }
@@ -51,5 +52,9 @@ export class LandingadminComponent implements OnInit {
   public randomize(): void {
     // Only Change 3 values
     // function ya kuupdate data
+  }
+  
+  logOut(){
+    this.authService.logOut();
   }
 }
