@@ -58,7 +58,7 @@ public imageURL;
         return res.payload.val()
       })
     })).subscribe(snap=>{
-      if(snap[0]['imageURL']){
+      if(snap[0]['imageURL'] !==undefined){
         this.imageURL= snap[0]['imageURL']
       }
     })

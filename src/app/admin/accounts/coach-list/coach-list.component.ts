@@ -91,6 +91,8 @@ export class CoachListComponent implements OnInit {
       this.snackBar.open('Coach added', 'OK!', {duration: 2000})
       this.initiliazeFormWithNoValidator();
       }
+    }).catch(error=>{
+          this.snackBar.open(error, 'OK', {duration: 3000})
     })
 
     

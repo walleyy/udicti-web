@@ -58,7 +58,7 @@ export class AuthService {
       })).subscribe(snap => {
                 console.log(snap[0]);
 
-                if(snap[0]['deleteUser']){
+                if(snap[0]['deleteUser'] !==undefined  && snap[0]['deleterUser']==true){
                   this.af.auth.currentUser.delete();
                   this.snackBar.open("Sorry! You application has been denied..Try again Next time", 'OK', {duration:5000})
                   this.router.navigate(['/'])
@@ -66,9 +66,9 @@ export class AuthService {
                 }
                 // navigate to the specific pages
                 if (snap[0]['role'] === 'applicant') {
-                  this.router.navigate([returnURL ||'/pending', snap[0]['userID']]);
+                  this.router.navigate(['/pending', snap[0]['userID'  || returnURL]]);
                 } else if (snap[0]['role'] === 'incubatee') {
-                  this.router.navigate([returnURL || '/incubatee', snap[0]['userID']]);
+                  this.router.navigate([ '/incubatee', snap[0]['userID']  || returnURL ]);
                 }
               });
       return;
@@ -88,7 +88,7 @@ export class AuthService {
               this.router.navigate([returnURL || '/landingadmin'])
               }
               else if ( snap[0] && snap[0]['role']==='coach'){
-                if( snap[0]['deleteUser']){
+                if( snap[0]['deleteUser'] && snap[0]['deleterUser']==true){
                   //deleting user's account
                     this.af.auth.currentUser.delete();
                     this.db.object('/coaches/' + authState.user.uid).remove();
