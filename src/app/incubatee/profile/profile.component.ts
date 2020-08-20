@@ -33,6 +33,7 @@ export class ProfileComponent  implements OnInit {
   session_array:any []= [];
   displayedColumns:string[];
   notification_array: any[]=[]
+  notificationNumber:number=0;
   dataSource;
   private incubateeCoachPath='/incubatee-coach';
   private incubateeId:string;
@@ -111,6 +112,8 @@ export class ProfileComponent  implements OnInit {
              if (element['notificationType']==="private"){
                this.notification_array.push(element)  
              }
+
+             this.notificationNumber=this.notification_array.length;
            })
 
            console.log("private", this.notification_array);

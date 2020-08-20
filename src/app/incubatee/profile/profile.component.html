@@ -1,231 +1,232 @@
-
-<ng-container style="align-self: center; display: flex;justify-content: center;">
-  <div class="container" style="margin-top: 8%;margin-bottom: 3%">
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top main-bgcolor shadow" id="mainNav">
-      <div class="container" >
-        <a class="navbar-brand" routerLink = "" (click)="scroll('page-top')">
-          <img src="../../assets/img/udsm_logo.png" width="15%">UDICTI</a>
-        <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="nav navbar-nav ml-auto h5">
-            <li class="nav-item" role="presentation">
-              <a class="nav-link js-scroll-trigger"  routerLink="" (click)="logout()">
-                <i class="fa fa-sign-out"></i> Logout
-              </a></li>
-          </ul>
+  <ng-container style="align-self: center; display: flex;justify-content: center;">
+    <div class="container" style="margin-top: 8%;margin-bottom: 3%">
+      <nav class="navbar navbar-dark navbar-expand-lg fixed-top main-bgcolor shadow" id="mainNav">
+        <div class="container" >
+          <a class="navbar-brand" routerLink = "" (click)="scroll('page-top')">
+            <img src="../../assets/img/udsm_logo.png" width="15%">UDICTI</a>
+          <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
+                  aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto h5">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link js-scroll-trigger"  routerLink="" (click)="logout()">
+                  <i class="fa fa-sign-out"></i> Logout
+                </a></li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
-  </div>
-  <div  >
-
-    <div class="row" style="margin: 0 1px;align-content: center;display: flex;align-self: center;flex: auto">
-
-      <mat-card class="col-md-2 shadow" style="color: darkgrey; height: fit-content; ">
-        <div>
-          <div style="text-align: center; padding: 20px 0 15px 0">
-            <img class="rounded-circle img-fluid shadow" src="../../../assets/img/team/2.jpg" width="70%">
-            <h5 style="padding-top: 20px">{{ bioName }}</h5>
-            <p >{{ bioProjectTitle }}</p>
-            <p >{{ bioCollege }}</p>
-            <p >{{ bioPhoneNumber}}</p>
-          </div>
-          <mat-divider style="width: 90%; margin: 0px 15px"></mat-divider>
-           <!--<div style="padding: 40px 0 20px 0">
-
-          </div>
-         <div style="text-align: center;display: flex;flex-direction: row;">
-            <a class="btn shadow text-white js-scroll-trigger main-bgcolor" (click)="scroll('editProfile')" style="padding: 10px 45px;height:fit-content" >
-              <img src="../../../assets/img/incubatee/userWhite.png" width="20%" style="margin-right: 5px;"> Edit</a>
-          </div>   --> 
-        </div>
-      </mat-card>
-
-
-      <div class="col-md-8 ">
-
-        <mat-card id="editProfile"  style="height: fit-content; width: 100%" >
-          <mat-tab-group [(selectedIndex)]="profileTab">
-
-           <mat-tab>
-             <ng-template mat-tab-label style="width: 50%">
-               <mat-icon style="margin-right: 5px">timeline</mat-icon>Timeline
-             </ng-template>
-             <app-activities></app-activities>
-           </mat-tab>
-
-            <mat-tab>
-              <ng-template mat-tab-label>
-                <img src="../../../assets/img/incubatee/addActivity.png" width="25%" style="margin-right: 10px">Activity
-              </ng-template>
-              <form [formGroup]="registrationForm" (ngSubmit)="onActivityAdd()" class="container" fxLayout="column" fxLayoutAlign="center center">
-
-                <mat-form-field appearance="outline" style="width: 95%; margin-top: 20px;">
-                  <mat-label>Activity Title</mat-label>
-                  <input matInput type="text" formControlName="act_title">
-                  <mat-error *ngIf="hasError('act_title', 'required')">Activity Title is required</mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" style="width: 95%">
-                  <mat-label>Activity details</mat-label>
-                  <textarea matInput type="text" formControlName="act_details" ></textarea>
-                  <mat-error *ngIf="hasError('act_details', 'required')">Activity details is required</mat-error>
-                </mat-form-field>
-
-                <div class="raised-box">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <button  type="button" mat-raised-button (click)="fileInput.click()">
-                        <mat-icon>file_upload</mat-icon>Choose File</button>
-                    </div>
-                    <div class="col-md-9">
-                      <mat-chip class="chips"> {{ filename}} </mat-chip>
-                    </div>
-                  </div>
-                  <input  style="display: none" type="file" name="fileInput"  #fileInput (change)="handleFiles($event)">
-                </div><br>
-
-
-              <mat-form-field appearance="outline" style="width: 95%; margin-top: 20px">
-                <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="act_date">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-
-              <mat-progress-bar *ngIf="barActive" mode="determinate" [value]="percentage"></mat-progress-bar><br>
-              <button mat-button class="btn-block h5 shadow" style="background-color: #3F33CD; color: #ffffff; width: 70%;padding: 2px">Add Activity</button>
-
-
-              </form>
-            </mat-tab>
-
-            <mat-tab>
-              <ng-template mat-tab-label style="color: #3F33CD">
-                <mat-icon>library_books</mat-icon>Sessions
-              </ng-template>
-              <div *ngIf="session_array.length>0; else noSession"><!--Div when sessions present-->
-                <mat-card  *ngFor="let session of session_array">
-                  <mat-card>
-                    <mat-card-header>
-                      <div mat-card-avatar class="avatar-image"></div>
-                      <mat-card-title>{{session.sessionName}}</mat-card-title>
-                      <mat-card-subtitle>Posted by: </mat-card-subtitle>
-                      <mat-card-subtitle>Date: {{ session.sessionDate | date:'fullDate'}} </mat-card-subtitle>
-                    </mat-card-header>
-
-                    <mat-card-content>
-                      Session Description
-                      <p>{{ session.sessionDescription}}</p>
-                    </mat-card-content>
-
-                    <mat-card-actions>
-
-                   <p style="color:#3F33CD"><a mat-button href="{{ session.fileUrl}}"><mat-icon>attachment</mat-icon>View Attachment</a></p>
-                    </mat-card-actions>
-                  </mat-card>
-
-                </mat-card>
-
-
-              </div>
-
-              <ng-template  #noSession><!--Div when session is not present-->
-
-
-              </ng-template>
-            </mat-tab>
-
-            <mat-tab>
-              <ng-template mat-tab-label>
-                <img src="../../../assets/img/incubatee/userSetting.png" width="20%" style="margin-right: 3px">Resources
-              </ng-template>
-
-              <mat-form-field>
-                <mat-label>Filter</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. erd" #input>
-              </mat-form-field>
-
-              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-                <!-- Position Column -->
-                <ng-container matColumnDef="position">
-                  <th mat-header-cell *matHeaderCellDef> No. </th>
-                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-                </ng-container>
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef> Name </th>
-                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                </ng-container>
-
-                <!-- Weight Column -->
-                <ng-container matColumnDef="Date">
-                  <th mat-header-cell *matHeaderCellDef> Date </th>
-                  <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
-                </ng-container>
-
-                <!-- URL Column -->
-                <ng-container matColumnDef="URL">
-                  <th mat-header-cell *matHeaderCellDef> Date </th>
-                  <td mat-cell *matCellDef="let element"> <a [href]="element.URL"> View File</a></td>
-                </ng-container>
-
-
-
-
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="PostedBy">
-                  <th mat-header-cell *matHeaderCellDef> PostedBy </th>
-                  <td mat-cell *matCellDef="let element"> {{element.PostedBy}} </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-                <!-- Row shown when there is no matching data. -->
-                <tr class="mat-row" *matNoDataRow>
-                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-                </tr>
-              </table>
-
-            </mat-tab>
-          </mat-tab-group>
-        </mat-card>
-      </div>
-
-
-
-
-      <div  class="col-md-2 shadow">
-        <mat-card id="private-notification"  style=" height: fit-content;height: fit-content">
-          <div type="button" >
-            <h5 style="color: #c69500" >
-              <mat-icon matBadge="15" matBadgeColor="accent" matBadgePosition="before" style="margin-top: 15px">notifications
-              </mat-icon>Notifications</h5>
-          </div>
-
-
-  
-          <h6 style="font-family: 'Roboto Thin'"><em>This week</em></h6>
-         
-          <div *ngFor="let notification of notification_array">   
-            <div style="flex: fit-content;border: groove #86cfda;box-shadow: yellow;border-radius: 10px">
-              <li><span style="!important;color: #86cfda;font-family: 'Roboto Thin'"><em>Mkocha</em></span></li>
-              <li><span style="!important;color: #86cfda;font-family: 'Roboto Thin'">
-                 <em><mat-icon>bookmark</mat-icon>{{ notification.notificationHeader}}</em></span></li>
-              <blockquote><em>{{ notification.notificationDetails }}</em></blockquote>
-            </div>
-          </div>
-
-        </mat-card>
-
-      </div>
-
-
+      </nav>
     </div>
-  </div>
+    <div  >
+  
+      <div class="row" style="margin: 0 1px;align-content: center;display: flex;align-self: center;flex: auto">
+  
+        <mat-card class="col-md-2 shadow" style="color: darkgrey; height: fit-content; ">
+          <div>
+            <div style="text-align: center; padding: 20px 0 15px 0">
+              <img class="rounded-circle img-fluid shadow" src="../../../assets/img/team/2.jpg" width="70%">
+              <h5 style="padding-top: 20px">{{ bioName }}</h5>
+              <p >{{ bioProjectTitle }}</p>
+              <p >{{ bioCollege }}</p>
+              <p >{{ bioPhoneNumber}}</p>
+            </div>
+            <mat-divider style="width: 90%; margin: 0px 15px"></mat-divider>
+             <!--<div style="padding: 40px 0 20px 0">
+  
+            </div>
+           <div style="text-align: center;display: flex;flex-direction: row;">
+              <a class="btn shadow text-white js-scroll-trigger main-bgcolor" (click)="scroll('editProfile')" style="padding: 10px 45px;height:fit-content" >
+                <img src="../../../assets/img/incubatee/userWhite.png" width="20%" style="margin-right: 5px;"> Edit</a>
+            </div>   --> 
+          </div>
+        </mat-card>
+  
+  
+        <div class="col-md-8 ">
+  
+          <mat-card id="editProfile"  style="height: fit-content; width: 100%" >
+            <mat-tab-group [(selectedIndex)]="profileTab">
+  
+             <mat-tab>
+               <ng-template mat-tab-label style="width: 50%">
+                 <mat-icon style="margin-right: 5px">timeline</mat-icon>Timeline
+               </ng-template>
+               <app-activities></app-activities>
+             </mat-tab>
+  
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <img src="../../../assets/img/incubatee/addActivity.png" width="25%" style="margin-right: 10px">Activity
+                </ng-template>
+                <form [formGroup]="registrationForm" (ngSubmit)="onActivityAdd()" class="container" fxLayout="column" fxLayoutAlign="center center">
+  
+                  <mat-form-field appearance="outline" style="width: 95%; margin-top: 20px;">
+                    <mat-label>Activity Title</mat-label>
+                    <input matInput type="text" formControlName="act_title">
+                    <mat-error *ngIf="hasError('act_title', 'required')">Activity Title is required</mat-error>
+                  </mat-form-field>
+  
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>Activity details</mat-label>
+                    <textarea matInput type="text" formControlName="act_details" ></textarea>
+                    <mat-error *ngIf="hasError('act_details', 'required')">Activity details is required</mat-error>
+                  </mat-form-field>
+  
+                  <div class="raised-box">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <button  type="button" mat-raised-button (click)="fileInput.click()">
+                          <mat-icon>file_upload</mat-icon>Choose File</button>
+                      </div>
+                      <div class="col-md-9">
+                        <mat-chip class="chips"> {{ filename}} </mat-chip>
+                      </div>
+                    </div>
+                    <input  style="display: none" type="file" name="fileInput"  #fileInput (change)="handleFiles($event)">
+                  </div><br>
+  
+  
+                <mat-form-field appearance="outline" style="width: 95%; margin-top: 20px">
+                  <mat-label>Choose a date</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="act_date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+  
+                <mat-progress-bar *ngIf="barActive" mode="determinate" [value]="percentage"></mat-progress-bar><br>
+                <button mat-button class="btn-block h5 shadow" style="background-color: #3F33CD; color: #ffffff; width: 70%;padding: 2px">Add Activity</button>
+  
+  
+                </form>
+              </mat-tab>
+  
+              <mat-tab>
+                <ng-template mat-tab-label style="color: #3F33CD">
+                  <mat-icon>library_books</mat-icon>Sessions
+                </ng-template>
+                <div *ngIf="session_array.length>0; else noSession"><!--Div when sessions present-->
+                  <mat-card  *ngFor="let session of session_array">
+                    <mat-card>
+                      <mat-card-header>
+                        <div mat-card-avatar class="avatar-image"></div>
+                        <mat-card-title>{{session.sessionName}}</mat-card-title>
+                        <mat-card-subtitle>Posted by: </mat-card-subtitle>
+                        <mat-card-subtitle>Date: {{ session.sessionDate | date:'fullDate'}} </mat-card-subtitle>
+                      </mat-card-header>
+  
+                      <mat-card-content>
+                        Session Description
+                        <p>{{ session.sessionDescription}}</p>
+                      </mat-card-content>
+  
+                      <mat-card-actions>
+  
+                     <p style="color:#3F33CD"><a mat-button href="{{ session.fileUrl}}"><mat-icon>attachment</mat-icon>View Attachment</a></p>
+                      </mat-card-actions>
+                    </mat-card>
+  
+                  </mat-card>
+  
+  
+                </div>
+  
+                <ng-template  #noSession><!--Div when session is not present-->
+  
+  
+                </ng-template>
+              </mat-tab>
+  
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <img src="../../../assets/img/incubatee/userSetting.png" width="20%" style="margin-right: 3px">Resources
+                </ng-template>
+  
+                <mat-form-field>
+                  <mat-label>Filter</mat-label>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. erd" #input>
+                </mat-form-field>
+  
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                  </ng-container>
+  
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+  
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="Date">
+                    <th mat-header-cell *matHeaderCellDef> Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
+                  </ng-container>
+  
+                  <!-- URL Column -->
+                  <ng-container matColumnDef="URL">
+                    <th mat-header-cell *matHeaderCellDef> Date </th>
+                    <td mat-cell *matCellDef="let element"> <a [href]="element.URL"> View File</a></td>
+                  </ng-container>
+  
+  
+  
+  
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="PostedBy">
+                    <th mat-header-cell *matHeaderCellDef> PostedBy </th>
+                    <td mat-cell *matCellDef="let element"> {{element.PostedBy}} </td>
+                  </ng-container>
+  
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+                  <!-- Row shown when there is no matching data. -->
+                  <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                  </tr>
+                </table>
+  
+              </mat-tab>
+            </mat-tab-group>
+          </mat-card>
+        </div>
+  
+  
+  
+  
+        <div  class="col-md-2 shadow">
+          <mat-card id="private-notification"  style=" height: fit-content;height: fit-content">
+            <div type="button" >
+              <h5 style="color: #c69500" >
+                <mat-icon [matBadge]="notificationNumber" matBadgeColor="accent" matBadgePosition="before" style="margin-top: 15px">notifications
+                </mat-icon>Notifications</h5>
+            </div>
+  
+  
+    
+            <h6 style="font-family: 'Roboto Thin'"><em>This week</em></h6>
+           
+            <div *ngFor="let notification of notification_array">   
+              <div style="flex: fit-content;border: groove #86cfda;box-shadow: yellow;border-radius: 10px">
+                <li><span style="!important;color: #86cfda;font-family: 'Roboto Thin'"><em>Mkocha</em></span></li>
+                <li><span style="!important;color: #86cfda;font-family: 'Roboto Thin'">
+                   <em><mat-icon>bookmark</mat-icon>{{ notification.notificationHeader}}</em></span></li>
+                <blockquote><em>{{ notification.notificationDetails }}</em></blockquote>
+              </div>
+            </div>
+  
+          </mat-card>
+  
+        </div>
+  
+  
+      </div>
+    </div>
+  
+  </ng-container>
 
-</ng-container>
+
